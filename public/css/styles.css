@@ -1,0 +1,23 @@
+.box{
+    max-width: 600px;
+    padding:10px 0;
+    border:1px solid #ccc;
+   }
+.form-horizontal{
+    margin:10px 20px;
+}
+.footer{
+    background-color:rgb(99, 164, 207);
+    padding:10px 10px;
+    display:flex;
+    flex-wrap: wrap;
+}
+.footer-left{
+    flex: 2;
+}
+.footer-right{
+width: 100px;
+}
+#main{
+    padding:10px 10px;
+}

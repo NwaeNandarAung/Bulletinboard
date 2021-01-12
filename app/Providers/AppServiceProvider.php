@@ -13,7 +13,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        //bind usecases
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\GetPostUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\GetPostInteractor::class,
+        );
+
+        //bind repositories
+        $this->app->bind(
+            \Domain\Repository\Bulletin\PostRepository::class
+        );
     }
 
     /**

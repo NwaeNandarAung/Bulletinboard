@@ -17,15 +17,15 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->string('description');
-            $table->boolean('status')->default(1);
-            $table->unsignedBigInteger('create_user_id');
-            $table->unsignedBigInteger('update_user_id');
-            $table->integer('delete_user_id');
+            $table->string('status')->default(1);
+            $table->unsignedBigInteger('created_user_id');
+            $table->unsignedBigInteger('updated_user_id');
+            $table->integer('deleted_user_id');
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
             $table->timestamp('deleted_at')->nullable();
-            $table->foreign('create_user_id')->references('id')->on('users'); 
-            $table->foreign('update_user_id')->references('id')->on('users'); 
+            $table->foreign('created_user_id')->references('id')->on('users'); 
+            $table->foreign('updated_user_id')->references('id')->on('users'); 
         });
     }
 

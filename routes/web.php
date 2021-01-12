@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/login','App\Http\Controllers\Auth\LoginController@login')->name('login');
+Route::post('/login','App\Http\Controllers\Auth\LoginController@authenticate');
+Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
+//Post
+Route::get('post', 'App\Http\Controllers\PostController@create');
+Route::get('post', 'App\Http\Controllers\PostController@store');
+Route::get('posts', 'App\Http\Controllers\PostController@index');
 
-Route::get('/main','App\Http\Controllers\MainController@index');
