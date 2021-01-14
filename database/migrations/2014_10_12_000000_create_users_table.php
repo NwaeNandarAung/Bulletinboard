@@ -14,21 +14,32 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->integer('id')->primary();
             $table->string('name');
             $table->string('email')->unique();
             $table->text('password');
             $table->string('profile');
-            $table->string('user_type',1)->default(1);
+            $table->string('type',1)->default(1);
             $table->string('phone',20)->nullable();
             $table->string('address')->nullable();
-            $table->date('dob')->nullable();  
-            $table->integer('create_user_id');
-            $table->integer('update_user_id');
-            $table->integer('delete_user_id')->nullable();
+            $table->date('dob')->nullable(); 
+            $table->integer('created_user_id');
+            $table->integer('updated_user_id');
+            $table->integer('deleted_user_id')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
             $table->timestamp('deleted_at')->nullable();
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('created_user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade'); 
+            $table->foreign('updated_user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
         });
     }
 

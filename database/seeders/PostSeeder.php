@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class AdminSeeder extends Seeder
+class PostSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,12 +14,11 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('posts')->insert([
             'id' => '1',
-            'name' => 'Nwae',
-            'email' => 'nwaenwae@gmail.com',
-            'password' => bcrypt('123456'),
-            'profile'=>'https://pixabay.com/photos/tree-sunset-amazing-beautiful-736885/',
+            'title' => 'Title 1',
+            'description' => 'Description 1',
+            'status' => '1',
             'created_user_id'=>'1',
             'updated_user_id'=>'1',
             'created_at'=> date("Y-m-d H:i:s"),
