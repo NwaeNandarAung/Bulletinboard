@@ -1,7 +1,7 @@
 <?php
 namespace Domain\Output;
 
-Interface BaseOutput{
+Interface BaseOutput
+{
     public function presentation();
 }
-?>

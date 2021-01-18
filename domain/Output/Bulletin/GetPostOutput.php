@@ -1,20 +1,21 @@
 <?php
 namespace Domain\Output\Bulletin;
-use Domain\Output\BaseInput as Output;
 
-class GetPostOutput implements BaseOutput{
-    public $postInfo;
+use Domain\Output\BaseOutput;
 
-    public function __construct($postInfo){
+class GetPostOutput implements BaseOutput
+{
+    private $postInfo;
+    
+    public function __construct($postInfo)
+    {
         $this->postInfo=$postInfo;
     }
 
     public function presentation()
     {
-        return[
-            "title"=>$postInfo->title,
-            "description"=>$postInfo->description
-        ];
+        $postData = $this->postInfo;
+        return view('posts.index', compact('postData'));
+      
     }
 }
-?>

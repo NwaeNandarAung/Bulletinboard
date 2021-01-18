@@ -22,6 +22,7 @@ Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('
 
 //Post
 Route::get('post', 'App\Http\Controllers\PostController@create');
-Route::get('post', 'App\Http\Controllers\PostController@store');
+Route::post('post', 'App\Http\Controllers\PostController@store');
 Route::get('posts', 'App\Http\Controllers\PostController@index');
+Route::get('post_confirm/{id}', 'App\Http\Controllers\PostController@confirm');
 

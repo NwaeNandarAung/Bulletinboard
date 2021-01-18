@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Domain\Input\GetPostInput;
+use Domain\Input\Bulletin\GetPostInput;
 use Domain\Usecase\Bulletin\GetPostUsecase;
-use Domain\Usecase\Bulletin\Interactor\GetPostInteractor;
+use Domain\Models\Post as Post;
 
 class PostController extends Controller
 {
@@ -16,6 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
+        $posts = Post::all();
         return view('posts.index');
     }
 
@@ -35,14 +36,22 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function confirm($id)
+    {
+            return view('posts.confirm');       
+    }
+
     public function store(Request $request,GetPostUsecase $usecase)
     {
             $input=new GetPostInput(
                 $request->get('title'),
-                $request->get('description')
+                $request->get('description'),
+                $request->get('created_user_id'),
+                $request->get('created_at')
             );
             $output=$usecase->handle($input);
-            return response()->json($output->presentation(),200);
+            
+            return $output->presentation();       
     }
 
     /**

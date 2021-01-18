@@ -21,7 +21,8 @@ class AppServiceProvider extends ServiceProvider
 
         //bind repositories
         $this->app->bind(
-            \Domain\Repository\Bulletin\PostRepository::class
+            \Domain\Repository\Bulletin\PostRepository::class,
+            \App\RepositoryImpl\PostRepositoryImpl::class
         );
     }
 

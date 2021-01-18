@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
    <h3 align="center" style="margin-top:20px;">Create Post</h3><br/>
-   <form class="form-horizontal" method="post" action="{{ url('/posts') }}">
+   <form class="form-horizontal" method="post" action="{{ url('/post_confirm') }}">
     {{ csrf_field() }}
         <div class="form-group row">
             <label for="staticEmail" class="offset-sm-2 col-sm-2 col-form-label">Title</label>

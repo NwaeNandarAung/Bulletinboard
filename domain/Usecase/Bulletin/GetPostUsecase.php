@@ -7,4 +7,3 @@ interface GetPostUsecase{
     public function handle(GetPostInput $input):GetPostOutput;
 }
     
-?>

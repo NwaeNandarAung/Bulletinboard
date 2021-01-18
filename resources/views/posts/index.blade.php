@@ -30,29 +30,16 @@
   </thead>
   <tbody>
     <tr>
-      <td>Title 1</td>
-      <td>Description 1</td>
-      <td>User 1</td>
-      <td>Date 1</td>
-      <td><a href="">Edit</a></td>
-      <td><a href="">Delete</a></td>
-    </tr>
+    @foreach ($postData as $post)
     <tr>
-      <td>Title 1</td>
-      <td>Description 1</td>
-      <td>User 1</td>
-      <td>Date 1</td>
+      <td>{{ $post->title }}</td>
+      <td>{{ $post->description }}</td>
+      <td>{{ $post->created_user_id }}</td>
+      <td>{{ $post->created_at }}</td>
       <td><a href="">Edit</a></td>
       <td><a href="">Delete</a></td>
     </tr>
-    <tr>
-    <td>Title 1</td>
-      <td>Description 1</td>
-      <td>User 1</td>
-      <td>Date 1</td>
-      <td><a href="">Edit</a></td>
-      <td><a href="">Delete</a></td>
-    </tr>
+    @endforeach
   </tbody>
 </table>
 
