@@ -8,6 +8,9 @@ class Post
 {
     public string $title;
     public string $description;
+    public string $status;
+    public string $created_user_id;
+    public string $created_at;
 
     private function __construct()
     {

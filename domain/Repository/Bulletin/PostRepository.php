@@ -1,7 +1,7 @@
 <?php
 namespace Domain\Repository\Bulletin;
 
-Interface PostRepository{
+Interface PostRepository
+{
     public function getPostInfo():? array;
 }
-?>

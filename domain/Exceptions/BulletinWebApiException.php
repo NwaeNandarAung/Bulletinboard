@@ -14,4 +14,3 @@ class BulletinWebApiException extends Exception
         $this->logMessage=$logMessage;
     }
 }
-?>

@@ -23,4 +23,3 @@ class GetPostInteractor implements GetPostUsecase
         return $output;
     }
 }
-?>

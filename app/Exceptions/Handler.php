@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Domain\Exceptions\BulletinWebApiException;
 
 class Handler extends ExceptionHandler
 {
@@ -34,7 +35,13 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+            
+        });
+
+        $this->renderable(function (BulletinWebApiException $e, $request)
+        {
+            $errorCode = $e->code;
+            return response()->view('error',compact('e'), 500);
         });
     }
 }

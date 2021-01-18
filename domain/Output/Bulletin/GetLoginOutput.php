@@ -1,0 +1,20 @@
+<?php
+namespace Domain\Output\Bulletin;
+
+use Domain\Output\BaseOutput;
+
+class GetLoginOutput implements BaseOutput
+{
+    private $loginInfo;
+    
+    public function __construct($loginInfo)
+    {
+        $this->loginInfo=$loginInfo;
+    }
+
+    public function presentation()
+    {
+        $loginData = $this->loginInfo;
+        return view('posts.create', compact('loginData'));  
+    }
+}

@@ -3,10 +3,12 @@ namespace Domain\Input\Bulletin;
 use Domain\Exceptions\BulletinWebApiException;
 use Domain\Input\BaseInput as BaseInput;
 
-Class GetPostInput implements BaseInput
+Class GetAllPostsInput implements BaseInput
 {
     private $title;
     private $description;
+    private $created_user_id;
+    private $created_at;
 
     public function __construct($title, $description,$created_user_id,$created_at)
     {

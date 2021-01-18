@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use Domain\Input\Bulletin\GetLoginInput;
+use Domain\Usecase\Bulletin\GetLoginUsecase;
+use App\Http\Controllers\Controller as Controller;
 use Illuminate\Http\Request;
+
 use Auth;
 
 class LoginController extends Controller
@@ -14,23 +17,24 @@ class LoginController extends Controller
       return view('auth.login');
     }
 
-    public function authenticate(Request $request)
+    public function authenticate(Request $request,GetLoginUsecase $usecase)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+      $input=new GetLoginInput(
+        $request->get('email'),
+        $request->get('password'),
+    );
+    // $request->validate([
+    //   'email' => 'required|string|email',
+    //   'password' => 'required|string',
+    // ]);
+    // $credentials = $request->only('email', 'password');
+      $output=$usecase->handle($input);
 
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('posts');
-        }
-
-        return redirect('login')->with('error', 'Oppes! You have entered invalid credentials');
+      return $output->presentation();   
     }
 
-    public function logout() {
+    public function logout() 
+    {
       Auth::logout();
 
       return redirect('login');
