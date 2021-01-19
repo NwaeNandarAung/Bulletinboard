@@ -39,6 +39,11 @@ class AppServiceProvider extends ServiceProvider
             \Domain\Usecase\Bulletin\Interactor\ConfirmPostInteractor::class,
         );
 
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\EditPostUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\EditPostInteractor::class,
+        );
+
         //bind repositories
         $this->app->bind(
             \Domain\Repository\Bulletin\PostRepository::class,
@@ -59,9 +64,15 @@ class AppServiceProvider extends ServiceProvider
             \Domain\Repository\Bulletin\CreatePostRepository::class,
             \App\RepositoryImpl\CreatePostRepositoryImpl::class,
         );
+
         $this->app->bind(
             \Domain\Repository\Bulletin\ConfirmPostRepository::class,
             \App\RepositoryImpl\ConfirmPostRepositoryImpl::class,
+        );
+
+        $this->app->bind(
+            \Domain\Repository\Bulletin\EditPostRepository::class,
+            \App\RepositoryImpl\EditPostRepositoryImpl::class,
         );
     }
 

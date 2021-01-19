@@ -3,21 +3,34 @@
     padding:10px 0;
     border:1px solid #ccc;
    }
+
 .form-horizontal{
     margin:10px 20px;
 }
+
+#main{
+    padding-bottom:-200px;
+}
+
 .footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width:100%;
     background-color:rgb(99, 164, 207);
     padding:10px 10px;
     display:flex;
     flex-wrap: wrap;
 }
+
 .footer-left{
     flex: 2;
 }
+
 .footer-right{
 width: 100px;
 }
+
 #main{
     padding:10px 10px;
 }

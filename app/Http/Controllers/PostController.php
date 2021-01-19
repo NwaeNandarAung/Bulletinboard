@@ -12,6 +12,8 @@ use Domain\Input\Bulletin\CreatePostInput;
 use Domain\Usecase\Bulletin\CreatePostUsecase;
 use Domain\Input\Bulletin\ConfirmPostInput;
 use Domain\Usecase\Bulletin\ConfirmPostUsecase;
+use Domain\Input\Bulletin\EditPostInput;
+use Domain\Usecase\Bulletin\EditPostUsecase;
 
 class PostController extends Controller
 {
@@ -25,8 +27,11 @@ class PostController extends Controller
         $input=new GetAllPostsInput(
         $request->get('title'),
         $request->get('description'),
+        $request->get('status'),
         $request->get('created_user_id'),
-        $request->get('created_at')
+        $request->get('updated_user_id'),
+        $request->get('created_at'),
+        $request->get('updated_at'),
     );
         $output=$usecase->handle($input);
             
@@ -40,9 +45,7 @@ class PostController extends Controller
      */
     public function create(CreatePostUsecase $usecase)
     {
-    
             $output=$usecase->handle();
-                
             return $output->presentation();   
     }
 
@@ -52,24 +55,32 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function confirm(Request $request,ConfirmPostUsecase $usecase)
+    public function confirm(Request $request, ConfirmPostUsecase $usecase)
     {
         $input=new ConfirmPostInput(
-        $request->get('title'),
-        $request->get('description'),
-        $request->get('created_user_id'),
-        $request->get('created_at')
+            $request->get('title'),
+            $request->get('description'),
+            $request->get('status'),
+            $request->get('created_user_id'),
+            $request->get('updated_user_id'),
+            $request->get('created_at'),
+            $request->get('updated_at'),
         );
         $output=$usecase->handle($input);
         
         return $output->presentation();       
     } 
 
-    public function store(Request $request,$id,GetPostUsecase $usecase)
+    public function store(Request $request,GetPostUsecase $usecase)
     {
         $input=new GetPostInput(    
             $request->get('title'),
-            $request->get('description')
+            $request->get('description'),
+            $request->get('status'),
+            $request->get('created_user_id'),
+            $request->get('updated_user_id'),
+            $request->get('created_at'),
+            $request->get('updated_at'),
         );
         $output=$usecase->handle($input);
         
@@ -93,9 +104,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,EditPostUsecase $usecase)
     {
-        
+        $output=$usecase->handle();
+        return $output->presentation();  
     }
 
     /**

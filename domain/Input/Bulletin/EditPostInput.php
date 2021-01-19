@@ -3,25 +3,15 @@ namespace Domain\Input\Bulletin;
 use Domain\Exceptions\BulletinWebApiException;
 use Domain\Input\BaseInput as BaseInput;
 
-Class ConfirmPostInput implements BaseInput
+Class EditPostInput implements BaseInput
 {
     private $title;
     private $description;
-    private $status;
-    private $created_user_id;
-    private $updated_user_id;
-    private $created_at;
-    private $updated_at;
 
-    public function __construct($title, $description,$status,$created_user_id,$updated_user_id,$created_at,$updated_at)
+    public function __construct($title, $description)
     {
         $this->title=$title;
         $this->description=$description;
-        $this->status=$status;
-        $this->created_user_id=$created_user_id;
-        $this->created_at=$created_at;
-        $this->updated_user_id=$updated_user_id;
-        $this->updated_at=$updated_at;
     }
     public function validate()
     {

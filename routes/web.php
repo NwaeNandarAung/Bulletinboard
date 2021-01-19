@@ -25,5 +25,6 @@ Route::get('post', 'App\Http\Controllers\PostController@create');
 Route::post('post', 'App\Http\Controllers\PostController@store');
 Route::get('posts', 'App\Http\Controllers\PostController@index');
 Route::get('post_confirm/1', 'App\Http\Controllers\PostController@confirm');
-Route::get('post/1/edit', 'App\Http\Controllers\PostController@edit');
+Route::get('post/edit', 'App\Http\Controllers\PostController@edit');
+Route::resource('posts', App\Http\Controllers\PostController::class);
 

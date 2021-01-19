@@ -36,7 +36,7 @@
       <td>{{ $post->description }}</td>
       <td>{{ $post->created_user_id }}</td>
       <td>{{ $post->created_at }}</td>
-      <td><a href="">Edit</a></td>
+      <td><a href="{{ route('posts.edit', $post->id) }}">Edit</a></td>
       <td><a href="">Delete</a></td>
     </tr>
     @endforeach
