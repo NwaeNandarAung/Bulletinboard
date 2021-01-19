@@ -35,13 +35,28 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            \Domain\Usecase\Bulletin\EditPostUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\EditPostInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\UpdatePostUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\UpdatePostInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\UpdateConfirmPostUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\UpdateConfirmPostInteractor::class,
+        );
+
+        $this->app->bind(
             \Domain\Usecase\Bulletin\ConfirmPostUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\ConfirmPostInteractor::class,
         );
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\EditPostUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\EditPostInteractor::class,
+            \Domain\Usecase\Bulletin\CreateUserUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\CreateUserInteractor::class,
         );
 
         //bind repositories
@@ -66,13 +81,28 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            \Domain\Repository\Bulletin\EditPostRepository::class,
+            \App\RepositoryImpl\EditPostRepositoryImpl::class,
+        );
+
+        $this->app->bind(
+            \Domain\Repository\Bulletin\UpdatePostRepository::class,
+            \App\RepositoryImpl\UpdatePostRepositoryImpl::class,
+        );
+
+        $this->app->bind(
+            \Domain\Repository\Bulletin\UpdateConfirmPostRepository::class,
+            \App\RepositoryImpl\UpdateConfirmPostRepositoryImpl::class,
+        );
+
+        $this->app->bind(
             \Domain\Repository\Bulletin\ConfirmPostRepository::class,
             \App\RepositoryImpl\ConfirmPostRepositoryImpl::class,
         );
 
         $this->app->bind(
-            \Domain\Repository\Bulletin\EditPostRepository::class,
-            \App\RepositoryImpl\EditPostRepositoryImpl::class,
+            \Domain\Repository\Bulletin\CreateUserRepository::class,
+            \App\RepositoryImpl\CreateUserRepositoryImpl::class,
         );
     }
 

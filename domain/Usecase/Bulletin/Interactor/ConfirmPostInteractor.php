@@ -18,9 +18,8 @@ class ConfirmPostInteractor implements ConfirmPostUsecase
     public function handle(ConfirmPostInput $input):ConfirmPostOutput
     {
         //$input->validate();
-        $confirmPostInfo=$this->confirmPostRepository->getConfirmPostInfo($input);
-        $output = new ConfirmPostInput($confirmPostInfo);
-        dd('test');
+        $postInfo=$this->confirmPostRepository->getConfirmPostInfo();
+        $output = new ConfirmPostOutput($postInfo);
         return $output;
     }
 }

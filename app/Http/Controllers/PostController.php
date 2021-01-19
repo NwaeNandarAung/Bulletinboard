@@ -14,6 +14,10 @@ use Domain\Input\Bulletin\ConfirmPostInput;
 use Domain\Usecase\Bulletin\ConfirmPostUsecase;
 use Domain\Input\Bulletin\EditPostInput;
 use Domain\Usecase\Bulletin\EditPostUsecase;
+use Domain\Input\Bulletin\UpdatePostInput;
+use Domain\Usecase\Bulletin\UpdatePostUsecase;
+use Domain\Input\Bulletin\UpdateConfirmPostInput;
+use Domain\Usecase\Bulletin\UpdateConfirmPostUsecase;
 
 class PostController extends Controller
 {
@@ -117,11 +121,37 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, UpdatePostUsecase $usecase)
     {
-        //
+        $input=new UpdatePostInput(    
+            $request->get('title'),
+            $request->get('description'),
+            $request->get('status'),
+            $request->get('created_user_id'),
+            $request->get('updated_user_id'),
+            $request->get('created_at'),
+            $request->get('updated_at'),
+        );
+        $output=$usecase->handle($input);
+        
+        return $output->presentation();   
     }
 
+    public function updateconfirm(Request $request, UpdateConfirmPostUsecase $usecase)
+    {
+        $input=new UpdateConfirmPostInput(
+            $request->get('title'),
+            $request->get('description'),
+            $request->get('status'),
+            $request->get('created_user_id'),
+            $request->get('updated_user_id'),
+            $request->get('created_at'),
+            $request->get('updated_at'),
+        );
+        $output=$usecase->handle($input);
+        
+        return $output->presentation();       
+    } 
     /**
      * Remove the specified resource from storage.
      *

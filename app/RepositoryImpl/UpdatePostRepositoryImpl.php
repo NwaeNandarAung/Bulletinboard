@@ -1,12 +1,12 @@
 <?php
 namespace App\RepositoryImpl;
-use Domain\Repository\Bulletin\ConfirmPostRepository;
+use Domain\Repository\Bulletin\UpdatePostRepository;
 use DB;
 use Domain\Models\Post;
 
-class ConfirmPostRepositoryImpl implements ConfirmPostRepository
+class UpdatePostRepositoryImpl implements UpdatePostRepository
 {
-    public function getConfirmPostInfo(): ?array
+    public function getUpdatePostInfo(): ?array
     {
         $query=DB::table('posts');
         $query->select('title','description');

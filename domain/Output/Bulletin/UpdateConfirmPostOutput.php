@@ -3,7 +3,7 @@ namespace Domain\Output\Bulletin;
 
 use Domain\Output\BaseOutput;
 
-class ConfirmPostOutput implements BaseOutput
+class UpdateConfirmPostOutput implements BaseOutput
 {
     private $postInfo;
     
@@ -15,6 +15,6 @@ class ConfirmPostOutput implements BaseOutput
     public function presentation()
     {
         $postData = $this->postInfo;
-        return view('posts.confirm', compact('postData'));
+        return view('posts.updateconfirm', compact('postData'));
     }
 }
