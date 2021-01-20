@@ -3,21 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Domain\Input\Bulletin\GetPostInput;
-use Domain\Usecase\Bulletin\GetPostUsecase;
+use Domain\Input\Bulletin\Post\GetPostInput;
+use Domain\Usecase\Bulletin\Post\GetPostUsecase;
 use Domain\Models\Post as Post;
-use Domain\Input\Bulletin\GetAllPostsInput;
-use Domain\Usecase\Bulletin\GetAllPostsUsecase;
-use Domain\Input\Bulletin\CreatePostInput;
-use Domain\Usecase\Bulletin\CreatePostUsecase;
-use Domain\Input\Bulletin\ConfirmPostInput;
-use Domain\Usecase\Bulletin\ConfirmPostUsecase;
-use Domain\Input\Bulletin\EditPostInput;
-use Domain\Usecase\Bulletin\EditPostUsecase;
-use Domain\Input\Bulletin\UpdatePostInput;
-use Domain\Usecase\Bulletin\UpdatePostUsecase;
-use Domain\Input\Bulletin\UpdateConfirmPostInput;
-use Domain\Usecase\Bulletin\UpdateConfirmPostUsecase;
+use Domain\Input\Bulletin\Post\GetAllPostsInput;
+use Domain\Usecase\Bulletin\Post\GetAllPostsUsecase;
+use Domain\Input\Bulletin\Post\CreatePostInput;
+use Domain\Usecase\Bulletin\Post\CreatePostUsecase;
+use Domain\Input\Bulletin\Post\ConfirmPostInput;
+use Domain\Usecase\Bulletin\Post\ConfirmPostUsecase;
+use Domain\Input\Bulletin\Post\EditPostInput;
+use Domain\Usecase\Bulletin\Post\EditPostUsecase;
+use Domain\Input\Bulletin\Post\UpdatePostInput;
+use Domain\Usecase\Bulletin\Post\UpdatePostUsecase;
+use Domain\Input\Bulletin\Post\UpdateConfirmPostInput;
+use Domain\Usecase\Bulletin\Post\UpdateConfirmPostUsecase;
 
 class PostController extends Controller
 {

@@ -6,6 +6,7 @@ use stdClass;
 
 class User 
 {
+    public string $id;
     public string $name;
     public string $email;
     public string $password;
@@ -27,6 +28,7 @@ class User
     public static function createInstance(stdClass $item)
     {
         $newInstance=new User();
+        $newInstance->id = 1;
         $newInstance->name = $item->name;
         $newInstance->email = $item->email;
         $newInstance->password = $item->password;

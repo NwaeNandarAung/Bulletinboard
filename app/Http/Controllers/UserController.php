@@ -3,8 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Domain\Input\Bulletin\CreateUserInput;
-use Domain\Usecase\Bulletin\CreateUserUsecase;
+use Domain\Input\Bulletin\User\CreateUserInput;
+use Domain\Usecase\Bulletin\User\CreateUserUsecase;
+use Domain\Input\Bulletin\User\GetUserInput;
+use Domain\Usecase\Bulletin\User\GetUserUsecase;
+use Domain\Input\Bulletin\User\ConfirmUserInput;
+use Domain\Usecase\Bulletin\User\ConfirmUserUsecase;
+use Domain\Input\Bulletin\User\GetAllUsersInput;
+use Domain\Usecase\Bulletin\User\GetAllUsersUsecase;
 
 class UserController extends Controller
 {
@@ -13,9 +19,25 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request,GetAllUsersUsecase $usecase)
     {
-        //
+        $input=new GetAllUsersInput(
+            $request->get('name'),
+            $request->get('email'),
+            $request->get('password'),
+            $request->get('profile'),
+            $request->get('type'),
+            $request->get('phone'),
+            $request->get('address'),
+            $request->get('dob'),
+            $request->get('created_user_id'),
+            $request->get('updated_user_id'),
+            $request->get('created_at'),
+            $request->get('updated_at'),
+        );
+            $output=$usecase->handle($input);
+                
+            return $output->presentation();  
     }
 
     /**
@@ -29,15 +51,51 @@ class UserController extends Controller
         return $output->presentation();  
     }
 
+    public function confirm(Request $request, ConfirmUserUsecase $usecase)
+    {
+        $input=new ConfirmUserInput(
+            $request->get('name'),
+            $request->get('email'),
+            $request->get('password'),
+            $request->get('profile'),
+            $request->get('type'),
+            $request->get('phone'),
+            $request->get('address'),
+            $request->get('dob'),
+            $request->get('created_user_id'),
+            $request->get('updated_user_id'),
+            $request->get('created_at'),
+            $request->get('updated_at'),
+        );
+        $output=$usecase->handle($input);
+        
+        return $output->presentation();       
+    } 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,GetUserUsecase $usecase)
     {
-        //
+        $input=new GetUserInput(    
+            $request->get('name'),
+            $request->get('email'),
+            $request->get('password'),
+            $request->get('profile'),
+            $request->get('type'),
+            $request->get('phone'),
+            $request->get('address'),
+            $request->get('dob'),
+            $request->get('created_user_id'),
+            $request->get('updated_user_id'),
+            $request->get('created_at'),
+            $request->get('updated_at'),
+        );
+        $output=$usecase->handle($input);
+        
+        return $output->presentation();          
     }
 
     /**

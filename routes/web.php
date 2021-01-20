@@ -31,3 +31,4 @@ Route::resource('posts', App\Http\Controllers\PostController::class);
 
 //User
 Route::resource('users', App\Http\Controllers\UserController::class);
+Route::get('user_confirm/1', 'App\Http\Controllers\UserController@confirm');

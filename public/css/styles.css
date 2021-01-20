@@ -20,7 +20,7 @@
     bottom: 0;
     width:100%;
     background-color:rgb(99, 164, 207);
-    padding:10px 5px;
+    padding:10px 10px;
     display:flex;
     flex-wrap: wrap;
 }
@@ -36,5 +36,6 @@ width: 100px;
 #main{
     padding:10px 10px;
 }
+
 
 
