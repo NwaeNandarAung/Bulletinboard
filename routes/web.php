@@ -36,4 +36,7 @@ Route::get('users', 'App\Http\Controllers\UserController@index');
 Route::get('user_confirm/1', 'App\Http\Controllers\UserController@confirm');
 Route::get('user/{id}', 'App\Http\Controllers\UserController@edit');
 Route::put('user/{id}', 'App\Http\Controllers\UserController@update');
-Route::get('user_uconfirm/1', 'App\Http\Controllers\UserController@updateconfirm');
+Route::get('update_uconfirm/1', 'App\Http\Controllers\UserController@updateconfirm');
+Route::get('user/show/{id}', 'App\Http\Controllers\UserController@show');
+Route::get('edit_password/{id}', 'App\Http\Controllers\UserController@editpassword');
+Route::put('update_password/{id}', 'App\Http\Controllers\UserController@updatepassword');

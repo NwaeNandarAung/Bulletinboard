@@ -85,6 +85,36 @@ class AppServiceProvider extends ServiceProvider
             \Domain\Usecase\Bulletin\Interactor\User\UpdateUserInteractor::class,
         ); 
 
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\User\UpdateConfirmUserUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\UpdateConfirmUserInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\User\UpdateConfirmUserUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\UpdateConfirmUserInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\User\UpdateConfirmUserUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\UpdateConfirmUserInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\User\ShowUserUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\ShowUserInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\User\EditPasswordUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\EditPasswordInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\User\UpdatePasswordUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\UpdatePasswordInteractor::class,
+        ); 
+
         //bind repositories
         $this->app->bind(
             \Domain\Repository\Bulletin\LoginRepository::class,
@@ -155,7 +185,26 @@ class AppServiceProvider extends ServiceProvider
             \Domain\Repository\Bulletin\User\UpdateUserRepository::class,
             \App\RepositoryImpl\User\UpdateUserRepositoryImpl::class,
         );
-        
+
+        $this->app->bind(
+            \Domain\Repository\Bulletin\User\UpdateConfirmUserRepository::class,
+            \App\RepositoryImpl\User\UpdateConfirmUserRepositoryImpl::class,
+        );
+
+        $this->app->bind(
+            \Domain\Repository\Bulletin\User\ShowUserRepository::class,
+            \App\RepositoryImpl\User\ShowUserRepositoryImpl::class,
+        );
+
+        $this->app->bind(
+            \Domain\Repository\Bulletin\User\EditPasswordRepository::class,
+            \App\RepositoryImpl\User\EditPasswordRepositoryImpl::class,
+        );  
+
+        $this->app->bind(
+            \Domain\Repository\Bulletin\User\UpdatePasswordRepository::class,
+            \App\RepositoryImpl\User\UpdatePasswordRepositoryImpl::class,
+        );
     }
 
     /**

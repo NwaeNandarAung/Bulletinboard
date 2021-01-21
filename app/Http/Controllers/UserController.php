@@ -15,6 +15,13 @@ use Domain\Input\Bulletin\User\EditUserInput;
 use Domain\Usecase\Bulletin\User\EditUserUsecase;
 use Domain\Input\Bulletin\User\UpdateUserInput;
 use Domain\Usecase\Bulletin\User\UpdateUserUsecase;
+use Domain\Input\Bulletin\User\UpdateConfirmUserInput;
+use Domain\Usecase\Bulletin\User\UpdateConfirmUserUsecase;
+use Domain\Input\Bulletin\User\ShowUserInput;
+use Domain\Usecase\Bulletin\User\ShowUserUsecase;
+use Domain\Usecase\Bulletin\User\EditPasswordUsecase;
+use Domain\Input\Bulletin\User\UpdatePasswordInput;
+use Domain\Usecase\Bulletin\User\UpdatePasswordUsecase;
 
 class UserController extends Controller
 {
@@ -105,9 +112,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,ShowUserUsecase $usecase)
     {
-        //
+        $output = $usecase->handle();
+        return $output->presentation();  
     }
 
     /**
@@ -132,9 +140,14 @@ class UserController extends Controller
     public function update(Request $request, $id, UpdateUserUsecase $usecase)
     {
         $input = new UpdateUserInput(    
-            $request->get('title'),
-            $request->get('description'),
-            $request->get('status'),
+            $request->get('name'),
+            $request->get('email'),
+            $request->get('password'),
+            $request->get('profile'),
+            $request->get('type'),
+            $request->get('phone'),
+            $request->get('address'),
+            $request->get('dob'),
             $request->get('created_user_id'),
             $request->get('updated_user_id'),
             $request->get('created_at'),
@@ -144,6 +157,42 @@ class UserController extends Controller
         return $output->presentation();   
     }
 
+    public function updateconfirm(Request $request, UpdateConfirmUserUsecase $usecase)
+    {
+        $input = new UpdateConfirmUserInput(
+            $request->get('name'),
+            $request->get('email'),
+            $request->get('password'),
+            $request->get('profile'),
+            $request->get('type'),
+            $request->get('phone'),
+            $request->get('address'),
+            $request->get('dob'),
+            $request->get('created_user_id'),
+            $request->get('updated_user_id'),
+            $request->get('created_at'),
+            $request->get('updated_at'),
+        );
+        $output = $usecase->handle($input);
+        return $output->presentation();       
+    }
+
+    public function editpassword($id,EditPasswordUsecase $usecase)
+    {
+        $output = $usecase->handle();
+        return $output->presentation();  
+    }
+
+    public function updatepassword(Request $request, $id, UpdatePasswordUsecase $usecase)
+    {
+        $input = new UpdatePasswordInput(    
+            $request->get('password'),
+            $request->get('updated_user_id'),
+            $request->get('updated_at')
+        );
+        $output = $usecase->handle($input);
+        return $output->presentation();   
+    }
     /**
      * Remove the specified resource from storage.
      *

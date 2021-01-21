@@ -3,7 +3,7 @@ namespace Domain\Output\Bulletin\User;
 
 use Domain\Output\BaseOutput;
 
-class UpdateUserOutput implements BaseOutput
+class UpdateConfirmUserOutput implements BaseOutput
 {
     private $userInfo;
     
@@ -15,6 +15,6 @@ class UpdateUserOutput implements BaseOutput
     public function presentation()
     {
         $userData = $this->userInfo;
-        return view('users.index', compact('userData'));
+        return view('users.updateconfirm', compact('userData'));
     }
 }
