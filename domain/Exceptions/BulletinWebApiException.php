@@ -10,7 +10,7 @@ class BulletinWebApiException extends Exception
 
     public function __construct(string $code,string $logMessage=null)
     {
-        $this->code=$code;
-        $this->logMessage=$logMessage;
+        $this->code = $code;
+        $this->logMessage = $logMessage;
     }
 }

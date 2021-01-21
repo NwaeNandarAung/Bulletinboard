@@ -1,12 +1,12 @@
 <?php
 namespace App\RepositoryImpl\User;
-use Domain\Repository\Bulletin\User\UserRepository;
+use Domain\Repository\Bulletin\User\EditUserRepository;
 use DB;
 use Domain\Models\User;
 
-class UserRepositoryImpl implements UserRepository
+class EditUserRepositoryImpl implements EditUserRepository
 {
-    public function getUserInfo(): ?array
+    public function editUserInfo(): ?array
     {
         $query = DB::table('users');
         $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');

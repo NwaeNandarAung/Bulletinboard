@@ -10,7 +10,6 @@ class CreateUserInteractor implements CreateUserUsecase
 
     public function __construct(CreateUserRepository $createUserRepository)
     {
-        //ToDo
         $this->createUserRepository = $createUserRepository;
     }
 

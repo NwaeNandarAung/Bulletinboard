@@ -16,6 +16,5 @@ class GetPostOutput implements BaseOutput
     {
         $postData = $this->postInfo;
         return view('posts.index', compact('postData'));
-      
     }
 }

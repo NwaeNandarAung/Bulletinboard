@@ -11,7 +11,6 @@ class CreatePostInteractor implements CreatePostUsecase
 
     public function __construct(CreatePostRepository $createPostRepository)
     {
-        //ToDo
         $this->createPostRepository = $createPostRepository;
     }
 

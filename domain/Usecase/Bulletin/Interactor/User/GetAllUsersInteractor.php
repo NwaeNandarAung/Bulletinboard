@@ -11,7 +11,6 @@ class GetAllUsersInteractor implements GetAllUsersUsecase
 
     public function __construct(AllUsersRepository $allUsersRepository)
     {
-        //ToDo
         $this->allUsersRepository = $allUsersRepository;
     }
 

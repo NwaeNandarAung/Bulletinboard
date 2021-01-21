@@ -11,7 +11,6 @@ class GetPostInteractor implements GetPostUsecase
 
     public function __construct(PostRepository $postRepository)
     {
-        //ToDo
         $this->postRepository = $postRepository;
     }
 

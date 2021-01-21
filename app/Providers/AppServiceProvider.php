@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Domain\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //bind usecases
+        //bind usecases 
         $this->app->bind(
             \Domain\Usecase\Bulletin\GetLoginUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\GetLoginInteractor::class,
@@ -74,6 +75,16 @@ class AppServiceProvider extends ServiceProvider
             \Domain\Usecase\Bulletin\Interactor\User\GetAllUsersInteractor::class,
         );
 
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\User\EditUserUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\EditUserInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\User\UpdateUserUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\UpdateUserInteractor::class,
+        ); 
+
         //bind repositories
         $this->app->bind(
             \Domain\Repository\Bulletin\LoginRepository::class,
@@ -115,8 +126,6 @@ class AppServiceProvider extends ServiceProvider
             \App\RepositoryImpl\Post\UpdateConfirmPostRepositoryImpl::class,
         );
 
-      
-
         $this->app->bind(
             \Domain\Repository\Bulletin\User\CreateUserRepository::class,
             \App\RepositoryImpl\User\CreateUserRepositoryImpl::class,
@@ -136,6 +145,16 @@ class AppServiceProvider extends ServiceProvider
             \Domain\Repository\Bulletin\User\AllUsersRepository::class,
             \App\RepositoryImpl\User\AllUsersRepositoryImpl::class,
         );
+
+        $this->app->bind(
+            \Domain\Repository\Bulletin\User\EditUserRepository::class,
+            \App\RepositoryImpl\User\EditUserRepositoryImpl::class,
+        );
+
+        $this->app->bind(
+            \Domain\Repository\Bulletin\User\UpdateUserRepository::class,
+            \App\RepositoryImpl\User\UpdateUserRepositoryImpl::class,
+        );
         
     }
 
@@ -146,6 +165,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
     }
 }

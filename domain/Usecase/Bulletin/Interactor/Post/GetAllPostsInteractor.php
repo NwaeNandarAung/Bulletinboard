@@ -11,7 +11,6 @@ class GetAllPostsInteractor implements GetAllPostsUsecase
 
     public function __construct(AllPostsRepository $allPostsRepository)
     {
-        //ToDo
         $this->allPostsRepository = $allPostsRepository;
     }
 

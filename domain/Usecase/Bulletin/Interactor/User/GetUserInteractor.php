@@ -11,14 +11,13 @@ class GetUserInteractor implements GetUserUsecase
 
     public function __construct(UserRepository $userRepository)
     {
-        //ToDo
         $this->userRepository = $userRepository;
     }
 
     public function handle(GetUserInput $input):GetUserOutput
     {
         //$input->validate();
-        $userInfo=$this->userRepository->getPostInfo();
+        $userInfo=$this->userRepository->getUserInfo();
         $output = new GetUserOutput($userInfo);
         return $output;
     }

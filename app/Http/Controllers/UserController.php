@@ -11,6 +11,10 @@ use Domain\Input\Bulletin\User\ConfirmUserInput;
 use Domain\Usecase\Bulletin\User\ConfirmUserUsecase;
 use Domain\Input\Bulletin\User\GetAllUsersInput;
 use Domain\Usecase\Bulletin\User\GetAllUsersUsecase;
+use Domain\Input\Bulletin\User\EditUserInput;
+use Domain\Usecase\Bulletin\User\EditUserUsecase;
+use Domain\Input\Bulletin\User\UpdateUserInput;
+use Domain\Usecase\Bulletin\User\UpdateUserUsecase;
 
 class UserController extends Controller
 {
@@ -21,7 +25,7 @@ class UserController extends Controller
      */
     public function index(Request $request,GetAllUsersUsecase $usecase)
     {
-        $input=new GetAllUsersInput(
+        $input = new GetAllUsersInput(
             $request->get('name'),
             $request->get('email'),
             $request->get('password'),
@@ -35,8 +39,7 @@ class UserController extends Controller
             $request->get('created_at'),
             $request->get('updated_at'),
         );
-            $output=$usecase->handle($input);
-                
+            $output = $usecase->handle($input);   
             return $output->presentation();  
     }
 
@@ -47,13 +50,13 @@ class UserController extends Controller
      */
     public function create(CreateUserUsecase $usecase)
     {
-        $output=$usecase->handle();
+        $output = $usecase->handle();
         return $output->presentation();  
     }
 
     public function confirm(Request $request, ConfirmUserUsecase $usecase)
     {
-        $input=new ConfirmUserInput(
+        $input = new ConfirmUserInput(
             $request->get('name'),
             $request->get('email'),
             $request->get('password'),
@@ -67,8 +70,7 @@ class UserController extends Controller
             $request->get('created_at'),
             $request->get('updated_at'),
         );
-        $output=$usecase->handle($input);
-        
+        $output = $usecase->handle($input);
         return $output->presentation();       
     } 
     /**
@@ -79,7 +81,7 @@ class UserController extends Controller
      */
     public function store(Request $request,GetUserUsecase $usecase)
     {
-        $input=new GetUserInput(    
+        $input = new GetUserInput(    
             $request->get('name'),
             $request->get('email'),
             $request->get('password'),
@@ -93,8 +95,7 @@ class UserController extends Controller
             $request->get('created_at'),
             $request->get('updated_at'),
         );
-        $output=$usecase->handle($input);
-        
+        $output = $usecase->handle($input);
         return $output->presentation();          
     }
 
@@ -115,9 +116,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,EditUserUsecase $usecase)
     {
-        //
+        $output = $usecase->handle();
+        return $output->presentation();  
     }
 
     /**
@@ -127,9 +129,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, UpdateUserUsecase $usecase)
     {
-        //
+        $input = new UpdateUserInput(    
+            $request->get('title'),
+            $request->get('description'),
+            $request->get('status'),
+            $request->get('created_user_id'),
+            $request->get('updated_user_id'),
+            $request->get('created_at'),
+            $request->get('updated_at'),
+        );
+        $output = $usecase->handle($input);
+        return $output->presentation();   
     }
 
     /**

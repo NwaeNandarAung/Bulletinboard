@@ -10,9 +10,10 @@ Class GetLoginInput implements BaseInput
 
     public function __construct($email, $password)
     {
-        $this->email=$email;
-        $this->password=$password;
+        $this->email = $email;
+        $this->password = $password;
     }
+
     public function validate()
     {
         if(is_null($this->email))

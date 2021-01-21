@@ -11,7 +11,6 @@ class UpdatePostInteractor implements UpdatePostUsecase
 
     public function __construct(UpdatePostRepository $updatePostRepository)
     {
-        //ToDo
         $this->updatePostRepository = $updatePostRepository;
     }
 

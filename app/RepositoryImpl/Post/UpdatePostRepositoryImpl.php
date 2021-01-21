@@ -8,7 +8,7 @@ class UpdatePostRepositoryImpl implements UpdatePostRepository
 {
     public function getUpdatePostInfo(): ?array
     {
-        $query=DB::table('posts');
+        $query = DB::table('posts');
         $query->select('title','description');
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);

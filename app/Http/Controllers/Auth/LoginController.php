@@ -13,7 +13,6 @@ class LoginController extends Controller
 {
     public function login()
     {
-
       return view('auth.login');
     }
 
@@ -29,15 +28,12 @@ class LoginController extends Controller
     // ]);
     // $credentials = $request->only('email', 'password');
       $output=$usecase->handle($input);
-
       return $output->presentation();   
     }
 
     public function logout() 
     {
       Auth::logout();
-
       return redirect('login');
     }
-
 }

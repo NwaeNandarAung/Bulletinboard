@@ -1,9 +1,9 @@
 <?php
-namespace Domain\Output\Bulletin\Post;
+namespace Domain\Output\Bulletin\User;
 
 use Domain\Output\BaseOutput;
 
-class EditPostOutput implements BaseOutput
+class EditUserOutput implements BaseOutput
 {
     public function __construct()
     {
@@ -12,6 +12,6 @@ class EditPostOutput implements BaseOutput
 
     public function presentation()
     {
-        return view('posts.edit');
+        return view('users.edit');
     }
 }

@@ -6,18 +6,15 @@ use Domain\Output\BaseOutput;
 class GetLoginOutput implements BaseOutput
 {
     private $loginInfo;
-    private $postInfo;
     
-    public function __construct($loginInfo,$postInfo)
+    public function __construct($loginInfo)
     {
         $this->loginInfo=$loginInfo;
-        $this->postInfo=$postInfo;
     }
 
     public function presentation()
     {
         $loginData = $this->loginInfo;
-        $postData = $this->postInfo;
-        return view('posts.index', compact('loginData','postData'));  
+        return redirect('posts')->with($loginData);
     }
 }

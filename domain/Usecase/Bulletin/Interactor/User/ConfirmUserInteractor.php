@@ -11,7 +11,6 @@ class ConfirmUserInteractor implements ConfirmUserUsecase
 
     public function __construct(ConfirmUserRepository $confirmUserRepository)
     {
-        //ToDo
         $this->confirmUserRepository = $confirmUserRepository;
     }
 

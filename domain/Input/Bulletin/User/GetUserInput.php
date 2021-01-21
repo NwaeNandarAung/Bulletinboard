@@ -20,19 +20,20 @@ Class GetUserInput implements BaseInput
 
     public function __construct($name,$email,$password,$profile,$type,$phone,$address,$dob,$created_user_id,$updated_user_id,$created_at,$updated_at)
     {
-        $this->name=$name;
-        $this->email=$email;
-        $this->password=$password;
-        $this->profile=$profile;
-        $this->type=$type;
-        $this->phone=$phone;
-        $this->address=$address;
-        $this->dob=$dob;
-        $this->created_user_id=$created_user_id;
-        $this->created_at=$created_at;
-        $this->updated_user_id=$updated_user_id;
-        $this->updated_at=$updated_at;
+        $this->name = $name;
+        $this->email = $email;
+        $this->password = $password;
+        $this->profile = $profile;
+        $this->type = $type;
+        $this->phone = $phone;
+        $this->address = $address;
+        $this->dob = $dob;
+        $this->created_user_id = $created_user_id;
+        $this->created_at = $created_at;
+        $this->updated_user_id = $updated_user_id;
+        $this->updated_at = $updated_at;
     }
+    
     public function validate()
     {
         if(is_null($this->name))

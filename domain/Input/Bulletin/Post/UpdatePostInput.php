@@ -15,14 +15,15 @@ Class UpdatePostInput implements BaseInput
 
     public function __construct($title, $description,$status,$created_user_id,$updated_user_id,$created_at,$updated_at)
     {
-        $this->title=$title;
-        $this->description=$description;
-        $this->status=$status;
-        $this->created_user_id=$created_user_id;
-        $this->created_at=$created_at;
-        $this->updated_user_id=$updated_user_id;
-        $this->updated_at=$updated_at;
+        $this->title = $title;
+        $this->description = $description;
+        $this->status = $status;
+        $this->created_user_id = $created_user_id;
+        $this->created_at = $created_at;
+        $this->updated_user_id = $updated_user_id;
+        $this->updated_at = $updated_at;
     }
+    
     public function validate()
     {
         if(is_null($this->title))

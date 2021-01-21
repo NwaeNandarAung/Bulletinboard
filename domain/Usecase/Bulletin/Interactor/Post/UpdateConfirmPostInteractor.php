@@ -11,7 +11,6 @@ class UpdateConfirmPostInteractor implements UpdateConfirmPostUsecase
 
     public function __construct(UpdateConfirmPostRepository $updateConfirmPostRepository)
     {
-        //ToDo
         $this->updateConfirmPostRepository = $updateConfirmPostRepository;
     }
 

@@ -23,7 +23,6 @@ class GetLoginInteractor implements GetLoginUsecase
     public function handle(GetLoginInput $input):GetLoginOutput
     {
         $loginInfo = $this->loginRepository->getLoginInfo($input);
-        $postInfo = $this->allPostsRepository->getAllPostsInfo($input);
         if($loginInfo==null)
         {
             throw new BulletinWebApiException(500,'Not login');
@@ -33,12 +32,5 @@ class GetLoginInteractor implements GetLoginUsecase
             $output = new GetLoginOutput($loginInfo);
             return $output;
         }   
-    }
-
-    public function handle1(GetAllPostsInput $input):GetAllPostsOutput
-    {
-        $postInfo=$this->allPostsRepository->getAllPostsInfo();
-        $output = new GetAllPostsOutput($postInfo);
-        return $output;
     }
 }

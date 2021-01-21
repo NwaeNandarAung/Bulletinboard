@@ -10,9 +10,10 @@ Class EditPostInput implements BaseInput
 
     public function __construct($title, $description)
     {
-        $this->title=$title;
-        $this->description=$description;
+        $this->title = $title;
+        $this->description = $description;
     }
+    
     public function validate()
     {
         if(is_null($this->title))

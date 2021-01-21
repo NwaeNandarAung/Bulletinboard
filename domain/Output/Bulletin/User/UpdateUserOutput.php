@@ -3,9 +3,10 @@ namespace Domain\Output\Bulletin\User;
 
 use Domain\Output\BaseOutput;
 
-class GetUserOutput implements BaseOutput
+class UpdateUserOutput implements BaseOutput
 {
     private $userInfo;
+    
     public function __construct($userInfo)
     {
         $this->userInfo=$userInfo;
@@ -14,6 +15,6 @@ class GetUserOutput implements BaseOutput
     public function presentation()
     {
         $userData = $this->userInfo;
-        return view('users.index', compact('userData'));
+        return view('posts.index', compact('userData'));
     }
 }

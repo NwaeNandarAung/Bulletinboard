@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function index(Request $request,GetAllPostsUsecase $usecase)
     {    
-        $input=new GetAllPostsInput(
+        $input = new GetAllPostsInput(
         $request->get('title'),
         $request->get('description'),
         $request->get('status'),
@@ -37,8 +37,7 @@ class PostController extends Controller
         $request->get('created_at'),
         $request->get('updated_at'),
     );
-        $output=$usecase->handle($input);
-            
+        $output =  $usecase->handle($input);
         return $output->presentation();    
     }
 
@@ -49,8 +48,8 @@ class PostController extends Controller
      */
     public function create(CreatePostUsecase $usecase)
     {
-            $output=$usecase->handle();
-            return $output->presentation();   
+        $output = $usecase->handle();
+        return $output->presentation();   
     }
 
     /**
@@ -61,7 +60,7 @@ class PostController extends Controller
      */
     public function confirm(Request $request, ConfirmPostUsecase $usecase)
     {
-        $input=new ConfirmPostInput(
+        $input = new ConfirmPostInput(
             $request->get('title'),
             $request->get('description'),
             $request->get('status'),
@@ -70,14 +69,13 @@ class PostController extends Controller
             $request->get('created_at'),
             $request->get('updated_at'),
         );
-        $output=$usecase->handle($input);
-        
+        $output = $usecase->handle($input);
         return $output->presentation();       
     } 
 
     public function store(Request $request,GetPostUsecase $usecase)
     {
-        $input=new GetPostInput(    
+        $input = new GetPostInput(    
             $request->get('title'),
             $request->get('description'),
             $request->get('status'),
@@ -86,8 +84,7 @@ class PostController extends Controller
             $request->get('created_at'),
             $request->get('updated_at'),
         );
-        $output=$usecase->handle($input);
-        
+        $output = $usecase->handle($input);
         return $output->presentation();       
     }
 
@@ -110,7 +107,7 @@ class PostController extends Controller
      */
     public function edit($id,EditPostUsecase $usecase)
     {
-        $output=$usecase->handle();
+        $output = $usecase->handle();
         return $output->presentation();  
     }
 
@@ -123,7 +120,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id, UpdatePostUsecase $usecase)
     {
-        $input=new UpdatePostInput(    
+        $input = new UpdatePostInput(    
             $request->get('title'),
             $request->get('description'),
             $request->get('status'),
@@ -132,14 +129,13 @@ class PostController extends Controller
             $request->get('created_at'),
             $request->get('updated_at'),
         );
-        $output=$usecase->handle($input);
-        
+        $output = $usecase->handle($input);
         return $output->presentation();   
     }
 
     public function updateconfirm(Request $request, UpdateConfirmPostUsecase $usecase)
     {
-        $input=new UpdateConfirmPostInput(
+        $input = new UpdateConfirmPostInput(
             $request->get('title'),
             $request->get('description'),
             $request->get('status'),
@@ -148,8 +144,7 @@ class PostController extends Controller
             $request->get('created_at'),
             $request->get('updated_at'),
         );
-        $output=$usecase->handle($input);
-        
+        $output = $usecase->handle($input);
         return $output->presentation();       
     } 
     /**

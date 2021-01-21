@@ -11,7 +11,6 @@ class EditPostInteractor implements EditPostUsecase
 
     public function __construct(EditPostRepository $editPostRepository)
     {
-        //ToDo
         $this->editPostRepository = $editPostRepository;
     }
 

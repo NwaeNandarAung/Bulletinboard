@@ -3,7 +3,7 @@ namespace Domain\Input\Bulletin\User;
 use Domain\Exceptions\BulletinWebApiException;
 use Domain\Input\BaseInput as BaseInput;
 
-Class ConfirmUserInput implements BaseInput
+Class EditUserInput implements BaseInput
 {
     private $name;
     private $email;
