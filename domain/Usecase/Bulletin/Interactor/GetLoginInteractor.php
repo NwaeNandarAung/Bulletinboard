@@ -25,7 +25,7 @@ class GetLoginInteractor implements GetLoginUsecase
         $loginInfo = $this->loginRepository->getLoginInfo($input);
         if($loginInfo==null)
         {
-            throw new BulletinWebApiException(500,'Not login');
+            throw new BulletinWebApiException(500,'Email or Password is incorrect!');
         }
         if(Hash::check($input->password,$loginInfo[0]->password))
         {

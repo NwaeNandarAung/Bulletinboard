@@ -12,10 +12,8 @@
       <br/>
       <div class="container box">
         <h4 align="center" style="margin-top:20px; color:#999">Login Form</h4><br/>
-        @if(session()->has('error'))
-          <div class="alert alert-danger">
-            {{ session()->get('error') }}
-          </div>
+        @if (session('error'))
+            <div class="alert alert-danger" style="margin:20px 20px; margin-top:-20px;">{{ session('error') }}</div>
         @endif
         <form method="POST" action="{{ route('login') }}">
           @csrf
@@ -62,8 +60,8 @@
               <button type="submit" class="btn btn-primary">
                 {{ __('Login') }}
               </button>
-              <a class="btn btn-link" href="/forget-password">
-                Forgot Your Password?
+              <a class="btn btn-link" href="">
+                {{ __('Forgot Your Password?') }}               
               </a>
             </div>
           </div>

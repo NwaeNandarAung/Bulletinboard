@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
             $table->timestamp('deleted_at')->nullable();
+            $table->boolean('is_admin')->nullable();
         });
 
         Schema::table('users', function (Blueprint $table) {

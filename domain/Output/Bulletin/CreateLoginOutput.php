@@ -1,9 +1,9 @@
 <?php
-namespace Domain\Output\Bulletin\Post;
+namespace Domain\Output\Bulletin;
 
 use Domain\Output\BaseOutput;
 
-class CreatePostOutput implements BaseOutput
+class CreateLoginOutput implements BaseOutput
 {
     public function __construct()
     {
@@ -12,6 +12,6 @@ class CreatePostOutput implements BaseOutput
 
     public function presentation()
     {
-        return view('posts.create');
+        return view('auth.login');
     }
 }

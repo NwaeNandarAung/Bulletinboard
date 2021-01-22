@@ -21,7 +21,7 @@
           <h5 style="padding-top:5px;">Nwae</h5>
         </li>   
         <li class="nav-item active">
-          <a class="nav-link" href="#">Logout</a>
+          <a class="nav-link" href="{{ url('/user/logout') }}">Logout</a>
         </li>   
       </ul>
     </span>

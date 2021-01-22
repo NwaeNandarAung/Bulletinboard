@@ -17,9 +17,9 @@ Class GetLoginInput implements BaseInput
     public function validate()
     {
         if(is_null($this->email))
-        throw new BulletinWebApiException("403","parameter error:email");
+        throw new BulletinWebApiException(403,"Email is Required!");
 
         if(is_null($this->password))
-        throw new BulletinWebApiException("403","parameter error:password");
+        throw new BulletinWebApiException(403,"Password is Required!");
     }
 }

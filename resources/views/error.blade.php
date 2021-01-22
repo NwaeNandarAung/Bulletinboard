@@ -6,6 +6,7 @@
         <title>Document</title>
     </head>
     <body>
-      Error
+    {{$e->code}}</br>
+    {{$e->logMessage}}
     </body>
   </html>

@@ -21,6 +21,16 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            \Domain\Usecase\Bulletin\CreateLoginUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\CreateLoginInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\GetLogoutUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\GetLogoutInteractor::class,
+        );
+
+        $this->app->bind(
             \Domain\Usecase\Bulletin\Post\GetPostUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\Post\GetPostInteractor::class,
         );
@@ -122,8 +132,18 @@ class AppServiceProvider extends ServiceProvider
 
         //bind repositories
         $this->app->bind(
+            \Domain\Repository\Bulletin\CreateLoginRepository::class,
+            \App\RepositoryImpl\CreateLoginRepositoryImpl::class,
+        );
+
+        $this->app->bind(
             \Domain\Repository\Bulletin\LoginRepository::class,
             \App\RepositoryImpl\LoginRepositoryImpl::class,
+        );
+
+        $this->app->bind(
+            \Domain\Repository\Bulletin\GetLogoutRepository::class,
+            \App\RepositoryImpl\GetLogoutRepositoryImpl::class,
         );
 
         $this->app->bind(

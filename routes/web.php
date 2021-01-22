@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'user'], function () {
 Route::get('/login','App\Http\Controllers\Auth\LoginController@login')->name('login');
 Route::post('/login','App\Http\Controllers\Auth\LoginController@authenticate');
-Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 });
 
 //Post
