@@ -14,6 +14,6 @@ class GetAllUsersOutput implements BaseOutput
     public function presentation()
     {
         $userData = $this->usersInfo;
-        return view('users.index', compact('userData'));   
+        return view('users.list', compact('userData'));   
     }
 }

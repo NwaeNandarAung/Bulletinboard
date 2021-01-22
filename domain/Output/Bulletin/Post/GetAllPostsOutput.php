@@ -14,6 +14,6 @@ class GetAllPostsOutput implements BaseOutput
     public function presentation()
     {
         $postData = $this->postsInfo;
-        return view('posts.index', compact('postData'));   
+        return view('posts.list', compact('postData'));   
     }
 }

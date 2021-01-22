@@ -56,6 +56,11 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            \Domain\Usecase\Bulletin\Post\CsvUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\Post\CsvInteractor::class,
+        );
+
+        $this->app->bind(
             \Domain\Usecase\Bulletin\User\CreateUserUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\User\CreateUserInteractor::class,
         );
@@ -154,6 +159,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             \Domain\Repository\Bulletin\Post\UpdateConfirmPostRepository::class,
             \App\RepositoryImpl\Post\UpdateConfirmPostRepositoryImpl::class,
+        );
+
+        $this->app->bind(
+            \Domain\Repository\Bulletin\Post\CsvRepository::class,
+            \App\RepositoryImpl\Post\CsvRepositoryImpl::class,
         );
 
         $this->app->bind(

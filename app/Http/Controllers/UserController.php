@@ -61,7 +61,7 @@ class UserController extends Controller
         return $output->presentation();  
     }
 
-    public function confirm(Request $request, ConfirmUserUsecase $usecase)
+    public function createconfirm(Request $request, ConfirmUserUsecase $usecase)
     {
         $input = new ConfirmUserInput(
             $request->get('name'),
@@ -112,7 +112,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id,ShowUserUsecase $usecase)
+    public function show($userId,ShowUserUsecase $usecase)
     {
         $output = $usecase->handle();
         return $output->presentation();  
@@ -124,7 +124,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,EditUserUsecase $usecase)
+    public function edit($userId,EditUserUsecase $usecase)
     {
         $output = $usecase->handle();
         return $output->presentation();  
@@ -137,7 +137,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, UpdateUserUsecase $usecase)
+    public function update(Request $request, $userId, UpdateUserUsecase $usecase)
     {
         $input = new UpdateUserInput(    
             $request->get('name'),
@@ -177,13 +177,13 @@ class UserController extends Controller
         return $output->presentation();       
     }
 
-    public function editpassword($id,EditPasswordUsecase $usecase)
+    public function editpassword($userId,EditPasswordUsecase $usecase)
     {
         $output = $usecase->handle();
         return $output->presentation();  
     }
 
-    public function updatepassword(Request $request, $id, UpdatePasswordUsecase $usecase)
+    public function updatepassword(Request $request, $userId, UpdatePasswordUsecase $usecase)
     {
         $input = new UpdatePasswordInput(    
             $request->get('password'),

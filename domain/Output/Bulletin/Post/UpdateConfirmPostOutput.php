@@ -15,6 +15,6 @@ class UpdateConfirmPostOutput implements BaseOutput
     public function presentation()
     {
         $postData = $this->postInfo;
-        return view('posts.updateconfirm', compact('postData'));
+        return view('posts.editconfirm', compact('postData'));
     }
 }

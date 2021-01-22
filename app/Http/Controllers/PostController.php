@@ -18,6 +18,7 @@ use Domain\Input\Bulletin\Post\UpdatePostInput;
 use Domain\Usecase\Bulletin\Post\UpdatePostUsecase;
 use Domain\Input\Bulletin\Post\UpdateConfirmPostInput;
 use Domain\Usecase\Bulletin\Post\UpdateConfirmPostUsecase;
+use Domain\Usecase\Bulletin\Post\CsvUsecase;
 
 class PostController extends Controller
 {
@@ -58,7 +59,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function confirm(Request $request, ConfirmPostUsecase $usecase)
+    public function createconfirm(Request $request, ConfirmPostUsecase $usecase)
     {
         $input = new ConfirmPostInput(
             $request->get('title'),
@@ -105,7 +106,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,EditPostUsecase $usecase)
+    public function edit($postId,EditPostUsecase $usecase)
     {
         $output = $usecase->handle();
         return $output->presentation();  
@@ -118,7 +119,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, UpdatePostUsecase $usecase)
+    public function update(Request $request, $postId, UpdatePostUsecase $usecase)
     {
         $input = new UpdatePostInput(    
             $request->get('title'),
@@ -146,6 +147,12 @@ class PostController extends Controller
         );
         $output = $usecase->handle($input);
         return $output->presentation();       
+    } 
+
+    public function csvUpload(CsvUsecase $usecase)
+    {
+        $output = $usecase->handle();
+        return $output->presentation();        
     } 
     /**
      * Remove the specified resource from storage.

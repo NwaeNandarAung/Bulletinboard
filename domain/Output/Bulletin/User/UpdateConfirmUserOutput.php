@@ -15,6 +15,6 @@ class UpdateConfirmUserOutput implements BaseOutput
     public function presentation()
     {
         $userData = $this->userInfo;
-        return view('users.updateconfirm', compact('userData'));
+        return view('users.editconfirm', compact('userData'));
     }
 }
