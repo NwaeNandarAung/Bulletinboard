@@ -31,6 +31,9 @@ class GetLoginInteractor implements GetLoginUsecase
         {
             $output = new GetLoginOutput($loginInfo);
             return $output;
-        }   
+        }  
+        else{
+            throw new BulletinWebApiException(500,'Email or Password is incorrect!');
+        } 
     }
 }

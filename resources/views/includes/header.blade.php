@@ -5,6 +5,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+    @if(Auth::user()->type==1)
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('/users') }}">Users <span class="sr-only">(current)</span></a>
       </li>
@@ -13,15 +14,23 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/posts') }}">Posts</a>
-      </li>    
+      </li>      
+    @else  
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/user/show/1') }}">User</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/posts/userpost') }}">Posts</a>
+      </li> 
+    @endif
     </ul>
     <span class="navbar-text">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <h5 style="padding-top:5px;">Nwae</h5>
+          <h5 style="padding-top:7px; padding-right:10px;">{{ Auth::user()->name }}</h5>
         </li>   
         <li class="nav-item active">
-          <a class="nav-link" href="{{ url('/user/logout') }}">Logout</a>
+          <a class="nav-link" href="{{ url('/logout') }}">Logout</a>
         </li>   
       </ul>
     </span>

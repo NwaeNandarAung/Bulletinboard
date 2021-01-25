@@ -19,7 +19,8 @@ use Domain\Usecase\Bulletin\Post\UpdatePostUsecase;
 use Domain\Input\Bulletin\Post\UpdateConfirmPostInput;
 use Domain\Usecase\Bulletin\Post\UpdateConfirmPostUsecase;
 use Domain\Usecase\Bulletin\Post\CsvUsecase;
-
+use Domain\Input\Bulletin\Post\UserPostInput;
+use Domain\Usecase\Bulletin\Post\UserPostUsecase;
 class PostController extends Controller
 {
     /**
@@ -27,6 +28,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $request,GetAllPostsUsecase $usecase)
     {    
         $input = new GetAllPostsInput(
@@ -154,6 +156,22 @@ class PostController extends Controller
         $output = $usecase->handle();
         return $output->presentation();        
     } 
+
+    
+    public function userpost(Request $request,UserPostUsecase $usecase)
+    {    
+        $input = new UserPostInput(
+        $request->get('title'),
+        $request->get('description'),
+        $request->get('status'),
+        $request->get('created_user_id'),
+        $request->get('updated_user_id'),
+        $request->get('created_at'),
+        $request->get('updated_at'),
+    );
+        $output =  $usecase->handle($input);
+        return $output->presentation();    
+    }
     /**
      * Remove the specified resource from storage.
      *

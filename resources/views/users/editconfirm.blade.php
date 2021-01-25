@@ -76,7 +76,7 @@
         </tr>
       </table>
       <div class="form-group row">
-        <div class="col-sm-6">
+        <div class="offset-md-9 col-md-3">
           <button type="submit" class="btn btn-primary mb-2">Update</button>
           <button type="reset" class="btn btn-outline-primary mb-2">Cancel</button>
         </div>

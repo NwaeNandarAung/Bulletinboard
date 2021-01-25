@@ -17,14 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'user'], function () {
-Route::get('/login','App\Http\Controllers\Auth\LoginController@login')->name('login');
-Route::post('/login','App\Http\Controllers\Auth\LoginController@authenticate');
+
+Route::get('/login','App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login','App\Http\Controllers\Auth\LoginController@login')->name('login');
 Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
-});
 
 //Post
-Route::group(['prefix' => 'post'], function () {
+Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
     Route::get('/', 'App\Http\Controllers\PostController@create');
     Route::post('/', 'App\Http\Controllers\PostController@store');
     Route::get('createconfirm/{id}', 'App\Http\Controllers\PostController@createconfirm');
@@ -32,11 +31,14 @@ Route::group(['prefix' => 'post'], function () {
     Route::put('{postId}', 'App\Http\Controllers\PostController@update');
     Route::get('updateconfirm/{id}', 'App\Http\Controllers\PostController@updateconfirm');
 });
-Route::get('posts', 'App\Http\Controllers\PostController@index');
-Route::get('posts/excel', 'App\Http\Controllers\PostController@csvUpload');
 
+Route::group(['prefix' => 'posts', 'middleware' => 'auth'], function () {
+    Route::get('/', 'App\Http\Controllers\PostController@index');
+    Route::get('/userpost', 'App\Http\Controllers\PostController@userpost');
+    Route::get('excel', 'App\Http\Controllers\PostController@csvUpload');
+});
 //User
-Route::group(['prefix' => 'user'], function () {
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('/', 'App\Http\Controllers\UserController@create');
     Route::post('/', 'App\Http\Controllers\UserController@store');
     Route::get('createconfirm/{userId}', 'App\Http\Controllers\UserController@createconfirm');
@@ -47,4 +49,6 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('{userId}/password', 'App\Http\Controllers\UserController@editpassword');
     Route::put('{userId}/password', 'App\Http\Controllers\UserController@updatepassword');
 });
-Route::get('users', 'App\Http\Controllers\UserController@index');
+Route::get('users', 'App\Http\Controllers\UserController@index')->middleware('auth');
+Auth::routes();
+

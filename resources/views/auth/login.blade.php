@@ -12,9 +12,6 @@
       <br/>
       <div class="container box">
         <h4 align="center" style="margin-top:20px; color:#999">Login Form</h4><br/>
-        @if (session('error'))
-            <div class="alert alert-danger" style="margin:20px 20px; margin-top:-20px;">{{ session('error') }}</div>
-        @endif
         <form method="POST" action="{{ route('login') }}">
           @csrf
           <div class="form-group row">
@@ -44,25 +41,30 @@
             <div class="col-md-2">
               <span style='color:red;'>*</span>
             </div>
-          </div>
+          </div>  
           <div class="form-group row">
-            <div class="col-md-6 offset-md-4">
-              <div class="form-check">
+            <div class="col-md-4 text-md-right">
+              <div class="form-check" style="padding-top:7px;">
                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}/>
                 <label class="form-check-label" for="remember">
                   {{ __('Remember Me') }}
                 </label>
               </div>
-            </div>
-          </div>
-          <div class="form-group row mb-0">
-            <div class="col-md-8 offset-md-4">
-              <button type="submit" class="btn btn-primary">
-                {{ __('Login') }}
-              </button>
+            </div>  
+            <div class="col-md-8">
               <a class="btn btn-link" href="">
                 {{ __('Forgot Your Password?') }}               
               </a>
+            </div>
+          </div> 
+          @if (session('error'))
+            <div class="alert alert-danger" style="margin:20px 70px;">{{ session('error') }}</div>
+          @endif
+          <div class="form-group row">
+            <div class="offset-8">
+              <button type="submit" class="btn btn-primary px-4">
+                {{ __('Login') }}
+              </button>
             </div>
           </div>
         </form>

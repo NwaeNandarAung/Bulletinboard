@@ -2,6 +2,7 @@
 namespace Domain\Output\Bulletin;
 
 use Domain\Output\BaseOutput;
+use Auth;
 
 class GetLoginOutput implements BaseOutput
 {
@@ -15,6 +16,10 @@ class GetLoginOutput implements BaseOutput
     public function presentation()
     {
         $loginData = $this->loginInfo;
+        if(Auth::user()->type=='1')
+        {
         return redirect('posts')->with($loginData);
+        }
+        return redirect('posts/userpost')->with($loginData);
     }
 }
