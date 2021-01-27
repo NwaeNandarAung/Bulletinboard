@@ -13,17 +13,12 @@ body{
 
 #main{
     padding-bottom:200px;
-    min-height: 550px;
+    min-height: 600px;
     height: 100%;
 }
 
-.footer{
-    position:relative;
-    left: 0;
-    bottom: 0;
-    width:100%;
+#sticky-footer{
     background-color:rgb(99, 164, 207);
-    padding:10px 10px;
     display:flex;
     flex-wrap: wrap;
 }
@@ -44,5 +39,16 @@ width: 100px;
     justify-content: center;
 }
 
+h1{
+    color:firebrick;
+    font-size: 5em;
+}
 
+h2{
+    color:lightsteelblue;
+}
 
+.card{
+    margin:50px 50px;
+    width:90%;
+}

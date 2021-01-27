@@ -31,7 +31,7 @@
       <tbody>
         @foreach ($userData as $user)
           <tr>
-            <td>{{ $user->name }}</td>
+            <td><a href="{{ url('user/detail/'. $user->id) }}">{{ $user->name }}</a></td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->created_user_id }}</td>
             <td>{{ $user->phone }}</td>

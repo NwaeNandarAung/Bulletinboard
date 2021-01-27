@@ -1,5 +1,7 @@
 <?php
+
 namespace Domain\Usecase\Bulletin\Interactor\Post;
+
 use Domain\Input\Bulletin\Post\GetPostInput;
 use Domain\Output\Bulletin\Post\GetPostOutput;
 use Domain\Usecase\Bulletin\Post\GetPostUsecase;
@@ -16,7 +18,7 @@ class GetPostInteractor implements GetPostUsecase
 
     public function handle(GetPostInput $input):GetPostOutput
     {
-        //$input->validate();
+        $input->validate();
         $postInfo=$this->postRepository->getPostInfo();
         $output = new GetPostOutput($postInfo);
         return $output;

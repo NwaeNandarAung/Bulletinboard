@@ -30,7 +30,7 @@
           <h5 style="padding-top:7px; padding-right:10px;">{{ Auth::user()->name }}</h5>
         </li>   
         <li class="nav-item active">
-          <a class="nav-link" href="{{ url('/logout') }}">Logout</a>
+          <a class="nav-link" href="{{ url('/user/logout') }}">Logout</a>
         </li>   
       </ul>
     </span>

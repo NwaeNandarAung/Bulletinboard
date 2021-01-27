@@ -1,4 +1,5 @@
 <?php
+
 namespace Domain\Output\Bulletin\User;
 
 use Domain\Output\BaseOutput;
@@ -18,4 +19,3 @@ class ConfirmUserOutput implements BaseOutput
         return view('users.createconfirm', compact('userData'));
     }
 }
-

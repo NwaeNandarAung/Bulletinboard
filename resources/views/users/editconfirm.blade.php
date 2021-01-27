@@ -5,74 +5,74 @@
     <form class="form-horizontal" method="post" action="{{ url('/user/1') }}">
       {{ csrf_field()}}
       @method('PUT')
-      <table class='table table-borderless'>
+      <table class="table table-borderless" align="center">
         <tr>
-          <td colspan='2'></td> 
-          <td>
+          <td colspan="2"></td>
+          <td align="right">
             @foreach ($userData as $user)
               <img src="{{url($user->profile)}}" height="100px" width="100px">
-            @endforeach  
+            @endforeach
           <td>
         </tr>
         <tr>
           <td>
-            <label>Name</label>
+            <label style="font-weight:bold;">Name</label>
           </td> 
-          <td>
+          <td colspan="2">
             @foreach ($userData as $user)
-              <label>{{$user->name}}</label>                  
-            @endforeach  
+              <label>{{$user->name}}</label>
+            @endforeach
           </td>
         </tr>
         <tr>
           <td>
-            <label>Email Address</label> 
+            <label style="font-weight:bold;">Email Address</label>
           </td>
-          <td>
+          <td colspan="2">
             @foreach ($userData as $user)
-              <label>{{$user->email}}</label>  
-            @endforeach  
-          </td> 
+              <label>{{$user->email}}</label>
+            @endforeach
+          </td>
         </tr>
         <tr>
           <td>
-            <label>Type</label>
+            <label style="font-weight:bold;">Type</label>
           </td>
-          <td>
+          <td colspan="2">
             @foreach ($userData as $user)
-              <label>{{$user->type}}</label>  
-            @endforeach  
-          </td> 
+              <label>{{$user->type}}</label>
+            @endforeach
+          </td>
         </tr>
         <tr>
           <td>
-            <label>Phone</label> 
+            <label style="font-weight:bold;">Phone</label> 
           </td>
-          <td>
+          <td colspan="2">
             @foreach ($userData as $user)
-              <label>{{$user->phone}}</label>                 
-            @endforeach  
-          </td> 
+              <label>{{$user->phone}}</label>
+            @endforeach
+          </td>
         </tr>
         <tr>
           <td>
-            <label>Date of Birth</label>
+            <label style="font-weight:bold;">Date of Birth</label>
           </td>
-          <td>
+          <td colspan="2">
             @foreach ($userData as $user)
-              <label>{{$user->dob}}</label>  
-            @endforeach  
-          </td> 
+              <label>{{$user->dob}}</label>
+            @endforeach
+          </td>
         </tr>
         <tr>
           <td>
-            <label>Address</label>  
+            <label style="font-weight:bold;">Address</label>
           </td>
-          <td>
+          <td colspan="2">
             @foreach ($userData as $user)
-              <label>{{$user->address}}</label>                  
-            @endforeach  
-          </td> 
+              <label>{{$user->address}}</label>
+            @endforeach
+          </td>
         </tr>
       </table>
       <div class="form-group row">

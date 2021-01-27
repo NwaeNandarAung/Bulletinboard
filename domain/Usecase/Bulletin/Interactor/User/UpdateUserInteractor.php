@@ -1,23 +1,25 @@
 <?php
+
 namespace Domain\Usecase\Bulletin\Interactor\User;
+
 use Domain\Input\Bulletin\User\UpdateUserInput;
 use Domain\Output\Bulletin\User\UpdateUserOutput;
 use Domain\Usecase\Bulletin\User\UpdateUserUsecase;
-use Domain\Repository\Bulletin\User\UpdateUserRepository;
+use Domain\Repository\Bulletin\User\UserRepository;
 
 class UpdateUserInteractor implements UpdateUserUsecase
 {
-    private $updateUserRepository;
+    private $userRepository;
 
-    public function __construct(UpdateUserRepository $updateUserRepository)
+    public function __construct(UserRepository $userRepository)
     {
-        $this->updateUserRepository = $updateUserRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function handle(UpdateUserInput $input):UpdateUserOutput
     {
         //$input->validate();
-        $userInfo=$this->updateUserRepository->getUpdateuserInfo();
+        $userInfo=$this->userRepository->getUpdateuserInfo();
         $output = new UpdateUserOutput($userInfo);
         return $output;
     }

@@ -1,23 +1,25 @@
 <?php
+
 namespace Domain\Usecase\Bulletin\Interactor\Post;
+
 use Domain\Input\Bulletin\Post\UpdateConfirmPostInput;
 use Domain\Output\Bulletin\Post\UpdateConfirmPostOutput;
 use Domain\Usecase\Bulletin\Post\UpdateConfirmPostUsecase;
-use Domain\Repository\Bulletin\Post\UpdateConfirmPostRepository;
+use Domain\Repository\Bulletin\Post\PostRepository;
 
 class UpdateConfirmPostInteractor implements UpdateConfirmPostUsecase
 {
-    private $updateConfirmPostRepository;
+    private $postRepository;
 
-    public function __construct(UpdateConfirmPostRepository $updateConfirmPostRepository)
+    public function __construct(PostRepository $postRepository)
     {
-        $this->updateConfirmPostRepository = $updateConfirmPostRepository;
+        $this->postRepository = $postRepository;
     }
 
     public function handle(UpdateConfirmPostInput $input):UpdateConfirmPostOutput
     {
         //$input->validate();
-        $postInfo=$this->updateConfirmPostRepository->getUpdateConfirmPostInfo();
+        $postInfo=$this->postRepository->getUpdateConfirmPostInfo();
         $output = new UpdateConfirmPostOutput($postInfo);
         return $output;
     }

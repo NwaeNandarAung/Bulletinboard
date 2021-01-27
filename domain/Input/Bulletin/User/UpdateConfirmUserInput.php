@@ -1,6 +1,8 @@
 <?php
+
 namespace Domain\Input\Bulletin\User;
-use Domain\Exceptions\BulletinWebApiException;
+
+use Domain\Exceptions\BulletinWebException;
 use Domain\Input\BaseInput as BaseInput;
 
 Class UpdateConfirmUserInput implements BaseInput

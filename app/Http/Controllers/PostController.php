@@ -8,7 +8,6 @@ use Domain\Usecase\Bulletin\Post\GetPostUsecase;
 use Domain\Models\Post as Post;
 use Domain\Input\Bulletin\Post\GetAllPostsInput;
 use Domain\Usecase\Bulletin\Post\GetAllPostsUsecase;
-use Domain\Input\Bulletin\Post\CreatePostInput;
 use Domain\Usecase\Bulletin\Post\CreatePostUsecase;
 use Domain\Input\Bulletin\Post\ConfirmPostInput;
 use Domain\Usecase\Bulletin\Post\ConfirmPostUsecase;
@@ -18,6 +17,7 @@ use Domain\Input\Bulletin\Post\UpdatePostInput;
 use Domain\Usecase\Bulletin\Post\UpdatePostUsecase;
 use Domain\Input\Bulletin\Post\UpdateConfirmPostInput;
 use Domain\Usecase\Bulletin\Post\UpdateConfirmPostUsecase;
+use Domain\Usecase\Bulletin\Post\DetailPostUsecase;
 use Domain\Usecase\Bulletin\Post\CsvUsecase;
 use Domain\Input\Bulletin\Post\UserPostInput;
 use Domain\Usecase\Bulletin\Post\UserPostUsecase;
@@ -29,6 +29,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
     public function index(Request $request,GetAllPostsUsecase $usecase)
     {    
         $input = new GetAllPostsInput(
@@ -39,9 +40,10 @@ class PostController extends Controller
         $request->get('updated_user_id'),
         $request->get('created_at'),
         $request->get('updated_at'),
-    );
+        );
+        
         $output =  $usecase->handle($input);
-        return $output->presentation();    
+        return $output->presentation();
     }
 
     /**
@@ -52,7 +54,7 @@ class PostController extends Controller
     public function create(CreatePostUsecase $usecase)
     {
         $output = $usecase->handle();
-        return $output->presentation();   
+        return $output->presentation();
     }
 
     /**
@@ -73,7 +75,7 @@ class PostController extends Controller
             $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
-        return $output->presentation();       
+        return $output->presentation();
     } 
 
     public function store(Request $request,GetPostUsecase $usecase)
@@ -88,7 +90,7 @@ class PostController extends Controller
             $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
-        return $output->presentation();       
+        return $output->presentation();
     }
 
     /**
@@ -111,7 +113,7 @@ class PostController extends Controller
     public function edit($postId,EditPostUsecase $usecase)
     {
         $output = $usecase->handle();
-        return $output->presentation();  
+        return $output->presentation();
     }
 
     /**
@@ -123,7 +125,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $postId, UpdatePostUsecase $usecase)
     {
-        $input = new UpdatePostInput(    
+        $input = new UpdatePostInput(
             $request->get('title'),
             $request->get('description'),
             $request->get('status'),
@@ -133,7 +135,7 @@ class PostController extends Controller
             $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
-        return $output->presentation();   
+        return $output->presentation();
     }
 
     public function updateconfirm(Request $request, UpdateConfirmPostUsecase $usecase)
@@ -148,30 +150,21 @@ class PostController extends Controller
             $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
-        return $output->presentation();       
+        return $output->presentation();
     } 
+
+    public function detail($postId,DetailPostUsecase $usecase)
+    {
+        $output = $usecase->handle();
+        return $output->presentation();
+    }
 
     public function csvUpload(CsvUsecase $usecase)
     {
         $output = $usecase->handle();
-        return $output->presentation();        
+        return $output->presentation();
     } 
 
-    
-    public function userpost(Request $request,UserPostUsecase $usecase)
-    {    
-        $input = new UserPostInput(
-        $request->get('title'),
-        $request->get('description'),
-        $request->get('status'),
-        $request->get('created_user_id'),
-        $request->get('updated_user_id'),
-        $request->get('created_at'),
-        $request->get('updated_at'),
-    );
-        $output =  $usecase->handle($input);
-        return $output->presentation();    
-    }
     /**
      * Remove the specified resource from storage.
      *

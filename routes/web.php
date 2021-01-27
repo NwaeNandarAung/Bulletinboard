@@ -18,9 +18,9 @@ Route::get('/', function () {
 });
 
 
-Route::get('/login','App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
-Route::post('/login','App\Http\Controllers\Auth\LoginController@login')->name('login');
-Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::get('/user/login','App\Http\Controllers\Auth\LoginController@showLoginForm');
+Route::post('/user/login','App\Http\Controllers\Auth\LoginController@login');
+Route::get('/user/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 
 //Post
 Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
@@ -29,7 +29,8 @@ Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
     Route::get('createconfirm/{id}', 'App\Http\Controllers\PostController@createconfirm');
     Route::get('{postId}', 'App\Http\Controllers\PostController@edit');
     Route::put('{postId}', 'App\Http\Controllers\PostController@update');
-    Route::get('updateconfirm/{id}', 'App\Http\Controllers\PostController@updateconfirm');
+    Route::get('updateconfirm/{postId}', 'App\Http\Controllers\PostController@updateconfirm');
+    Route::get('detail/{postId}', 'App\Http\Controllers\PostController@detail');
 });
 
 Route::group(['prefix' => 'posts', 'middleware' => 'auth'], function () {
@@ -46,6 +47,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::put('{userId}', 'App\Http\Controllers\UserController@update');
     Route::get('updateconfirm/{userId}', 'App\Http\Controllers\UserController@updateconfirm');
     Route::get('show/{userId}', 'App\Http\Controllers\UserController@show');
+    Route::get('detail/{userId}', 'App\Http\Controllers\UserController@detail');
     Route::get('{userId}/password', 'App\Http\Controllers\UserController@editpassword');
     Route::put('{userId}/password', 'App\Http\Controllers\UserController@updatepassword');
 });

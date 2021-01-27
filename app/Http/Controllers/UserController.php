@@ -17,6 +17,7 @@ use Domain\Input\Bulletin\User\UpdateUserInput;
 use Domain\Usecase\Bulletin\User\UpdateUserUsecase;
 use Domain\Input\Bulletin\User\UpdateConfirmUserInput;
 use Domain\Usecase\Bulletin\User\UpdateConfirmUserUsecase;
+use Domain\Usecase\Bulletin\User\DetailUserUsecase;
 use Domain\Input\Bulletin\User\ShowUserInput;
 use Domain\Usecase\Bulletin\User\ShowUserUsecase;
 use Domain\Usecase\Bulletin\User\EditPasswordUsecase;
@@ -47,8 +48,8 @@ class UserController extends Controller
             $request->get('created_at'),
             $request->get('updated_at'),
         );
-            $output = $usecase->handle($input);   
-            return $output->presentation();  
+            $output = $usecase->handle($input);
+            return $output->presentation();
     }
 
     /**
@@ -79,7 +80,7 @@ class UserController extends Controller
             $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
-        return $output->presentation();       
+        return $output->presentation();
     } 
     /**
      * Store a newly created resource in storage.
@@ -89,7 +90,7 @@ class UserController extends Controller
      */
     public function store(Request $request,GetUserUsecase $usecase)
     {
-        $input = new GetUserInput(    
+        $input = new GetUserInput(
             $request->get('name'),
             $request->get('email'),
             $request->get('password'),
@@ -104,7 +105,7 @@ class UserController extends Controller
             $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
-        return $output->presentation();          
+        return $output->presentation();
     }
 
     /**
@@ -116,7 +117,7 @@ class UserController extends Controller
     public function show($userId,ShowUserUsecase $usecase)
     {
         $output = $usecase->handle();
-        return $output->presentation();  
+        return $output->presentation();
     }
 
     /**
@@ -128,7 +129,7 @@ class UserController extends Controller
     public function edit($userId,EditUserUsecase $usecase)
     {
         $output = $usecase->handle();
-        return $output->presentation();  
+        return $output->presentation();
     }
 
     /**
@@ -140,7 +141,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $userId, UpdateUserUsecase $usecase)
     {
-        $input = new UpdateUserInput(    
+        $input = new UpdateUserInput(
             $request->get('name'),
             $request->get('email'),
             $request->get('password'),
@@ -155,7 +156,7 @@ class UserController extends Controller
             $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
-        return $output->presentation();   
+        return $output->presentation();
     }
 
     public function updateconfirm(Request $request, UpdateConfirmUserUsecase $usecase)
@@ -175,24 +176,30 @@ class UserController extends Controller
             $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
-        return $output->presentation();       
+        return $output->presentation();
+    }
+
+    public function detail($userId,DetailUserUsecase $usecase)
+    {
+        $output = $usecase->handle();
+        return $output->presentation();
     }
 
     public function editpassword($userId,EditPasswordUsecase $usecase)
     {
         $output = $usecase->handle();
-        return $output->presentation();  
+        return $output->presentation();
     }
 
     public function updatepassword(Request $request, $userId, UpdatePasswordUsecase $usecase)
     {
-        $input = new UpdatePasswordInput(    
+        $input = new UpdatePasswordInput(
             $request->get('password'),
             $request->get('updated_user_id'),
             $request->get('updated_at')
         );
         $output = $usecase->handle($input);
-        return $output->presentation();   
+        return $output->presentation();
     }
     /**
      * Remove the specified resource from storage.

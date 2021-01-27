@@ -1,6 +1,8 @@
 <?php
+
 namespace Domain\Input\Bulletin\Post;
-use Domain\Exceptions\BulletinWebApiException;
+
+use Domain\Exceptions\BulletinWebException;
 use Domain\Input\BaseInput as BaseInput;
 
 Class ConfirmPostInput implements BaseInput
@@ -26,10 +28,10 @@ Class ConfirmPostInput implements BaseInput
 
     public function validate()
     {
-        if(is_null($this->title))
-        throw new BulletinWebApiException("403","parameter error:title");
+        // if(is_null($this->title))
+        // throw new BulletinWebException(403,ErrorCode::ERROR_0003);
 
-        if(is_null($this->description))
-        throw new BulletinWebApiException("403","parameter error:description");
+        // if(is_null($this->description))
+        // throw new BulletinWebException(403,ErrorCode::ERROR_0003);
     }
 }

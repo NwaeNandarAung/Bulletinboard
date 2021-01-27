@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
-use Domain\Exceptions\BulletinWebApiException;
+use Domain\Exceptions\BulletinWebException;
 use Domain\ValueObject\Common\ErrorCode;
 
 class Handler extends ExceptionHandler
@@ -39,12 +39,12 @@ class Handler extends ExceptionHandler
             
         });
 
-        $this->renderable(function (BulletinWebApiException $e, $request)
+        $this->renderable(function (BulletinWebException $e, $request)
         {
             $errorCode = $e->code;
             $errorMessage=$e->logMessage;
-            return back()->withError($errorMessage)->withInput();
-            //return response()->view('error', compact('e'), ErrorCode::getStatusCode($errorCode));
+            //return back()->withError($errorMessage)->withInput();
+            return response()->view('error', compact('e'), ErrorCode::getStatusCode($errorCode));
         });
     }
 }

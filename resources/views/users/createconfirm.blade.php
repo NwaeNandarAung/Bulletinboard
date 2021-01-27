@@ -6,11 +6,11 @@
       {{ csrf_field() }}
       <table class='table table-borderless'>
         <tr>
-          <td colspan='2'></td> 
+          <td colspan='2'></td>
           <td>
             @foreach ($userData as $user)
               <img src="{{url($user->profile)}}" height="100px" width="100px">
-            @endforeach  
+            @endforeach
           </td>
         </tr>
         <tr>
@@ -19,8 +19,8 @@
           </td> 
           <td>
             @foreach ($userData as $user)
-              <label> {{$user->name}}</label>               
-            @endforeach  
+              <label> {{$user->name}}</label>
+            @endforeach
           </td>
         </tr>
         <tr>
@@ -30,8 +30,8 @@
           <td>
             @foreach ($userData as $user)
               <label>{{$user->email}}</label>
-            @endforeach  
-          </td> 
+            @endforeach
+          </td>
         </tr>
         <tr>
           <td>
@@ -40,8 +40,8 @@
           <td>
             @foreach ($userData as $user)
               <input type="password" style="border:none;" value=<?php echo $user->password?> readonly/>
-            @endforeach  
-          </td> 
+            @endforeach
+          </td>
         </tr>
         <tr>
           <td>
@@ -49,9 +49,9 @@
           </td>
           <td>
             @foreach ($userData as $user)
-              <label>{{$user->type}}</label>                
-            @endforeach  
-          </td> 
+              <label>{{$user->type}}</label>
+            @endforeach
+          </td>
         </tr>
         <tr>
           <td>
@@ -59,9 +59,9 @@
           </td>
           <td>
             @foreach ($userData as $user)
-              <label>{{$user->phone}} </label>                                
-            @endforeach  
-          </td> 
+              <label>{{$user->phone}} </label>
+            @endforeach
+          </td>
         </tr>
         <tr>
           <td>
@@ -70,8 +70,8 @@
           <td>
             @foreach ($userData as $user)
               <label>{{$user->dob}}</label>
-            @endforeach  
-          </td> 
+            @endforeach
+          </td>
         </tr>
         <tr>
           <td>
@@ -80,7 +80,7 @@
           <td>
             @foreach ($userData as $user)
               <label>{{$user->address}}</label>
-            @endforeach  
+            @endforeach
           </td> 
         </tr>
       </table>

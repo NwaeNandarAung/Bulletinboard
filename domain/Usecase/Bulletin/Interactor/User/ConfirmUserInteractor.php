@@ -1,23 +1,25 @@
 <?php
+
 namespace Domain\Usecase\Bulletin\Interactor\User;
+
 use Domain\Input\Bulletin\User\ConfirmUserInput;
 use Domain\Output\Bulletin\User\ConfirmUserOutput;
 use Domain\Usecase\Bulletin\User\ConfirmUserUsecase;
-use Domain\Repository\Bulletin\User\ConfirmUserRepository;
+use Domain\Repository\Bulletin\User\UserRepository;
 
 class ConfirmUserInteractor implements ConfirmUserUsecase
 {
-    private $confirmUserRepository;
+    private $userRepository;
 
-    public function __construct(ConfirmUserRepository $confirmUserRepository)
+    public function __construct(UserRepository $userRepository)
     {
-        $this->confirmUserRepository = $confirmUserRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function handle(ConfirmUserInput $input):ConfirmUserOutput
     {
         //$input->validate();
-        $userInfo=$this->confirmUserRepository->getConfirmUserInfo();
+        $userInfo=$this->userRepository->getConfirmUserInfo();
         $output = new ConfirmUserOutput($userInfo);
         return $output;
     }

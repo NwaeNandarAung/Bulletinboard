@@ -4,7 +4,7 @@
     <h3 align="center" style="margin-top:20px; color:#999;">Update User</h3><br/>
     <form class="form-horizontal">
       <div class="form-group row">
-        <div class="offset-sm-10 col-sm-2">
+        <div class="offset-sm-9 col-sm-3">
           <img src="" height="100px" width="100px">
         </div>
       </div>

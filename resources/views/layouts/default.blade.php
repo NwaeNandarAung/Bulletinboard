@@ -12,9 +12,9 @@
     <div id="main">
       @yield('content')
     </div>
-    <div class="footer">
+    <footer id="sticky-footer" class="py-2 px-2">
       @include('includes.footer')
-    </div>
+    </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

@@ -1,23 +1,25 @@
 <?php
+
 namespace Domain\Usecase\Bulletin\Interactor\Post;
+
 use Domain\Input\Bulletin\Post\EditPostInput;
 use Domain\Output\Bulletin\Post\EditPostOutput;
 use Domain\Usecase\Bulletin\Post\EditPostUsecase;
-use Domain\Repository\Bulletin\Post\EditPostRepository;
+use Domain\Repository\Bulletin\Post\PostRepository;
 
 class EditPostInteractor implements EditPostUsecase
 {
-    private $editPostRepository;
+    private $postRepository;
 
-    public function __construct(EditPostRepository $editPostRepository)
+    public function __construct(PostRepository $postRepository)
     {
-        $this->editPostRepository = $editPostRepository;
+        $this->postRepository = $postRepository;
     }
 
     public function handle():EditPostOutput
     {
         //$input->validate();
-        $postInfo=$this->editPostRepository->editPostInfo();
+        $postInfo=$this->postRepository->editPostInfo();
         $output = new EditPostOutput($postInfo);
         return $output;
     }

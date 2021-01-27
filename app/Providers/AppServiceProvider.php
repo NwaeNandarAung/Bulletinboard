@@ -16,21 +16,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //bind usecases 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\GetLoginUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\GetLoginInteractor::class,
-        );
-
-        $this->app->bind(
-            \Domain\Usecase\Bulletin\CreateLoginUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\CreateLoginInteractor::class,
-        );
-
-        $this->app->bind(
-            \Domain\Usecase\Bulletin\GetLogoutUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\GetLogoutInteractor::class,
-        );
-
-        $this->app->bind(
             \Domain\Usecase\Bulletin\Post\GetPostUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\Post\GetPostInteractor::class,
         );
@@ -66,6 +51,11 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            \Domain\Usecase\Bulletin\Post\DetailPostUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\Post\DetailPostInteractor::class,
+        );
+
+        $this->app->bind(
             \Domain\Usecase\Bulletin\Post\CsvUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\Post\CsvInteractor::class,
         );
@@ -75,6 +65,21 @@ class AppServiceProvider extends ServiceProvider
             \Domain\Usecase\Bulletin\Interactor\Post\UserPostInteractor::class,
         );
 
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\User\GetLoginUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\GetLoginInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\User\CreateLoginUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\CreateLoginInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\User\GetLogoutUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\GetLogoutInteractor::class,
+        );
+        
         $this->app->bind(
             \Domain\Usecase\Bulletin\User\CreateUserUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\User\CreateUserInteractor::class,
@@ -121,6 +126,11 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            \Domain\Usecase\Bulletin\User\DetailUserUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\DetailUserInteractor::class,
+        );
+
+        $this->app->bind(
             \Domain\Usecase\Bulletin\User\ShowUserUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\User\ShowUserInteractor::class,
         );
@@ -137,113 +147,13 @@ class AppServiceProvider extends ServiceProvider
 
         //bind repositories
         $this->app->bind(
-            \Domain\Repository\Bulletin\CreateLoginRepository::class,
-            \App\RepositoryImpl\CreateLoginRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\LoginRepository::class,
-            \App\RepositoryImpl\LoginRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\GetLogoutRepository::class,
-            \App\RepositoryImpl\GetLogoutRepositoryImpl::class,
-        );
-
-        $this->app->bind(
             \Domain\Repository\Bulletin\Post\PostRepository::class,
             \App\RepositoryImpl\Post\PostRepositoryImpl::class,
         );
 
         $this->app->bind(
-            \Domain\Repository\Bulletin\Post\ConfirmPostRepository::class,
-            \App\RepositoryImpl\Post\ConfirmPostRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\Post\AllPostsRepository::class,
-            \App\RepositoryImpl\Post\AllPostsRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\Post\CreatePostRepository::class,
-            \App\RepositoryImpl\Post\CreatePostRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\Post\EditPostRepository::class,
-            \App\RepositoryImpl\Post\EditPostRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\Post\UpdatePostRepository::class,
-            \App\RepositoryImpl\Post\UpdatePostRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\Post\UpdateConfirmPostRepository::class,
-            \App\RepositoryImpl\Post\UpdateConfirmPostRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\Post\CsvRepository::class,
-            \App\RepositoryImpl\Post\CsvRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\Post\UserPostRepository::class,
-            \App\RepositoryImpl\Post\UserPostRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\User\CreateUserRepository::class,
-            \App\RepositoryImpl\User\CreateUserRepositoryImpl::class,
-        );
-
-        $this->app->bind(
             \Domain\Repository\Bulletin\User\UserRepository::class,
             \App\RepositoryImpl\User\UserRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\User\ConfirmUserRepository::class,
-            \App\RepositoryImpl\User\ConfirmUserRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\User\AllUsersRepository::class,
-            \App\RepositoryImpl\User\AllUsersRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\User\EditUserRepository::class,
-            \App\RepositoryImpl\User\EditUserRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\User\UpdateUserRepository::class,
-            \App\RepositoryImpl\User\UpdateUserRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\User\UpdateConfirmUserRepository::class,
-            \App\RepositoryImpl\User\UpdateConfirmUserRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\User\ShowUserRepository::class,
-            \App\RepositoryImpl\User\ShowUserRepositoryImpl::class,
-        );
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\User\EditPasswordRepository::class,
-            \App\RepositoryImpl\User\EditPasswordRepositoryImpl::class,
-        );  
-
-        $this->app->bind(
-            \Domain\Repository\Bulletin\User\UpdatePasswordRepository::class,
-            \App\RepositoryImpl\User\UpdatePasswordRepositoryImpl::class,
         );
     }
 

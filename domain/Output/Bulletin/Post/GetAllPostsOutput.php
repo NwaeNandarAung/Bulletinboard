@@ -1,4 +1,5 @@
 <?php
+
 namespace Domain\Output\Bulletin\Post;
 
 use Domain\Output\BaseOutput;

@@ -1,23 +1,24 @@
 <?php
+
 namespace Domain\Usecase\Bulletin\Interactor\Post;
+
 use Domain\Input\Bulletin\Post\CreatePostInput;
 use Domain\Output\Bulletin\Post\CreatePostOutput;
 use Domain\Usecase\Bulletin\Post\CreatePostUsecase;
-use Domain\Repository\Bulletin\Post\CreatePostRepository;
+use Domain\Repository\Bulletin\Post\PostRepository;
 
 class CreatePostInteractor implements CreatePostUsecase
 {
-    private $createPostRepository;
+    private $postRepository;
 
-    public function __construct(CreatePostRepository $createPostRepository)
+    public function __construct(PostRepository $postRepository)
     {
-        $this->createPostRepository = $createPostRepository;
+        $this->postRepository = $postRepository;
     }
 
     public function handle():CreatePostOutput
     {
-        //$input->validate();
-        $postInfo=$this->createPostRepository->createPostInfo();
+        $postInfo=$this->postRepository->createPostInfo();
         $output = new CreatePostOutput($postInfo);
         return $output;
     }

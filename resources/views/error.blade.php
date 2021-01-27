@@ -1,12 +1,26 @@
 <!DOCTYPE html>
   <html lang="en">
     <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>SCM Bulletin Board</title>
     </head>
     <body>
-    {{$e->code}}</br>
-    {{$e->logMessage}}
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card text-center">
+            <div class="card-body">
+              <h1 class="card-title">{{$e->code}}</h1> <br>
+              <h2 class="card-text">{{$e->logMessage}}</h2> <br>
+              <a href="{{ url('user/createconfirm/1') }}" class="btn btn-primary">Back to Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </body>
   </html>

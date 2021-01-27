@@ -1,5 +1,7 @@
 <?php
+
 namespace Domain\Usecase\Bulletin\Interactor\User;
+
 use Domain\Input\Bulletin\User\GetUserInput;
 use Domain\Output\Bulletin\User\GetUserOutput;
 use Domain\Usecase\Bulletin\User\GetUserUsecase;

@@ -9,32 +9,32 @@
         <tr>
           <td>
             <label>Title</label>
-          </td>          
+          </td>
           @foreach ($postData as $post)
             <td>
-              <label>{{$post->title}}</label>  
-            <td>          
-          @endforeach    
+              <label>{{$post->title}}</label>
+            <td>
+          @endforeach
         </tr>
         <tr>
-          <td> 
-            <label>Description</label> 
+          <td>
+            <label>Description</label>
           </td>
           @foreach ($postData as $post)
             <td>
               <label>{{$post->description}}</label>
-            <td> 
-          @endforeach            
+            <td>
+          @endforeach
         </tr>
         <tr>
           <td>
             <label>Status</label>
-          </td>          
+          </td>
           @foreach ($postData as $post)
             <td>
               <input data-id="1" class="toggle-class" type="checkbox"  data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $post->status ? 'checked' : '' }} disabled>
             </td>
-          @endforeach      
+          @endforeach
         </tr>
       </table>
       <div class="form-group row">

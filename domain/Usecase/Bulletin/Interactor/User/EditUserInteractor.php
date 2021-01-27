@@ -1,23 +1,25 @@
 <?php
+
 namespace Domain\Usecase\Bulletin\Interactor\User;
+
 use Domain\Input\Bulletin\User\EditUserInput;
 use Domain\Output\Bulletin\User\EditUserOutput;
 use Domain\Usecase\Bulletin\User\EditUserUsecase;
-use Domain\Repository\Bulletin\User\EditUserRepository;
+use Domain\Repository\Bulletin\User\UserRepository;
 
 class EditUserInteractor implements EditUserUsecase
 {
-    private $editUserRepository;
+    private $userRepository;
 
-    public function __construct(EditUserRepository $editUserRepository)
+    public function __construct(UserRepository $userRepository)
     {
-        $this->editUserRepository = $editUserRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function handle():EditUserOutput
     {
         //$input->validate();
-        $userInfo=$this->editUserRepository->editUserInfo();
+        $userInfo=$this->userRepository->editUserInfo();
         $output = new EditUserOutput($userInfo);
         return $output;
     }

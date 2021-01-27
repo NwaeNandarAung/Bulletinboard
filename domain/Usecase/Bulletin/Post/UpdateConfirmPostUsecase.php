@@ -1,5 +1,7 @@
 <?php
+
 namespace Domain\Usecase\Bulletin\Post;
+
 use Domain\Input\Bulletin\Post\UpdateConfirmPostInput;
 use Domain\Output\Bulletin\Post\UpdateConfirmPostOutput;
 

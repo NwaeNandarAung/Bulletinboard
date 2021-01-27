@@ -8,22 +8,22 @@
         <tr>
           <td>
             <label>Title</label>
-          </td> 
+          </td>
           <td>
             @foreach ($postData as $post)
               <label>{{$post->title}}</label>
-            @endforeach  
+            @endforeach
           <td>
         </tr>
         <tr>
           <td>
-            <label>Description</label> 
+            <label>Description</label>
           </td>
           <td>
             @foreach ($postData as $post)
               <label>{{$post->description}}</label>
-            @endforeach  
-          <td> 
+            @endforeach
+          <td>
         </tr>
       </table>
       <div class="form-group row">

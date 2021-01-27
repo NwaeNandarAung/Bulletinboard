@@ -30,16 +30,22 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($postData as $post)
+        @forelse ($postData as $post)
           <tr>
-            <td>{{ $post->title }}</td>
+            <td><a href="{{ url('/post/detail/'. $post->id) }}">{{ $post->title }}</a></td>
             <td>{{ $post->description }}</td>
             <td>{{ $post->created_user_id }}</td>
             <td>{{ $post->created_at }}</td>
             <td><a href="{{ url('/post/1') }}">Edit</a></td>
             <td><a href="">Delete</a></td>
           </tr>
-        @endforeach
+        @empty
+          <tr>
+            <td colspan="6">
+              <p align="center">There is no post yet!</p>
+            </td>
+          </tr>
+        @endforelse 
       </tbody>
     </table>
     <nav aria-label="Page navigation example">

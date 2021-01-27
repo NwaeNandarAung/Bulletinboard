@@ -53,7 +53,7 @@
             </div>  
             <div class="col-md-8">
               <a class="btn btn-link" href="">
-                {{ __('Forgot Your Password?') }}               
+                {{ __('Forgot Your Password?') }}
               </a>
             </div>
           </div> 

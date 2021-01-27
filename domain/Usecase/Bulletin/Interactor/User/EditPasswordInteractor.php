@@ -1,23 +1,25 @@
 <?php
+
 namespace Domain\Usecase\Bulletin\Interactor\User;
+
 use Domain\Input\Bulletin\User\EditPasswordInput;
 use Domain\Output\Bulletin\User\EditPasswordOutput;
 use Domain\Usecase\Bulletin\User\EditPasswordUsecase;
-use Domain\Repository\Bulletin\User\EditPasswordRepository;
+use Domain\Repository\Bulletin\User\UserRepository;
 
 class EditPasswordInteractor implements EditPasswordUsecase
 {
-    private $editPasswordRepository;
+    private $userRepository;
 
-    public function __construct(EditPasswordRepository $editPasswordRepository)
+    public function __construct(UserRepository $userRepository)
     {
-        $this->editPasswordRepository = $editPasswordRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function handle():EditPasswordOutput
     {
         //$input->validate();
-        $passwordInfo=$this->editPasswordRepository->editPasswordInfo();
+        $passwordInfo=$this->userRepository->editPasswordInfo();
         $output = new EditPasswordOutput($passwordInfo);
         return $output;
     }
