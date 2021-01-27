@@ -4,6 +4,7 @@ namespace Domain\Usecase\Bulletin\Post;
 
 use Domain\Output\Bulletin\Post\EditPostOutput;
 
-interface EditPostUsecase{
+interface EditPostUsecase
+{
     public function handle():EditPostOutput;
 }

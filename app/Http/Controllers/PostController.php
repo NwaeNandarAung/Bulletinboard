@@ -8,6 +8,7 @@ use Domain\Usecase\Bulletin\Post\GetPostUsecase;
 use Domain\Models\Post as Post;
 use Domain\Input\Bulletin\Post\GetAllPostsInput;
 use Domain\Usecase\Bulletin\Post\GetAllPostsUsecase;
+use Domain\Input\Bulletin\Post\CreatePostInput;
 use Domain\Usecase\Bulletin\Post\CreatePostUsecase;
 use Domain\Input\Bulletin\Post\ConfirmPostInput;
 use Domain\Usecase\Bulletin\Post\ConfirmPostUsecase;
@@ -51,9 +52,18 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(CreatePostUsecase $usecase)
+    public function create(Request $request,CreatePostUsecase $usecase)
     {
-        $output = $usecase->handle();
+        $input = new CreatePostInput(
+            $request->get('title'),
+            $request->get('description'),
+            $request->get('status'),
+            $request->get('created_user_id'),
+            $request->get('updated_user_id'),
+            $request->get('created_at'),
+            $request->get('updated_at'),
+            );
+        $output = $usecase->handle($input);
         return $output->presentation();
     }
 

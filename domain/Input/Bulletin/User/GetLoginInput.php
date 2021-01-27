@@ -20,9 +20,9 @@ Class GetLoginInput implements BaseInput
     public function validate()
     {
         if(is_null($this->email))
-        throw new BulletinWebException(403,ErrorCode::ERROR_0003);
+        throw new BulletinWebException(ErrorCode::ERROR_0003,"Email is required");
 
         if(is_null($this->password))
-        throw new BulletinWebException(403,ErrorCode::ERROR_0003);
+        throw new BulletinWebException(ErrorCode::ERROR_0003,"Password is required");
     }
 }

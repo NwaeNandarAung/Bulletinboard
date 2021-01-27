@@ -4,6 +4,7 @@ namespace Domain\Usecase\Bulletin\Post;
 
 use Domain\Output\Bulletin\Post\DetailPostOutput;
 
-interface DetailPostUsecase{
+interface DetailPostUsecase
+{
     public function handle():DetailPostOutput;
 }

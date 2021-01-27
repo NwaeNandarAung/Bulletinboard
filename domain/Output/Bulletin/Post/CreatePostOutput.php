@@ -6,13 +6,15 @@ use Domain\Output\BaseOutput;
 
 class CreatePostOutput implements BaseOutput
 {
-    public function __construct()
+    private $postInfo;
+    public function __construct($postInfo)
     {
-        
+        $this->postInfo=$postInfo;
     }
 
     public function presentation()
     {
-        return view('posts.create');
+        $postData = $this->postInfo;
+        return view('posts.create', compact('postData'));
     }
 }

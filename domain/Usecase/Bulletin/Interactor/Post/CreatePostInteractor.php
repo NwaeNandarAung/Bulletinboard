@@ -17,7 +17,7 @@ class CreatePostInteractor implements CreatePostUsecase
     }
 
     public function handle():CreatePostOutput
-    {
+    {       
         $postInfo=$this->postRepository->createPostInfo();
         $output = new CreatePostOutput($postInfo);
         return $output;

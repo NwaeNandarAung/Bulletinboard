@@ -8,7 +8,7 @@ Interface PostRepository
 
     public function createPostInfo():? array;
 
-    public function getConfirmPostInfo():? array;
+    public function getConfirmPostInfo($input):? array;
 
     public function getPostInfo():? array;
 

@@ -9,7 +9,7 @@ use Domain\Repository\Bulletin\Post\PostRepository;
 
 class ConfirmPostInteractor implements ConfirmPostUsecase
 {
-    private $postRepository;
+    public $postRepository;
 
     public function __construct(PostRepository $postRepository)
     {
@@ -18,12 +18,9 @@ class ConfirmPostInteractor implements ConfirmPostUsecase
 
     public function handle(ConfirmPostInput $input):ConfirmPostOutput
     {
-        $input->validate([
-            'title' => 'required|unique:posts|max:255',
-            'description' => 'required',
-        ]);
-        
-        $postInfo=$this->postRepository->getConfirmPostInfo();
+        $input->validate();
+
+        $postInfo=$this->postRepository->getConfirmPostInfo($input);
         $output = new ConfirmPostOutput($postInfo);
         return $output;
     }
