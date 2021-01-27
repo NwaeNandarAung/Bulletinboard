@@ -26,7 +26,7 @@ Route::get('/user/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
     Route::get('/', 'App\Http\Controllers\PostController@create');
     Route::post('/', 'App\Http\Controllers\PostController@store');
-    Route::get('createconfirm/{id}', 'App\Http\Controllers\PostController@createconfirm');
+    Route::post('createconfirm', 'App\Http\Controllers\PostController@createconfirm')->name('createconfirm');
     Route::get('{postId}', 'App\Http\Controllers\PostController@edit');
     Route::put('{postId}', 'App\Http\Controllers\PostController@update');
     Route::get('updateconfirm/{postId}', 'App\Http\Controllers\PostController@updateconfirm');

@@ -119,16 +119,6 @@ class UserRepositoryImpl implements UserRepository
         })->toArray();
     }
 
-    public function createLoginInfo(): ?array
-    {
-        $query = DB::table('users');
-        $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');
-       
-        return $query->get()->map(function ($item) {
-            return User::createInstance($item);
-        })->toArray();
-    }
-
     public function getLoginInfo($input): ?array
     {
         $query = DB::table('users');

@@ -22,6 +22,8 @@ use Domain\Usecase\Bulletin\Post\DetailPostUsecase;
 use Domain\Usecase\Bulletin\Post\CsvUsecase;
 use Domain\Input\Bulletin\Post\UserPostInput;
 use Domain\Usecase\Bulletin\Post\UserPostUsecase;
+use Auth;
+
 class PostController extends Controller
 {
     /**
@@ -29,8 +31,6 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
     public function index(Request $request,GetAllPostsUsecase $usecase)
     {    
         $input = new GetAllPostsInput(
@@ -42,7 +42,7 @@ class PostController extends Controller
         $request->get('created_at'),
         $request->get('updated_at'),
         );
-        
+
         $output =  $usecase->handle($input);
         return $output->presentation();
     }
@@ -52,17 +52,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request,CreatePostUsecase $usecase)
-    {
-        $input = new CreatePostInput(
-            $request->get('title'),
-            $request->get('description'),
-            $request->get('status'),
-            $request->get('created_user_id'),
-            $request->get('updated_user_id'),
-            $request->get('created_at'),
-            $request->get('updated_at'),
-            );
+    public function create(CreatePostUsecase $usecase)
+    {   
+        $input = new CreatePostInput();
+           
         $output = $usecase->handle($input);
         return $output->presentation();
     }
@@ -78,15 +71,11 @@ class PostController extends Controller
         $input = new ConfirmPostInput(
             $request->get('title'),
             $request->get('description'),
-            $request->get('status'),
-            $request->get('created_user_id'),
-            $request->get('updated_user_id'),
-            $request->get('created_at'),
-            $request->get('updated_at'),
+            Auth::user()->id,
         );
         $output = $usecase->handle($input);
         return $output->presentation();
-    } 
+    }
 
     public function store(Request $request,GetPostUsecase $usecase)
     {
@@ -161,7 +150,7 @@ class PostController extends Controller
         );
         $output = $usecase->handle($input);
         return $output->presentation();
-    } 
+    }
 
     public function detail($postId,DetailPostUsecase $usecase)
     {
@@ -173,7 +162,7 @@ class PostController extends Controller
     {
         $output = $usecase->handle();
         return $output->presentation();
-    } 
+    }
 
     /**
      * Remove the specified resource from storage.

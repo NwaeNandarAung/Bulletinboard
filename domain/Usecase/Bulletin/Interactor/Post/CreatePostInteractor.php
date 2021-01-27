@@ -9,17 +9,11 @@ use Domain\Repository\Bulletin\Post\PostRepository;
 
 class CreatePostInteractor implements CreatePostUsecase
 {
-    private $postRepository;
-
-    public function __construct(PostRepository $postRepository)
+    public function handle(CreatePostInput $input):CreatePostOutput
     {
-        $this->postRepository = $postRepository;
-    }
+        $input->validate();     
+        $output = new CreatePostOutput();
 
-    public function handle():CreatePostOutput
-    {       
-        $postInfo=$this->postRepository->createPostInfo();
-        $output = new CreatePostOutput($postInfo);
         return $output;
     }
 }

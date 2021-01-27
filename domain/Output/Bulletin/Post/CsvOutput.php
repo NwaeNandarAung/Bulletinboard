@@ -7,7 +7,7 @@ use Domain\Output\BaseOutput;
 class CsvOutput implements BaseOutput
 {
     private $csvInfo;
-    
+
     public function __construct($csvInfo)
     {
         $this->csvInfo=$csvInfo;

@@ -20,6 +20,7 @@ class CreateUserInteractor implements CreateUserUsecase
         //$input->validate();
         $userInfo=$this->userRepository->createUserInfo();
         $output = new CreateUserOutput($userInfo);
+
         return $output;
     }
 }

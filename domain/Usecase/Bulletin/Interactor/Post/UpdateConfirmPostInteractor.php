@@ -21,6 +21,7 @@ class UpdateConfirmPostInteractor implements UpdateConfirmPostUsecase
         //$input->validate();
         $postInfo=$this->postRepository->getUpdateConfirmPostInfo();
         $output = new UpdateConfirmPostOutput($postInfo);
+
         return $output;
     }
 }

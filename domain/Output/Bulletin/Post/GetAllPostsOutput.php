@@ -7,6 +7,7 @@ use Domain\Output\BaseOutput;
 class GetAllPostsOutput implements BaseOutput
 {
     private $postsInfo;
+
     public function __construct($postsInfo)
     {
         $this->postsInfo=$postsInfo;

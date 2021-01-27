@@ -17,9 +17,9 @@ class CsvInteractor implements CsvUsecase
 
     public function handle():CsvOutput
     {
-        //$input->validate();
         $csvInfo=$this->postRepository->csvInfo();
         $output = new CsvOutput($csvInfo);
+
         return $output;
     }
 }

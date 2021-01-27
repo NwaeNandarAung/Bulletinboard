@@ -17,7 +17,11 @@
             <div class="card-body">
               <h1 class="card-title">{{$e->code}}</h1> <br>
               <h2 class="card-text">{{$e->logMessage}}</h2> <br>
-              <a href="{{ url('user/createconfirm/1') }}" class="btn btn-primary">Back to Login</a>
+              @if('statusCode'==403)
+                <a href="{{ url('user/login') }}" class="btn btn-primary" role="button">Back to Login</a>
+              @elseif('statusCode'==402)
+                <a href="{{ url('post') }}" class="btn btn-primary" role="button">Back</a>
+              @endif
             </div>
           </div>
         </div>

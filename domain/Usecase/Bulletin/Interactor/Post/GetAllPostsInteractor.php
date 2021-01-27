@@ -21,6 +21,7 @@ class GetAllPostsInteractor implements GetAllPostsUsecase
         //$input->validate();
         $postsInfo=$this->postRepository->getAllPostsInfo();
         $output = new GetAllPostsOutput($postsInfo);
+
         return $output;
     }
 }

@@ -20,6 +20,7 @@ class ShowUserInteractor implements ShowUserUsecase
         //$input->validate();
         $userInfo=$this->userRepository->showUserInfo();
         $output = new ShowUserOutput($userInfo);
+
         return $output;
     }
 }

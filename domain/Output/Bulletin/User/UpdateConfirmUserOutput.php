@@ -7,7 +7,7 @@ use Domain\Output\BaseOutput;
 class UpdateConfirmUserOutput implements BaseOutput
 {
     private $userInfo;
-    
+
     public function __construct($userInfo)
     {
         $this->userInfo=$userInfo;

@@ -21,6 +21,7 @@ class GetLogoutInteractor implements GetLogoutUsecase
         Auth::logout();
         $loginInfo=$this->userRepository->getLogoutInfo();
         $output = new GetLogoutOutput($loginInfo);
+
         return $output;
     }
 }

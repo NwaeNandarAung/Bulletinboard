@@ -81,7 +81,8 @@ class UserController extends Controller
         );
         $output = $usecase->handle($input);
         return $output->presentation();
-    } 
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -201,6 +202,7 @@ class UserController extends Controller
         $output = $usecase->handle($input);
         return $output->presentation();
     }
+    
     /**
      * Remove the specified resource from storage.
      *

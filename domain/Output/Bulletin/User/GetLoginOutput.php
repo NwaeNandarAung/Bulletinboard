@@ -7,7 +7,7 @@ use Domain\Output\BaseOutput;
 class GetLoginOutput implements BaseOutput
 {
     private $loginInfo;
-    
+
     public function __construct($loginInfo)
     {
         $this->loginInfo=$loginInfo;

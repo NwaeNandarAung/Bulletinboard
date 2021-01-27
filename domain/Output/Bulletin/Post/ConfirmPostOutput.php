@@ -7,7 +7,7 @@ use Domain\Output\BaseOutput;
 class ConfirmPostOutput implements BaseOutput
 {
     private $postInfo;
-    
+
     public function __construct($postInfo)
     {
         $this->postInfo=$postInfo;

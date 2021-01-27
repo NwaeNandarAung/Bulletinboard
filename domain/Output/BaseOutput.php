@@ -1,4 +1,5 @@
 <?php
+
 namespace Domain\Output;
 
 Interface BaseOutput

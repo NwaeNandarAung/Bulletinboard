@@ -15,7 +15,7 @@ Class EditPostInput implements BaseInput
         $this->title = $title;
         $this->description = $description;
     }
-    
+
     public function validate()
     {
         if(is_null($this->title))

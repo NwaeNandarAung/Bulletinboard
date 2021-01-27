@@ -21,6 +21,7 @@ class ConfirmUserInteractor implements ConfirmUserUsecase
         //$input->validate();
         $userInfo=$this->userRepository->getConfirmUserInfo();
         $output = new ConfirmUserOutput($userInfo);
+
         return $output;
     }
 }

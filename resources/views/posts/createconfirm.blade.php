@@ -10,9 +10,7 @@
             <label>Title</label>
           </td>
           <td>
-            @foreach ($postData as $post)
-              <label>{{$post->title}}</label>
-            @endforeach
+              <label><?php echo $_POST['title']; ?></label>           
           <td>
         </tr>
         <tr>
@@ -20,9 +18,7 @@
             <label>Description</label>
           </td>
           <td>
-            @foreach ($postData as $post)
-              <label>{{$post->description}}</label>
-            @endforeach
+            <label><?php echo $_POST['description']; ?></label> 
           <td>
         </tr>
       </table>

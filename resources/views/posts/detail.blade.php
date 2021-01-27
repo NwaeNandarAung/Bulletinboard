@@ -8,7 +8,7 @@
         <tr>
           <td>
             <label style="font-weight:bold;">Title</label>
-          </td> 
+          </td>
           <td>
             @foreach ($postData as $post)
               <label>{{$post->title}}</label>

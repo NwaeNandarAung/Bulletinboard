@@ -5,6 +5,8 @@ namespace App\RepositoryImpl\Post;
 use Domain\Repository\Bulletin\Post\PostRepository;
 use DB;
 use Domain\Models\Post;
+use Domain\Exceptions\BulletinWebException;
+use Domain\ValueObject\Common\ErrorCode;
 use Auth;
 
 class PostRepositoryImpl implements PostRepository
@@ -26,24 +28,18 @@ class PostRepositoryImpl implements PostRepository
         })->toArray();
     }
 
-    public function createPostInfo(): ?array
-    {
-        $query = DB::table('posts');
-        $query->select('title','description');
-        
-        return $query->get()->map(function ($item) {
-            return Post::createInstance($item);
-        })->toArray();
-    }
-
     public function getConfirmPostInfo($input): ?array
     {
         $query = DB::table('posts');
-        $query->where('title','=', $input->title);
-
-        return $query->get()->map(function ($item) {
-            return Post::createInstance($item);
-        })->toArray();
+        if( $query->whereTitle($input->title)->count()>0)
+        {
+            throw new BulletinWebException(ErrorCode::ERROR_0002, "Post Already Existed");
+        }
+        else{
+            return $query->get()->map(function ($item) {
+                return Post::createInstance($item);
+            })->toArray();
+        }
     }
     
     public function getPostInfo(): ?array

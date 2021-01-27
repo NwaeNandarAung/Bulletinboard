@@ -3,7 +3,6 @@
   <div class="container">
     <h3 align="center" style="margin-top:20px; color:#999;">Create User Confirmation</h3><br/>
     <form class="form-horizontal" method="post" action="{{ url('/user') }}">
-      {{ csrf_field() }}
       <table class='table table-borderless'>
         <tr>
           <td colspan='2'></td>

@@ -7,7 +7,7 @@ use Domain\Output\BaseOutput;
 class UpdatePostOutput implements BaseOutput
 {
     private $postInfo;
-    
+
     public function __construct($postInfo)
     {
         $this->postInfo=$postInfo;

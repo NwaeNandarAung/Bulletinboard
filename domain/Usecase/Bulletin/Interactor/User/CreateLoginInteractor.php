@@ -8,18 +8,15 @@ use Domain\Repository\Bulletin\User\UserRepository;
 
 class CreateLoginInteractor implements CreateLoginUsecase
 {
-    private $userRepository;
-
-    public function __construct(UserRepository $userRepository)
+    public function __construct()
     {
-        $this->userRepository = $userRepository;
+
     }
 
     public function handle():CreateLoginOutput
     {
-        //$input->validate();
-        $loginInfo=$this->userRepository->createLoginInfo();
-        $output = new CreateLoginOutput($loginInfo);
+        $output = new CreateLoginOutput();
+
         return $output;
     }
 }

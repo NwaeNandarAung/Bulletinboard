@@ -21,6 +21,7 @@ class GetUserInteractor implements GetUserUsecase
         //$input->validate();
         $userInfo=$this->userRepository->getUserInfo();
         $output = new GetUserOutput($userInfo);
+
         return $output;
     }
 }

@@ -21,6 +21,7 @@ class GetPostInteractor implements GetPostUsecase
         $input->validate();
         $postInfo=$this->postRepository->getPostInfo();
         $output = new GetPostOutput($postInfo);
+
         return $output;
     }
 }

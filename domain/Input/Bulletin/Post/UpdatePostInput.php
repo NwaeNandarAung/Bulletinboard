@@ -25,7 +25,7 @@ Class UpdatePostInput implements BaseInput
         $this->updated_user_id = $updated_user_id;
         $this->updated_at = $updated_at;
     }
-    
+
     public function validate()
     {
         if(is_null($this->title))

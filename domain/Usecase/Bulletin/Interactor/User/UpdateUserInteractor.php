@@ -21,6 +21,7 @@ class UpdateUserInteractor implements UpdateUserUsecase
         //$input->validate();
         $userInfo=$this->userRepository->getUpdateuserInfo();
         $output = new UpdateUserOutput($userInfo);
+
         return $output;
     }
 }

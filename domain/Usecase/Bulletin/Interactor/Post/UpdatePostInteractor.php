@@ -21,6 +21,7 @@ class UpdatePostInteractor implements UpdatePostUsecase
         //$input->validate();
         $postInfo=$this->postRepository->getUpdatePostInfo();
         $output = new UpdatePostOutput($postInfo);
+
         return $output;
     }
 }

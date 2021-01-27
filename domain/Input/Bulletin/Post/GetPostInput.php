@@ -20,8 +20,6 @@ Class GetPostInput implements BaseInput
     {
         $this->title = $title;
         $this->description = $description;
-        $this->status = $status;
-        $this->created_user_id = $created_user_id;
         $this->created_at = $created_at;
         $this->updated_user_id = $updated_user_id;
         $this->updated_at = $updated_at;

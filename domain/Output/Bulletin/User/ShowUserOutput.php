@@ -7,6 +7,7 @@ use Domain\Output\BaseOutput;
 class ShowUserOutput implements BaseOutput
 {
     private $userInfo;
+
     public function __construct($userInfo)
     {
         $this->userInfo=$userInfo;

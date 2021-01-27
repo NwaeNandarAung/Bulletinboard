@@ -21,6 +21,7 @@ class EditPostInteractor implements EditPostUsecase
         //$input->validate();
         $postInfo=$this->postRepository->editPostInfo();
         $output = new EditPostOutput($postInfo);
+
         return $output;
     }
 }

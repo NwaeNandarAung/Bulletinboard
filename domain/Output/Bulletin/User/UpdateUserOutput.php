@@ -7,7 +7,7 @@ use Domain\Output\BaseOutput;
 class UpdateUserOutput implements BaseOutput
 {
     private $userInfo;
-    
+
     public function __construct($userInfo)
     {
         $this->userInfo=$userInfo;

@@ -21,6 +21,7 @@ class UpdatePasswordInteractor implements UpdatePasswordUsecase
         //$input->validate();
         $passwordInfo=$this->userRepository->getUpdatePasswordInfo();
         $output = new UpdatePasswordOutput($passwordInfo);
+
         return $output;
     }
 }

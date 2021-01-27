@@ -19,6 +19,7 @@ class DetailPostInteractor implements DetailPostUsecase
     {
         $postInfo=$this->postRepository->detailPostInfo();
         $output = new DetailPostOutput($postInfo);
+
         return $output;
     }
 }

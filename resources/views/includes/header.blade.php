@@ -14,14 +14,14 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/posts') }}">Posts</a>
-      </li>      
+      </li>
     @else  
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/user/show/1') }}">User</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/posts/userpost') }}">Posts</a>
-      </li> 
+      </li>
     @endif
     </ul>
     <span class="navbar-text">
@@ -31,7 +31,7 @@
         </li>   
         <li class="nav-item active">
           <a class="nav-link" href="{{ url('/user/logout') }}">Logout</a>
-        </li>   
+        </li>
       </ul>
     </span>
   </div>
