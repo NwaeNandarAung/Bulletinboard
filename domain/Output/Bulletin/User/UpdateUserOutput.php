@@ -16,6 +16,7 @@ class UpdateUserOutput implements BaseOutput
     public function presentation()
     {
         $userData = $this->userInfo;
+
         return view('users.list', compact('userData'));
     }
 }

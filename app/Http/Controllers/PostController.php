@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Domain\Input\Bulletin\Post\PostPostInput;
 use Domain\Usecase\Bulletin\Post\PostPostUsecase;
-use Domain\Models\Post as Post;
 use Domain\Input\Bulletin\Post\GetAllPostsInput;
 use Domain\Usecase\Bulletin\Post\GetAllPostsUsecase;
 use Domain\Input\Bulletin\Post\CreatePostInput;
@@ -22,7 +21,6 @@ use Domain\Usecase\Bulletin\Post\DetailPostUsecase;
 use Domain\Usecase\Bulletin\Post\CsvUsecase;
 use Domain\Input\Bulletin\Post\UserPostInput;
 use Domain\Usecase\Bulletin\Post\UserPostUsecase;
-use Auth;
 
 class PostController extends Controller
 {
@@ -50,6 +48,8 @@ class PostController extends Controller
         $input = new CreatePostInput();
            
         $output = $usecase->handle($input);
+
+        
         return $output->presentation();
     }
 
@@ -64,9 +64,9 @@ class PostController extends Controller
         $input = new ConfirmPostInput(
             $request->get('title'),
             $request->get('description'),
-            Auth::user()->id,
         );
         $output = $usecase->handle($input);
+
         return $output->presentation();
     }
 
@@ -74,14 +74,10 @@ class PostController extends Controller
     {
         $input = new PostPostInput(    
             $request->get('title'),
-            $request->get('description'),
-            $request->get('status'),
-            $request->get('created_user_id'),
-            $request->get('updated_user_id'),
-            $request->get('created_at'),
-            $request->get('updated_at'),
+            $request->get('description')
         );
         $output = $usecase->handle($input);
+
         return $output->presentation();
     }
 
@@ -105,6 +101,7 @@ class PostController extends Controller
     public function edit($postId,EditPostUsecase $usecase)
     {
         $output = $usecase->handle();
+
         return $output->presentation();
     }
 
@@ -127,6 +124,7 @@ class PostController extends Controller
             $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
+
         return $output->presentation();
     }
 
@@ -142,18 +140,21 @@ class PostController extends Controller
             $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
+
         return $output->presentation();
     }
 
     public function detail($postId,DetailPostUsecase $usecase)
     {
         $output = $usecase->handle();
+
         return $output->presentation();
     }
 
     public function csvUpload(CsvUsecase $usecase)
     {
         $output = $usecase->handle();
+
         return $output->presentation();
     }
 

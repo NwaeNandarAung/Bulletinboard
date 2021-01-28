@@ -18,8 +18,8 @@ class UpdatePostInteractor implements UpdatePostUsecase
 
     public function handle(UpdatePostInput $input):UpdatePostOutput
     {
-        //$input->validate();
-        $postInfo=$this->postRepository->getUpdatePostInfo();
+        $input->validate();
+        $postInfo = $this->postRepository->getUpdatePostInfo();
         $output = new UpdatePostOutput($postInfo);
 
         return $output;

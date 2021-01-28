@@ -16,6 +16,7 @@ class DetailPostOutput implements BaseOutput
     public function presentation()
     {
         $postData = $this->postInfo;
+
         return view('posts.detail', compact('postData'));
     }
 }

@@ -18,8 +18,8 @@ class ConfirmUserInteractor implements ConfirmUserUsecase
 
     public function handle(ConfirmUserInput $input):ConfirmUserOutput
     {
-        //$input->validate();
-        $userInfo=$this->userRepository->getConfirmUserInfo();
+        $input->validate();
+        $userInfo = $this->userRepository->getConfirmUserInfo();
         $output = new ConfirmUserOutput($userInfo);
 
         return $output;

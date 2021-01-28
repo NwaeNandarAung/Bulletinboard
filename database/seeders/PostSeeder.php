@@ -21,8 +21,8 @@ class PostSeeder extends Seeder
             'status' => '1',
             'created_user_id'=>'1',
             'updated_user_id'=>'1',
-            'created_at'=> now(),
-            'updated_at'=> now()
+            'created_at'=>'2021-01-20 03:50:58',
+            'updated_at'=> '2021-01-20 03:50:58'
         ]);
     }
 }

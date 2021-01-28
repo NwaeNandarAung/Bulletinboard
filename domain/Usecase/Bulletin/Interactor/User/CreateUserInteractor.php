@@ -17,8 +17,8 @@ class CreateUserInteractor implements CreateUserUsecase
 
     public function handle():CreateUserOutput
     {
-        //$input->validate();
-        $userInfo=$this->userRepository->createUserInfo();
+        $input->validate();
+        $userInfo = $this->userRepository->createUserInfo();
         $output = new CreateUserOutput($userInfo);
 
         return $output;

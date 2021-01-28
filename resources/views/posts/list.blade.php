@@ -29,13 +29,13 @@
           <th scope="col" colspan="2"></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody>   
         @forelse ($postData as $post)
           <tr>
             <td><a href="{{ url('/post/detail/'. $post->id) }}">{{ $post->title }}</a></td>
             <td>{{ $post->description }}</td>
             <td>{{ $post->created_user_id }}</td>
-            <td>{{ date('d/m/Y', strtotime($post->created_at)) }}</td>
+            <td>{{ $post->created_at }}</td>
             <td><a href="{{ url('/post/1') }}">Edit</a></td>
             <td><a href="">Delete</a></td>
           </tr>
@@ -46,9 +46,11 @@
             </td>
           </tr>
         @endforelse 
+
       </tbody>
     </table>
-    <nav aria-label="Page navigation example">
+
+    <!-- <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
           <a class="page-link" href="#" aria-label="Previous">
@@ -66,6 +68,6 @@
           </a>
         </li>
       </ul>
-    </nav>
+    </nav> -->
   </div>
 @endsection

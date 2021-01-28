@@ -3,7 +3,7 @@
 namespace Domain\Input\Bulletin\User;
 
 use Domain\Exceptions\BulletinWebException;
-use Domain\Input\BaseInput as BaseInput;
+use Domain\Input\BaseInput;
 
 Class ConfirmUserInput implements BaseInput
 {
@@ -38,10 +38,10 @@ Class ConfirmUserInput implements BaseInput
 
     public function validate()
     {
-        if(is_null($this->name))
-        throw new BulletinWebApiException("403","parameter error:name");
+        if (is_null($this->name))
+            throw new BulletinWebApiException("403","parameter error:name");
 
-        if(is_null($this->email))
-        throw new BulletinWebApiException("403","parameter error:email");
+        if (is_null($this->email))
+            throw new BulletinWebApiException("403","parameter error:email");
     }
 }

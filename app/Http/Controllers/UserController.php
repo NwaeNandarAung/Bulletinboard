@@ -49,6 +49,7 @@ class UserController extends Controller
             $request->get('updated_at'),
         );
             $output = $usecase->handle($input);
+
             return $output->presentation();
     }
 
@@ -80,6 +81,7 @@ class UserController extends Controller
             $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
+
         return $output->presentation();
     }
 
@@ -106,6 +108,7 @@ class UserController extends Controller
             $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
+
         return $output->presentation();
     }
 
@@ -118,6 +121,7 @@ class UserController extends Controller
     public function show($userId,ShowUserUsecase $usecase)
     {
         $output = $usecase->handle();
+
         return $output->presentation();
     }
 
@@ -130,6 +134,7 @@ class UserController extends Controller
     public function edit($userId,EditUserUsecase $usecase)
     {
         $output = $usecase->handle();
+
         return $output->presentation();
     }
 
@@ -157,6 +162,7 @@ class UserController extends Controller
             $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
+
         return $output->presentation();
     }
 
@@ -177,18 +183,21 @@ class UserController extends Controller
             $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
+
         return $output->presentation();
     }
 
     public function detail($userId,DetailUserUsecase $usecase)
     {
         $output = $usecase->handle();
+
         return $output->presentation();
     }
 
     public function editpassword($userId,EditPasswordUsecase $usecase)
     {
         $output = $usecase->handle();
+
         return $output->presentation();
     }
 
@@ -200,6 +209,7 @@ class UserController extends Controller
             $request->get('updated_at')
         );
         $output = $usecase->handle($input);
+
         return $output->presentation();
     }
     

@@ -19,8 +19,8 @@ class PostPostInteractor implements PostPostUsecase
     public function handle(PostPostInput $input):PostPostOutput
     {
         $input->validate();
-        $postInfo=$this->postRepository->getPostInfo($input);
-        $output = new PostPostOutput($postInfo);
+        $postInfo = $this->postRepository->createPostInfo($input);
+        $output = new PostPostOutput();
 
         return $output;
     }

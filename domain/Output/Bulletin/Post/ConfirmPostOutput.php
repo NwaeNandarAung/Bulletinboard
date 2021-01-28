@@ -16,6 +16,7 @@ class ConfirmPostOutput implements BaseOutput
     public function presentation()
     {
         $postData = $this->postInfo;
+
         return view('posts.createconfirm', compact('postData'));
     }
 }

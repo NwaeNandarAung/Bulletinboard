@@ -3,7 +3,7 @@
 namespace Domain\Input\Bulletin\User;
 
 use Domain\Exceptions\BulletinWebException;
-use Domain\Input\BaseInput as BaseInput;
+use Domain\Input\BaseInput;
 
 Class UpdatePasswordInput implements BaseInput
 {
@@ -20,7 +20,7 @@ Class UpdatePasswordInput implements BaseInput
 
     public function validate()
     {
-        if(is_null($this->password))
-        throw new BulletinWebApiException("403","parameter error:password");
+        if (is_null($this->password))
+            throw new BulletinWebApiException("403","parameter error:password");
     }
 }

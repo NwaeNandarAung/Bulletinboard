@@ -18,8 +18,8 @@ class EditPasswordInteractor implements EditPasswordUsecase
 
     public function handle():EditPasswordOutput
     {
-        //$input->validate();
-        $passwordInfo=$this->userRepository->editPasswordInfo();
+        $input->validate();
+        $passwordInfo = $this->userRepository->editPasswordInfo();
         $output = new EditPasswordOutput($passwordInfo);
 
         return $output;

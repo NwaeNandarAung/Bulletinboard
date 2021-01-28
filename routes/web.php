@@ -24,7 +24,7 @@ Route::get('/user/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 
 //Post
 Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
-    Route::get('/', 'App\Http\Controllers\PostController@create');
+    Route::get('/', 'App\Http\Controllers\PostController@create')->name('post');
     Route::post('/', 'App\Http\Controllers\PostController@store');
     Route::post('createconfirm', 'App\Http\Controllers\PostController@createconfirm')->name('createconfirm');
     Route::get('{postId}', 'App\Http\Controllers\PostController@edit');
@@ -54,4 +54,3 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 });
 Route::get('users', 'App\Http\Controllers\UserController@index')->middleware('auth');
 Auth::routes();
-

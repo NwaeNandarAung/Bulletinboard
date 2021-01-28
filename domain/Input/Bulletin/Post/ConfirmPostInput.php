@@ -3,28 +3,28 @@
 namespace Domain\Input\Bulletin\Post;
 
 use Domain\Exceptions\BulletinWebException;
-use Domain\Input\BaseInput as BaseInput;
-use Auth;
+use Domain\ValueObject\Common\ErrorCode;
+use Domain\Input\BaseInput;
 
 Class ConfirmPostInput implements BaseInput
 {
     public string $title;
     public string $description;
-    public string $createdUserId;
 
-    public function __construct($title, $description, $createdUserId)
+    public function __construct($title, $description)
     {
         $this->title = $title;
         $this->description = $description;
-        $this->createdUserId = $createdUserId;
     }
 
     public function validate()
     {
-        if(is_null($this->title))
-        throw new BulletinWebException(403,ErrorCode::ERROR_0003);
+        $length = strlen($this->title);  
 
-        if(is_null($this->description))
-        throw new BulletinWebException(403,ErrorCode::ERROR_0003);
+        if (is_null($this->title) || $length > 255)
+            throw new BulletinWebException(ErrorCode::ERROR_0002, "Invalid Paramenter : title");
+
+        if (is_null($this->description))
+            throw new BulletinWebException(ErrorCode::ERROR_0002, "Invalid Paramenter : description");
     }
 }

@@ -27,7 +27,7 @@ class User
 
     public static function createInstance(stdClass $item)
     {
-        $newInstance=new User();
+        $newInstance = new User();
         $newInstance->id = 1;
         $newInstance->name = $item->name;
         $newInstance->email = $item->email;

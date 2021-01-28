@@ -19,7 +19,7 @@ class GetLogoutInteractor implements GetLogoutUsecase
     public function handle():GetLogoutOutput
     {
         Auth::logout();
-        $loginInfo=$this->userRepository->getLogoutInfo();
+        $loginInfo = $this->userRepository->getLogoutInfo();
         $output = new GetLogoutOutput($loginInfo);
 
         return $output;

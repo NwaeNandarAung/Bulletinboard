@@ -18,7 +18,7 @@ class GetAllPostsInteractor implements GetAllPostsUsecase
 
     public function handle(GetAllPostsInput $input):GetAllPostsOutput
     {
-        $postInfo=$this->postRepository->getAllPostsInfo($input);
+        $postInfo = $this->postRepository->getAllPostsInfo($input);
         $output = new GetAllPostsOutput($postInfo);
 
         return $output;

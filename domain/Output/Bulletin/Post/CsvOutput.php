@@ -16,6 +16,7 @@ class CsvOutput implements BaseOutput
     public function presentation()
     {
         $csvData = $this->csvInfo;
+
         return view('posts.csv', compact('csvData'));
     }
 }

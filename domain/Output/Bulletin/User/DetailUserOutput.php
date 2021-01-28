@@ -16,6 +16,7 @@ class DetailUserOutput implements BaseOutput
     public function presentation()
     {
         $userData = $this->usersInfo;
+
         return view('users.detail', compact('userData'));
     }
 }

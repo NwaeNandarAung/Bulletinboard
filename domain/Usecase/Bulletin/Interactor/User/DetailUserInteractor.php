@@ -17,7 +17,7 @@ class DetailUserInteractor implements DetailUserUsecase
 
     public function handle():DetailUserOutput
     {
-        $userInfo=$this->userRepository->detailUserInfo();
+        $userInfo = $this->userRepository->detailUserInfo();
         $output = new DetailUserOutput($userInfo);
 
         return $output;

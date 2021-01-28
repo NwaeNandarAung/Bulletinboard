@@ -20,13 +20,15 @@ class ConfirmPostInteractor implements ConfirmPostUsecase
 
     public function handle(ConfirmPostInput $input):ConfirmPostOutput
     {
-        $length = strlen ($input->title);  
-        if ( $length > 255) {  
-            throw new BulletinWebException(ErrorCode::ERROR_0002, "The title cannot be longer than 255 words.");
+        $input->validate();
+ 
+        $postTitleInfo = $this->postRepository->getPostInfoByTitle($input->title);
+        
+        if (!empty($postTitleInfo)) {
+            throw new BulletinWebException(ErrorCode::ERROR_0002, "Post Already Existed");
         }
 
-        $postInfo=$this->postRepository->getConfirmPostInfo($input);
-        $output = new ConfirmPostOutput($postInfo);
+        $output = new ConfirmPostOutput($input);
 
         return $output;
     }

@@ -17,8 +17,8 @@ class ShowUserInteractor implements ShowUserUsecase
 
     public function handle():ShowUserOutput
     {
-        //$input->validate();
-        $userInfo=$this->userRepository->showUserInfo();
+        $input->validate();
+        $userInfo = $this->userRepository->showUserInfo();
         $output = new ShowUserOutput($userInfo);
 
         return $output;

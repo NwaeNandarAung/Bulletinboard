@@ -16,6 +16,7 @@ class EditPasswordOutput implements BaseOutput
     public function presentation()
     {
         $passwordData = $this->passwordInfo;
+
         return view('users.editpassword', compact('passwordData'));
     }
 }

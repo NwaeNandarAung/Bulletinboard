@@ -30,10 +30,10 @@ class LoginController extends Controller
     {
         $input = new PostLoginInput(
             $request->get('email'),
-            $request->get('password'),
+            $request->get('password')
         );
 
-        $output=$usecase->handle($input);
+        $output = $usecase->handle($input);
 
         return $output->presentation();
     }

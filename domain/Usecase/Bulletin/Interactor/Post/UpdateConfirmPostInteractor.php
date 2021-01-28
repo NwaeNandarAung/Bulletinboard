@@ -18,8 +18,8 @@ class UpdateConfirmPostInteractor implements UpdateConfirmPostUsecase
 
     public function handle(UpdateConfirmPostInput $input):UpdateConfirmPostOutput
     {
-        //$input->validate();
-        $postInfo=$this->postRepository->getUpdateConfirmPostInfo();
+        $input->validate();
+        $postInfo = $this->postRepository->getUpdateConfirmPostInfo();
         $output = new UpdateConfirmPostOutput($postInfo);
 
         return $output;

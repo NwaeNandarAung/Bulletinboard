@@ -18,9 +18,10 @@ class UpdateConfirmUserInteractor implements UpdateConfirmUserUsecase
 
     public function handle(UpdateConfirmUserInput $input):UpdateConfirmUserOutput
     {
-        //$input->validate();
-        $userInfo=$this->userRepository->getUpdateConfirmUserInfo();
+        $input->validate();
+        $userInfo = $this->userRepository->getUpdateConfirmUserInfo();
         $output = new UpdateConfirmUserOutput($userInfo);
+
         return $output;
     }
 }

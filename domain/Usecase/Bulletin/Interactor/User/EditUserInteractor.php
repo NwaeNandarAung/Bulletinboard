@@ -18,8 +18,8 @@ class EditUserInteractor implements EditUserUsecase
 
     public function handle():EditUserOutput
     {
-        //$input->validate();
-        $userInfo=$this->userRepository->editUserInfo();
+        $input->validate();
+        $userInfo = $this->userRepository->editUserInfo();
         $output = new EditUserOutput($userInfo);
 
         return $output;
