@@ -35,7 +35,7 @@
             <td><a href="{{ url('/post/detail/'. $post->id) }}">{{ $post->title }}</a></td>
             <td>{{ $post->description }}</td>
             <td>{{ $post->created_user_id }}</td>
-            <td>{{ $post->created_at }}</td>
+            <td>{{ date('d/m/Y', strtotime($post->created_at)) }}</td>
             <td><a href="{{ url('/post/1') }}">Edit</a></td>
             <td><a href="">Delete</a></td>
           </tr>

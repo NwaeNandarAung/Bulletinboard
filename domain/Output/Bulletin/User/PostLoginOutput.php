@@ -4,7 +4,7 @@ namespace Domain\Output\Bulletin\User;
 
 use Domain\Output\BaseOutput;
 
-class GetLoginOutput implements BaseOutput
+class PostLoginOutput implements BaseOutput
 {
     private $loginInfo;
 

@@ -38,6 +38,7 @@ Route::group(['prefix' => 'posts', 'middleware' => 'auth'], function () {
     Route::get('/userpost', 'App\Http\Controllers\PostController@userpost');
     Route::get('excel', 'App\Http\Controllers\PostController@csvUpload');
 });
+
 //User
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('/', 'App\Http\Controllers\UserController@create');

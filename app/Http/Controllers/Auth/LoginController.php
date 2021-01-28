@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use Domain\Usecase\Bulletin\User\CreateLoginUsecase;
-use Domain\Input\Bulletin\User\GetLoginInput;
-use Domain\Usecase\Bulletin\User\GetLoginUsecase;
+use Domain\Input\Bulletin\User\PostLoginInput;
+use Domain\Usecase\Bulletin\User\PostLoginUsecase;
 use Domain\Usecase\Bulletin\User\GetLogoutUsecase;
 use App\Http\Controllers\Controller as Controller;
 use Illuminate\Http\Request;
@@ -22,23 +22,26 @@ class LoginController extends Controller
     public function showLoginForm(CreateLoginUsecase $usecase)
     {
         $output = $usecase->handle();
+
         return $output->presentation();
     }
 
-    public function login(Request $request,GetLoginUsecase $usecase)
+    public function login(Request $request,PostLoginUsecase $usecase)
     {
-        $input = new GetLoginInput(
+        $input = new PostLoginInput(
             $request->get('email'),
             $request->get('password'),
         );
 
         $output=$usecase->handle($input);
+
         return $output->presentation();
     }
 
     public function logout(GetLogoutUsecase $usecase)
     {
         $output = $usecase->handle();
+
         return $output->presentation();
     }
 }

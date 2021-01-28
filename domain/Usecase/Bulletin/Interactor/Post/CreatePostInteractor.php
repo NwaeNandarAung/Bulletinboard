@@ -11,7 +11,7 @@ class CreatePostInteractor implements CreatePostUsecase
 {
     public function handle(CreatePostInput $input):CreatePostOutput
     {
-        $input->validate();     
+        $input->validate();
         $output = new CreatePostOutput();
 
         return $output;

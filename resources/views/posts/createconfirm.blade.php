@@ -10,7 +10,7 @@
             <label>Title</label>
           </td>
           <td>
-              <label><?php echo $_POST['title']; ?></label>           
+            <input type="label" name="title" style="border:none;"  value="<?php echo $_POST['title']; ?>">
           <td>
         </tr>
         <tr>
@@ -18,7 +18,7 @@
             <label>Description</label>
           </td>
           <td>
-            <label><?php echo $_POST['description']; ?></label> 
+          <input type="label" name="description" style="border:none;"  value="<?php echo $_POST['description']; ?>">
           <td>
         </tr>
       </table>

@@ -4,11 +4,11 @@ namespace Domain\Repository\Bulletin\Post;
 
 Interface PostRepository
 {
-    public function getAllPostsInfo():? array;
+    public function getAllPostsInfo($input):? array;
 
     public function getConfirmPostInfo($input):? array;
 
-    public function getPostInfo():? array;
+    public function getPostInfo($input):? array;
 
     public function editPostInfo():? array;
 

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Domain\Input\Bulletin\Post\GetPostInput;
-use Domain\Usecase\Bulletin\Post\GetPostUsecase;
+use Domain\Input\Bulletin\Post\PostPostInput;
+use Domain\Usecase\Bulletin\Post\PostPostUsecase;
 use Domain\Models\Post as Post;
 use Domain\Input\Bulletin\Post\GetAllPostsInput;
 use Domain\Usecase\Bulletin\Post\GetAllPostsUsecase;
@@ -31,19 +31,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,GetAllPostsUsecase $usecase)
-    {    
-        $input = new GetAllPostsInput(
-        $request->get('title'),
-        $request->get('description'),
-        $request->get('status'),
-        $request->get('created_user_id'),
-        $request->get('updated_user_id'),
-        $request->get('created_at'),
-        $request->get('updated_at'),
-        );
+    public function index(GetAllPostsUsecase $usecase)
+    {  
+        $input = new GetAllPostsInput();
 
         $output =  $usecase->handle($input);
+
         return $output->presentation();
     }
 
@@ -77,9 +70,9 @@ class PostController extends Controller
         return $output->presentation();
     }
 
-    public function store(Request $request,GetPostUsecase $usecase)
+    public function store(Request $request,PostPostUsecase $usecase)
     {
-        $input = new GetPostInput(    
+        $input = new PostPostInput(    
             $request->get('title'),
             $request->get('description'),
             $request->get('status'),

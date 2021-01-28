@@ -26,9 +26,9 @@ class CreateUsersTable extends Migration
             $table->integer('created_user_id');
             $table->integer('updated_user_id');
             $table->integer('deleted_user_id')->nullable();
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
-            $table->timestamp('deleted_at')->nullable();
+            $table->datetime('created_at');
+            $table->datetime('updated_at');
+            $table->datetime('deleted_at')->nullable();
         });
 
         Schema::table('users', function (Blueprint $table) {

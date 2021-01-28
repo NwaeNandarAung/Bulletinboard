@@ -6,7 +6,7 @@ use Domain\Exceptions\BulletinWebException;
 use Domain\Input\BaseInput as BaseInput;
 use Domain\ValueObject\Common\ErrorCode;
 
-Class GetLoginInput implements BaseInput
+Class PostLoginInput implements BaseInput
 {
     public string $email;
     public string $password;

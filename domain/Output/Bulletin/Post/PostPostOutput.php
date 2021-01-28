@@ -4,7 +4,7 @@ namespace Domain\Output\Bulletin\Post;
 
 use Domain\Output\BaseOutput;
 
-class GetPostOutput implements BaseOutput
+class PostPostOutput implements BaseOutput
 {
     private $postInfo;
 

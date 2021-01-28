@@ -60,7 +60,7 @@ class UserController extends Controller
     public function create(CreateUserUsecase $usecase)
     {
         $output = $usecase->handle();
-        return $output->presentation();  
+        return $output->presentation();
     }
 
     public function createconfirm(Request $request, ConfirmUserUsecase $usecase)

@@ -43,7 +43,6 @@ class Handler extends ExceptionHandler
         {
             $errorCode = $e->code;
             $errorMessage=$e->logMessage;
-            //return back()->withError($errorMessage)->withInput();
             return response()->view('error', compact('e'), ErrorCode::getStatusCode($errorCode));
         });
     }

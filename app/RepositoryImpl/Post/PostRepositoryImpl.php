@@ -4,25 +4,26 @@ namespace App\RepositoryImpl\Post;
 
 use Domain\Repository\Bulletin\Post\PostRepository;
 use DB;
-use Domain\Models\Post;
+use Domain\Models\Post as Post;
 use Domain\Exceptions\BulletinWebException;
 use Domain\ValueObject\Common\ErrorCode;
 use Auth;
 
 class PostRepositoryImpl implements PostRepository
 {
-    public function getAllPostsInfo(): ?array
+    public function getAllPostsInfo($input): ?array
     {
-        $query = DB::table('posts');  
+        $query = DB::table('posts');
 
-        if(Auth::user()->type=='1')   
+        if(Auth::user()->type=='1')
         {
             $query->select('title','description','created_user_id','created_at');
         }
         else
         {
-            $query->where('id','=', Auth::id());      
+            $query->where('created_user_id','=', Auth::id());
         }
+
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);
         })->toArray();
@@ -41,11 +42,19 @@ class PostRepositoryImpl implements PostRepository
             })->toArray();
         }
     }
-    
-    public function getPostInfo(): ?array
+
+    public function getPostInfo($input): ?array
     {
         $query = DB::table('posts');
-        $query->select('title','description');
+        $query -> insert( 
+                            array ('title' => $input->title,
+                                   'description' => $input->description,
+                                   'status' => $input->status,
+                                   'created_user_id' => $input->createdUserId,
+                                   'updated_user_id' => $input->updatedUserId,
+                                   'created_at' => $input->createdAt,
+                                   'updated_at' => $input->updatedAt)
+                            );
 
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);

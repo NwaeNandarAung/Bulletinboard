@@ -16,8 +16,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //bind usecases 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\Post\GetPostUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\Post\GetPostInteractor::class,
+            \Domain\Usecase\Bulletin\Post\PostPostUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\Post\PostPostInteractor::class,
         );
 
         $this->app->bind(
@@ -66,8 +66,8 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\User\GetLoginUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\User\GetLoginInteractor::class,
+            \Domain\Usecase\Bulletin\User\PostLoginUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\PostLoginInteractor::class,
         );
 
         $this->app->bind(

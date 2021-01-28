@@ -20,7 +20,7 @@
         <a class="nav-link" href="{{ url('/user/show/1') }}">User</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('/posts/userpost') }}">Posts</a>
+        <a class="nav-link" href="{{ url('/posts') }}">Posts</a>
       </li>
     @endif
     </ul>

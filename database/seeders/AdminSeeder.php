@@ -23,8 +23,8 @@ class AdminSeeder extends Seeder
             'profile'=>'https://pixabay.com/photos/tree-sunset-amazing-beautiful-736885/',
             'created_user_id'=>'1',
             'updated_user_id'=>'1',
-            'created_at'=> date("Y-m-d H:i:s"),
-            'updated_at'=> date("Y-m-d H:i:s")
+            'created_at'=> now(),
+            'updated_at'=> now()
         ]);
     }
 }
