@@ -15,10 +15,13 @@ class PostRepositoryImpl implements PostRepository
     {
         $query = DB::table('posts');
 
-        if (Auth::user()->type=='1') {
-            $query->select();
+        if (Auth::user()->type == '1') {
+            $query->join('users', 'posts.created_user_id', '=', 'users.id')
+                  ->select('posts.*','users.name as user_name');
         } else {
-            $query->where('created_user_id','=', Auth::id());
+            $query->join('users', 'posts.created_user_id', '=', 'users.id')
+                  ->where('posts.created_user_id', '=', Auth::id())
+                  ->select('posts.*','users.name as user_name');
         }
 
         return $query->get()->map(function ($item) {
@@ -45,6 +48,30 @@ class PostRepositoryImpl implements PostRepository
     {
         $query = DB::table('posts');
         $query->where('title', '=', $title);
+
+        return $query->get()->map(function ($item) {
+            return Post::createInstance($item);
+        })->toArray();
+    }
+
+    public function searchPostInfo($search): ?array
+    {
+        if ($search) {
+        $query = DB::table('posts');
+        $query->where('title', 'LIKE', "%" . $search . "%")
+            ->orWhere('description', 'LIKE', "%" . $search . "%");
+        }
+
+        return $query->get()->map(function ($item) {
+            return Post::createInstance($item);
+        })->toArray();
+    }
+
+    public function deletePostInfo($id): ?array
+    {
+        $query = DB::table('posts');
+        $query->where('id', '=', $id)
+              ->delete();
 
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);

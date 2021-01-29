@@ -11,6 +11,10 @@ use Domain\Input\Bulletin\Post\CreatePostInput;
 use Domain\Usecase\Bulletin\Post\CreatePostUsecase;
 use Domain\Input\Bulletin\Post\ConfirmPostInput;
 use Domain\Usecase\Bulletin\Post\ConfirmPostUsecase;
+use Domain\Input\Bulletin\Post\SearchPostInput;
+use Domain\Usecase\Bulletin\Post\SearchPostUsecase;
+use Domain\Input\Bulletin\Post\DeletePostInput;
+use Domain\Usecase\Bulletin\Post\DeletePostUsecase;
 use Domain\Input\Bulletin\Post\EditPostInput;
 use Domain\Usecase\Bulletin\Post\EditPostUsecase;
 use Domain\Input\Bulletin\Post\UpdatePostInput;
@@ -19,8 +23,7 @@ use Domain\Input\Bulletin\Post\UpdateConfirmPostInput;
 use Domain\Usecase\Bulletin\Post\UpdateConfirmPostUsecase;
 use Domain\Usecase\Bulletin\Post\DetailPostUsecase;
 use Domain\Usecase\Bulletin\Post\CsvUsecase;
-use Domain\Input\Bulletin\Post\UserPostInput;
-use Domain\Usecase\Bulletin\Post\UserPostUsecase;
+use Domain\Models\Post;
 
 class PostController extends Controller
 {
@@ -32,7 +35,6 @@ class PostController extends Controller
     public function index(GetAllPostsUsecase $usecase)
     {  
         $input = new GetAllPostsInput();
-
         $output =  $usecase->handle($input);
 
         return $output->presentation();
@@ -45,10 +47,8 @@ class PostController extends Controller
      */
     public function create(CreatePostUsecase $usecase)
     {   
-        $input = new CreatePostInput();
-           
+        $input = new CreatePostInput();         
         $output = $usecase->handle($input);
-
         
         return $output->presentation();
     }
@@ -158,14 +158,29 @@ class PostController extends Controller
         return $output->presentation();
     }
 
+    public function search(Request $request, SearchPostUsecase $usecase)
+    {
+        $input = new SearchPostInput(
+            $request->get('search'),
+        );
+        $output = $usecase->handle($input);
+
+        return $output->presentation();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $postId, DeletePostUsecase $usecase)
     {
-        //
+        $input = new DeletePostInput(
+            $request->get('id'),
+        );
+        $output = $usecase->handle($input);
+        
+        return $output->presentation();
     }
 }

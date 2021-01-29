@@ -6,7 +6,7 @@ use Domain\Output\BaseOutput;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Request;
 
-class GetAllPostsOutput implements BaseOutput
+class SearchPostOutput implements BaseOutput
 {
     private $postInfo;
 

@@ -37,6 +37,16 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            \Domain\Usecase\Bulletin\Post\SearchPostUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\Post\SearchPostInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\Post\DeletePostUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\Post\DeletePostInteractor::class,
+        );
+
+        $this->app->bind(
             \Domain\Usecase\Bulletin\Post\EditPostUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\Post\EditPostInteractor::class,
         );

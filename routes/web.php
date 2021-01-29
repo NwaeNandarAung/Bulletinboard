@@ -31,12 +31,14 @@ Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
     Route::put('{postId}', 'App\Http\Controllers\PostController@update');
     Route::get('updateconfirm/{postId}', 'App\Http\Controllers\PostController@updateconfirm');
     Route::get('detail/{postId}', 'App\Http\Controllers\PostController@detail');
+    Route::delete('{postId}', 'App\Http\Controllers\PostController@destroy')->name('post');
 });
 
 Route::group(['prefix' => 'posts', 'middleware' => 'auth'], function () {
     Route::get('/', 'App\Http\Controllers\PostController@index');
     Route::get('/userpost', 'App\Http\Controllers\PostController@userpost');
     Route::get('excel', 'App\Http\Controllers\PostController@csvUpload');
+    Route::get('search', 'App\Http\Controllers\PostController@search');
 });
 
 //User

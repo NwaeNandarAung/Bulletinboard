@@ -4,8 +4,8 @@
   <div class="container">
     <div class="row my-2">
       <div class="col-md-6">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="{{ url('posts/search') }}" method="GET">
+          <input type="text" class="form-control mr-sm-2"  placeholder="Search" name="search">
           <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
@@ -34,10 +34,16 @@
           <tr>
             <td><a href="{{ url('/post/detail/'. $post->id) }}">{{ $post->title }}</a></td>
             <td>{{ $post->description }}</td>
-            <td>{{ $post->created_user_id }}</td>
+            <td>{{ $post->user_name}}</td>
             <td>{{ $post->created_at }}</td>
             <td><a href="{{ url('/post/1') }}">Edit</a></td>
-            <td><a href="">Delete</a></td>
+            <td>
+              <form action="{{ url('/post', ['id' => $post->id]) }}" method="post">
+                <input class="btn btn-default" type="submit" value="Delete" id="mybutton" onclick="myFunction()"/>
+                @method('delete')
+                @csrf
+              </form>
+            </td>
           </tr>
         @empty
           <tr>
@@ -46,28 +52,8 @@
             </td>
           </tr>
         @endforelse 
-
       </tbody>
     </table>
-
-    <!-- <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
-    </nav> -->
+    {!! $postData->render() !!}
   </div>
 @endsection
