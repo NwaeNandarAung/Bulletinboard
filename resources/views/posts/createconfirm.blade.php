@@ -25,7 +25,7 @@
       <div class="form-group row">
         <div class="offset-md-9 col-md-3">
           <button type="submit" class="btn btn-primary mb-2">Create</button>
-          <a href="{{ route('post') }}" class="btn btn-outline-primary mb-2" role="button">Cancel</a>
+          <a href="javascript:history.back()" class="btn btn-outline-primary mb-2" role="button">Cancel</a>
         </div>
       </div>
     </form>
