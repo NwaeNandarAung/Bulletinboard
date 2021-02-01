@@ -19,7 +19,7 @@ class DeletePostInteractor implements DeletePostUsecase
     public function handle(DeletePostInput $input):DeletePostOutput
     {
         $input->validate();
-        $postInfo = $this->postRepository->deletePostInfo($input->id);
+        $postInfo = $this->postRepository->deletePostInfo();
         $output = new DeletePostOutput($postInfo);
 
         return $output;

@@ -174,11 +174,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $postId, DeletePostUsecase $usecase)
+    public function destroy(Request $request,$id, DeletePostUsecase $usecase)
     {
-        $input = new DeletePostInput(
-            $request->get('id'),
-        );
+        $input = new DeletePostInput();
         $output = $usecase->handle($input);
         
         return $output->presentation();

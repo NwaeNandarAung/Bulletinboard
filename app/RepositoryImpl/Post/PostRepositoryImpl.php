@@ -16,12 +16,12 @@ class PostRepositoryImpl implements PostRepository
         $query = DB::table('posts');
 
         if (Auth::user()->type == '1') {
-            $query->join('users', 'posts.created_user_id', '=', 'users.id')
-                  ->select('posts.*','users.name as user_name');
+            $query->select('users.name as name','posts.*')
+                  ->join('users', 'posts.created_user_id', '=', 'users.id');
         } else {
-            $query->join('users', 'posts.created_user_id', '=', 'users.id')
-                  ->where('posts.created_user_id', '=', Auth::id())
-                  ->select('posts.*','users.name as user_name');
+            $query->select('users.name as name','posts.*')
+                  ->join('users', 'posts.created_user_id', '=', 'users.id')
+                  ->where('posts.created_user_id', '=', Auth::id());
         }
 
         return $query->get()->map(function ($item) {
@@ -67,7 +67,7 @@ class PostRepositoryImpl implements PostRepository
         })->toArray();
     }
 
-    public function deletePostInfo($id): ?array
+    public function deletePostInfo(): ?array
     {
         $query = DB::table('posts');
         $query->where('id', '=', $id)

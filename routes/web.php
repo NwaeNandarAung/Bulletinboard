@@ -31,7 +31,7 @@ Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
     Route::put('{postId}', 'App\Http\Controllers\PostController@update');
     Route::get('updateconfirm/{postId}', 'App\Http\Controllers\PostController@updateconfirm');
     Route::get('detail/{postId}', 'App\Http\Controllers\PostController@detail');
-    Route::delete('{postId}', 'App\Http\Controllers\PostController@destroy')->name('post');
+    Route::delete('{id}', 'App\Http\Controllers\PostController@destroy');
 });
 
 Route::group(['prefix' => 'posts', 'middleware' => 'auth'], function () {

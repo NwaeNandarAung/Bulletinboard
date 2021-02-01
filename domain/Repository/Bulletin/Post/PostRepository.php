@@ -24,5 +24,5 @@ Interface PostRepository
 
     public function searchPostInfo($search): ?array;
 
-    public function deletePostInfo($id): ?array;
+    public function deletePostInfo(): ?array;
 }

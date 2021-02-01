@@ -29,12 +29,12 @@
           <th scope="col" colspan="2"></th>
         </tr>
       </thead>
-      <tbody>   
+      <tbody>
         @forelse ($postData as $post)
           <tr>
             <td><a href="{{ url('/post/detail/'. $post->id) }}">{{ $post->title }}</a></td>
             <td>{{ $post->description }}</td>
-            <td>{{ $post->user_name}}</td>
+            <td>{{ $post->name}}</td>
             <td>{{ $post->created_at }}</td>
             <td><a href="{{ url('/post/1') }}">Edit</a></td>
             <td>

@@ -23,7 +23,7 @@ class CreatePostsTable extends Migration
             $table->integer('deleted_user_id')->nullable();
             $table->datetime('created_at');
             $table->datetime('updated_at');
-            $table->datetime('deleted_at')->nullable();
+            $table->softDeletes();
             $table->foreign('created_user_id')
             ->references('id')
             ->on('users')
