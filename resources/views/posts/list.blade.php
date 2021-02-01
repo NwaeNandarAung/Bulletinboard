@@ -34,9 +34,9 @@
           <tr>
             <td><a href="{{ url('/post/detail/'. $post->id) }}">{{ $post->title }}</a></td>
             <td>{{ $post->description }}</td>
-            <td>{{ $post->name}}</td>
+            <td>{{ $post->name }}</td>
             <td>{{ $post->created_at }}</td>
-            <td><a href="{{ url('/post/1') }}">Edit</a></td>
+            <td><a href="{{ url('/post', ['id' => $post->id]) }}">Edit</a></td>
             <td>
               <form action="{{ url('/post', ['id' => $post->id]) }}" method="post">
                 <input class="btn btn-default" type="submit" value="Delete" id="mybutton" onclick="myFunction()"/>

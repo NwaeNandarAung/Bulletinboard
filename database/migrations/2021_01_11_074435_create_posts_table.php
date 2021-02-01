@@ -43,5 +43,6 @@ class CreatePostsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('posts');
+        $table->dropSoftDeletes(); 
     }
 }

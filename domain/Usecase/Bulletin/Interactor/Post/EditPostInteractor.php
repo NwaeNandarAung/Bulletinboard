@@ -16,10 +16,10 @@ class EditPostInteractor implements EditPostUsecase
         $this->postRepository = $postRepository;
     }
 
-    public function handle():EditPostOutput
+    public function handle(EditPostInput $input):EditPostOutput
     {
         $input->validate();
-        $postInfo = $this->postRepository->editPostInfo();
+        $postInfo = $this->postRepository->editPostInfo($input->id);
         $output = new EditPostOutput($postInfo);
 
         return $output;

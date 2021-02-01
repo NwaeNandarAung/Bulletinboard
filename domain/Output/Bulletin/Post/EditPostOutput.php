@@ -6,13 +6,17 @@ use Domain\Output\BaseOutput;
 
 class EditPostOutput implements BaseOutput
 {
-    public function __construct()
-    {
+    private $postInfo;
 
+    public function __construct($postInfo)
+    {
+        $this->postInfo=$postInfo;
     }
 
     public function presentation()
     {
+        $postData = $this->postInfo;
+
         return view('posts.edit');
     }
 }

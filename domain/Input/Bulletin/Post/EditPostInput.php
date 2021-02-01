@@ -7,21 +7,15 @@ use Domain\Input\BaseInput;
 
 Class EditPostInput implements BaseInput
 {
-    private $title;
-    private $description;
+    private $postId;
 
-    public function __construct($title, $description)
+    public function __construct($postId)
     {
-        $this->title = $title;
-        $this->description = $description;
+        $this->id = $postId;
     }
 
     public function validate()
     {
-        if (is_null($this->title))
-            throw new BulletinWebApiException("403","parameter error:title");
 
-        if (is_null($this->description))
-            throw new BulletinWebApiException("403","parameter error:description");
     }
 }

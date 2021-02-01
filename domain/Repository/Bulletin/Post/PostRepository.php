@@ -12,7 +12,7 @@ Interface PostRepository
 
     public function getPostInfoByTitle($title): ?array;
 
-    public function editPostInfo(): ?array;
+    public function editPostInfo($postId): ?array;
 
     public function getUpdateConfirmPostInfo(): ?array;
 
@@ -24,5 +24,5 @@ Interface PostRepository
 
     public function searchPostInfo($search): ?array;
 
-    public function deletePostInfo(): ?array;
+    public function deletePostInfo($postId): ?array;
 }

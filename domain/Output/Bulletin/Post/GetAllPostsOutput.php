@@ -16,7 +16,7 @@ class GetAllPostsOutput implements BaseOutput
     }
 
     public function presentation()
-    {
+    {       
         $postData = $this->postInfo;
         $currentPage = Paginator::resolveCurrentPage();
         $col = collect($postData);

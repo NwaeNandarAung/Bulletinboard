@@ -100,7 +100,8 @@ class PostController extends Controller
      */
     public function edit($postId,EditPostUsecase $usecase)
     {
-        $output = $usecase->handle();
+        $input = new EditPostInput($postId);
+        $output = $usecase->handle($input);
 
         return $output->presentation();
     }
@@ -174,9 +175,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id, DeletePostUsecase $usecase)
+    public function destroy(Request $request,$postId, DeletePostUsecase $usecase)
     {
-        $input = new DeletePostInput();
+        $input = new DeletePostInput($postId);
         $output = $usecase->handle($input);
         
         return $output->presentation();

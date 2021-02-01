@@ -25,7 +25,7 @@ class PostRepositoryImpl implements PostRepository
         }
 
         return $query->get()->map(function ($item) {
-            return Post::createInstance($item);
+            return Post::listInstance($item);
         })->toArray();
     }
 
@@ -67,10 +67,10 @@ class PostRepositoryImpl implements PostRepository
         })->toArray();
     }
 
-    public function deletePostInfo(): ?array
+    public function deletePostInfo($postId): ?array
     {
         $query = DB::table('posts');
-        $query->where('id', '=', $id)
+        $query->where('id', '=', $postId)
               ->delete();
 
         return $query->get()->map(function ($item) {
@@ -78,10 +78,10 @@ class PostRepositoryImpl implements PostRepository
         })->toArray();
     }
 
-    public function editPostInfo(): ?array
+    public function editPostInfo($postId): ?array
     {
         $query = DB::table('posts');
-        $query->select('title','description','status','created_user_id','created_at','updated_user_id','updated_at');
+        $query->select();
         
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);
@@ -121,7 +121,7 @@ class PostRepositoryImpl implements PostRepository
     public function csvInfo(): ?array
     {
         $query = DB::table('posts');
-        $query->select('title','description');
+        $query->select();
         
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);

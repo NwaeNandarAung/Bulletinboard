@@ -9,7 +9,8 @@ class Post
 {
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-    
+    protected $hidden = ['deleted_user_id'];
+
     public string $id;
     public $title;
     public $description;
@@ -30,7 +31,19 @@ class Post
         $newInstance->title = $item->title;
         $newInstance->description = $item->description;
         $newInstance->status = $item->status;
-        $newInstance->name = 'Nwae';
+        $newInstance->created_user_id = $item->created_user_id;
+        $newInstance->created_at = date('d/m/Y', strtotime($item->created_at));
+        return $newInstance;
+    }
+
+    public static function listInstance(stdClass $item)
+    {
+        $newInstance = new Post();
+        $newInstance->id = $item->id;
+        $newInstance->title = $item->title;
+        $newInstance->description = $item->description;
+        $newInstance->status = $item->status;
+        $newInstance->name = $item->name;
         $newInstance->created_user_id = $item->created_user_id;
         $newInstance->created_at = date('d/m/Y', strtotime($item->created_at));
         return $newInstance;
