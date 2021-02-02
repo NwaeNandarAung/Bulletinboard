@@ -17,6 +17,6 @@ class EditPostOutput implements BaseOutput
     {
         $postData = $this->postInfo;
 
-        return view('posts.edit');
+        return view('posts.edit',compact('postData'));
     }
 }

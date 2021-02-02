@@ -35,8 +35,8 @@ class PostRepositoryImpl implements PostRepository
         $query->insertGetId([
             'title' => $input->title,
             'description' => $input->description,
-            'created_user_id' => Auth::id(),  
-            'updated_user_id' => Auth::id(),   
+            'created_user_id' => Auth::id(),
+            'updated_user_id' => Auth::id(),
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -59,7 +59,7 @@ class PostRepositoryImpl implements PostRepository
         if ($search) {
         $query = DB::table('posts');
         $query->where('title', 'LIKE', "%" . $search . "%")
-            ->orWhere('description', 'LIKE', "%" . $search . "%");
+              ->orWhere('description', 'LIKE', "%" . $search . "%");
         }
 
         return $query->get()->map(function ($item) {
@@ -81,8 +81,8 @@ class PostRepositoryImpl implements PostRepository
     public function editPostInfo($postId): ?array
     {
         $query = DB::table('posts');
-        $query->select();
-        
+        $query->where('id', '=', $postId);
+
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);
         })->toArray();
@@ -103,16 +103,6 @@ class PostRepositoryImpl implements PostRepository
         $query = DB::table('posts');
         $query->select('title','description');
 
-        return $query->get()->map(function ($item) {
-            return Post::createInstance($item);
-        })->toArray();
-    }
-
-    public function detailPostInfo(): ?array
-    {
-        $query = DB::table('posts');
-        $query->select('title','description','status','created_user_id','created_at','updated_user_id','updated_at');
-        
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);
         })->toArray();

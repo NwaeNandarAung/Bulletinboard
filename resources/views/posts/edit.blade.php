@@ -6,7 +6,9 @@
       <div class="form-group row">
         <label for="staticEmail" class="offset-sm-2 col-sm-2 col-form-label">Title</label>
         <div class="col-sm-6">
-          <input type="text"  class="form-control" id="staticEmail" name="utitle"  value="title">
+          @foreach($postData as $post)
+            <input type="text"  class="form-control" id="staticEmail" name="utitle" value="{{ $post->title }}">
+          @endforeach
         </div>
         <div class="col-md-2">
           <span style='color:red;'>*</span>
@@ -15,7 +17,9 @@
       <div class="form-group row">
         <label for="inputPassword" class="offset-sm-2 col-sm-2 col-form-label">Description</label>
         <div class="col-sm-6">
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">description</textarea>
+          @foreach($postData as $post)
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="udescription">{{ $post->description }}</textarea>
+          @endforeach
         </div>
         <div class="col-md-2">
           <span style='color:red;'>*</span>
@@ -24,7 +28,9 @@
       <div class="form-group row">
         <label for="inputCheckbox" class="offset-sm-2 col-sm-2 col-form-label" style="padding-top:0px;">Status</label>
         <div class="col-sm-6">
-          <input data-id="" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" style="padding-bottom:10px;" data-toggle="toggle" data-on="Active" data-off="InActive">
+          @foreach($postData as $post)
+            <input type="checkbox" name="ustatus" data-plugin="switchery" data-color="#1bb99a" {{ $post->status ? 'checked' : ''}} >
+          @endforeach
         </div>
       </div>
       <div class="form-group row">
