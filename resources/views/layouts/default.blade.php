@@ -24,6 +24,14 @@
         if (!confirm("Are You Sure to delete this post?"))
           event.preventDefault();
       }
+
+			$(document).ready(function(){
+				$('#btnClear').click(function(){				
+						$('#myForm input[type="text"]').val('');
+						$('#myForm #description').val('');
+            $('#myForm input[type="checkbox"]').val('');
+				});
+			});
     </script>
   </body>
 </html>

@@ -11,17 +11,19 @@
         <title>SCM Bulletin Board</title>
     </head>
     <body>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card text-center">
-            <div class="card-body">
-              <h1 class="card-title">{{$e->code}}</h1> <br>
-              <h2 class="card-text">{{$e->logMessage}}</h2> <br>
-              @if($e->code=="ERROR-0003")
-                <a href="{{ url('user/login') }}" class="btn btn-primary" role="button">Back to Login</a>
-              @elseif($e->code=="ERROR-0002")
-                <a href="{{ url('post') }}" class="btn btn-primary" role="button">Back</a>
-              @endif
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card text-center">
+              <div class="card-body">
+                <h1 class="card-title">{{$e->code}}</h1> <br>
+                <h2 class="card-text">{{$e->logMessage}}</h2> <br>
+                @if($e->code=="ERROR-0003")
+                  <a href="{{ url('user/login') }}" class="btn btn-primary" role="button">Back to Login</a>
+                @elseif($e->code=="ERROR-0002")
+                  <a href="javascript:history.back()" class="btn btn-primary" role="button">Back</a>
+                @endif
+              </div>
             </div>
           </div>
         </div>

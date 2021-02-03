@@ -6,6 +6,8 @@ use Domain\Input\Bulletin\Post\UpdateConfirmPostInput;
 use Domain\Output\Bulletin\Post\UpdateConfirmPostOutput;
 use Domain\Usecase\Bulletin\Post\UpdateConfirmPostUsecase;
 use Domain\Repository\Bulletin\Post\PostRepository;
+use Domain\Exceptions\BulletinWebException;
+use Domain\ValueObject\Common\ErrorCode;
 
 class UpdateConfirmPostInteractor implements UpdateConfirmPostUsecase
 {
@@ -19,8 +21,13 @@ class UpdateConfirmPostInteractor implements UpdateConfirmPostUsecase
     public function handle(UpdateConfirmPostInput $input):UpdateConfirmPostOutput
     {
         $input->validate();
-        $postInfo = $this->postRepository->getUpdateConfirmPostInfo();
-        $output = new UpdateConfirmPostOutput($postInfo);
+
+        $postTitleInfo = $this->postRepository->getUpdateConfirmPostInfo($input);
+
+        if (!empty($postTitleInfo)) {
+            throw new BulletinWebException(ErrorCode::ERROR_0002, "Post Already Existed");
+        }
+        $output = new UpdateConfirmPostOutput($input);
 
         return $output;
     }

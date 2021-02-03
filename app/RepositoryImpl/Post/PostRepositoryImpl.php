@@ -92,20 +92,28 @@ class PostRepositoryImpl implements PostRepository
         })->toArray();
     }
 
-    public function getUpdateConfirmPostInfo(): ?array
+    public function getUpdateConfirmPostInfo($input): ?array
     {
         $query = DB::table('posts');
-        $query->select('title','description','status','created_user_id','created_at','updated_user_id','updated_at');
+        $query->where('title', '=', $input->title)
+              ->where('id', '!=', $input->id);
 
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);
         })->toArray();
     }
 
-    public function getUpdatePostInfo(): ?array
+    public function getUpdatePostInfo($input, $postId): ?array
     {
+        $updateDetails = [
+            'title' => $input->title,
+            'description' => $input->description,
+            'status'=> $input->status,
+        ];
+
         $query = DB::table('posts');
-        $query->select('title','description');
+        $query->where('id', '=', $postId)
+              ->update($updateDetails);
 
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);

@@ -128,13 +128,10 @@ class PostController extends Controller
     public function update(Request $request, $postId, UpdatePostUsecase $usecase)
     {
         $input = new UpdatePostInput(
+            $postId,
             $request->get('title'),
             $request->get('description'),
             $request->get('status'),
-            $request->get('created_user_id'),
-            $request->get('updated_user_id'),
-            $request->get('created_at'),
-            $request->get('updated_at')
         );
         $output = $usecase->handle($input);
 
@@ -144,13 +141,11 @@ class PostController extends Controller
     public function updateconfirm(Request $request, UpdateConfirmPostUsecase $usecase)
     {
         $input = new UpdateConfirmPostInput(
+
+            $request->get('id'),
             $request->get('title'),
             $request->get('description'),
-            $request->get('status'),
-            $request->get('created_user_id'),
-            $request->get('updated_user_id'),
-            $request->get('created_at'),
-            $request->get('updated_at')
+            $request->get('status')
         );
         $output = $usecase->handle($input);
 

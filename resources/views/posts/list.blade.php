@@ -5,10 +5,10 @@
     <form class="form-inline" action="{{ url('posts/search') }}" method="GET">
       <div class="row my-2">
         <div class="col-md-4">
-          <input type="text" class="form-control"  placeholder="Search" name="search">
+          <input type="text" class="form-control"  placeholder="Search" name="search" required/>
         </div>
         <div class="col-md-2">
-          <button class="btn btn-primary" type="submit" name="action" value="btnSearch">Search</button>
+          <button class="btn btn-primary" type="submit">Search</button>
         </div>
         <div class="col-md-2">
           <a href="{{ url('/post') }}" class="btn btn-primary" role="button">Add</a>

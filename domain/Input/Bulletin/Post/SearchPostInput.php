@@ -17,6 +17,7 @@ Class SearchPostInput implements BaseInput
     
     public function validate()
     {
-
+        if (is_null($this->search))
+            throw new BulletinWebException(ErrorCode::ERROR_0002, "Invalid Paramenter : search");
     }
 }

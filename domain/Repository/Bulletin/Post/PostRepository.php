@@ -14,9 +14,9 @@ Interface PostRepository
 
     public function editPostInfo($postId): ?array;
 
-    public function getUpdateConfirmPostInfo(): ?array;
+    public function getUpdateConfirmPostInfo($input): ?array;
 
-    public function getUpdatePostInfo(): ?array;
+    public function getUpdatePostInfo($input, $postId): ?array;
 
     public function searchPostInfo($search): ?array;
 

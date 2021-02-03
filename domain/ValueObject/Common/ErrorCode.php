@@ -6,7 +6,7 @@ class ErrorCode
 {
     /** title length */
     const ERROR_0001 = "ERROR-0001";
-    /**unique title */
+    /**parameter error */
     const ERROR_0002 = "ERROR-0002";
     /** unauthorized */
     const ERROR_0003 = "ERROR-0003";

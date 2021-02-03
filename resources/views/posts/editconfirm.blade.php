@@ -2,7 +2,7 @@
 @section('content')
   <div class="container">
     <h3 align="center" style="margin-top:20px; color:#999;">Update Post Confirmation</h3><br/>
-    <form class="form-horizontal" method="post" action="{{ url('/post/1') }}">
+    <form class="form-horizontal"  method="POST" action="{{ url('/post', ['id' => $postData->id]) }}">
       {{ csrf_field()}}
       @method('PUT')
       <table class='table table-borderless'>
@@ -10,37 +10,31 @@
           <td>
             <label>Title</label>
           </td>
-          @foreach ($postData as $post)
-            <td>
-              <label>{{$post->title}}</label>
-            <td>
-          @endforeach
+          <td>
+            <input type="label" name="title" style="border:none;" value="<?php echo $_POST['title']; ?>">
+          <td>
         </tr>
         <tr>
           <td>
             <label>Description</label>
           </td>
-          @foreach ($postData as $post)
-            <td>
-              <label>{{$post->description}}</label>
-            <td>
-          @endforeach
+          <td>
+            <input type="label" name="description" style="border:none;" value="<?php echo $_POST['description']; ?>">
+          <td>
         </tr>
         <tr>
           <td>
             <label>Status</label>
           </td>
-          @foreach ($postData as $post)
-            <td>
-              <input data-id="1" class="toggle-class" type="checkbox"  data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $post->status ? 'checked' : '' }} disabled>
-            </td>
-          @endforeach
+          <td>
+            <input type="checkbox" name="status" data-plugin="switchery" data-color="#1bb99a" {{ $postData->status ? 'checked' : ''}} >
+          </td>
         </tr>
       </table>
       <div class="form-group row">
         <div class="offset-md-9 col-md-3">
-          <button type="submit" class="btn btn-primary mb-2">Update</button>
-          <button type="reset" class="btn btn-outline-primary mb-2">Cancel</button>
+          <button type="submit" class="btn btn-primary mb-2">Create</button>
+          <a href="javascript:history.back()" class="btn btn-outline-primary mb-2" role="button">Cancel</a>
         </div>
       </div>
     </form>
