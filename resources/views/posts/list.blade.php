@@ -2,23 +2,25 @@
 @section('content')
   <h3 align="center" style="margin-top:20px; color:#999;">Post Lists</h3><br/>
   <div class="container">
-    <div class="row my-2">
-      <div class="col-md-6">
-        <form class="form-inline my-2 my-lg-0" action="{{ url('posts/search') }}" method="GET">
-          <input type="text" class="form-control mr-sm-2"  placeholder="Search" name="search">
-          <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+    <form class="form-inline" action="{{ url('posts/search') }}" method="GET">
+      <div class="row my-2">
+        <div class="col-md-4">
+          <input type="text" class="form-control"  placeholder="Search" name="search">
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-primary" type="submit" name="action" value="btnSearch">Search</button>
+        </div>
+        <div class="col-md-2">
+          <a href="{{ url('/post') }}" class="btn btn-primary" role="button">Add</a>
+        </div>
+        <div class="col-md-2">
+          <a href="{{ url('/posts/excel') }}" class="btn btn-primary" role="button">Upload</a>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-primary" type="submit" formaction="{{ url('posts/excel') }}">Download</button>
+        </div>
       </div>
-      <div class="col-md-2">
-        <a href="{{ url('/post') }}" class="btn btn-outline-primary my-2 my-sm-0 mx-2" role="button">Add</a>
-      </div>
-      <div class="col-md-2">
-        <a href="{{ url('/posts/excel') }}" class="btn btn-outline-primary my-2 my-sm-0 mx-2" role="button">Upload</a>
-      </div>
-      <div class="col-md-2">
-        <a href="#" class="btn btn-outline-primary my-2 my-sm-0" role="button">Download</a>
-      </div>
-    </div>
+    </form>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -51,7 +53,7 @@
               <p align="center">There is no post yet!</p>
             </td>
           </tr>
-        @endforelse 
+        @endforelse
       </tbody>
     </table>
     {!! $postData->render() !!}

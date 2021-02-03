@@ -21,8 +21,8 @@ use Domain\Input\Bulletin\Post\UpdatePostInput;
 use Domain\Usecase\Bulletin\Post\UpdatePostUsecase;
 use Domain\Input\Bulletin\Post\UpdateConfirmPostInput;
 use Domain\Usecase\Bulletin\Post\UpdateConfirmPostUsecase;
-use Domain\Usecase\Bulletin\Post\CsvUsecase;
-use Domain\Models\Post;
+use Domain\Input\Bulletin\Post\CsvDownloadInput;
+use Domain\Usecase\Bulletin\Post\CsvDownloadUsecase;
 
 class PostController extends Controller
 {
@@ -32,7 +32,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(GetAllPostsUsecase $usecase)
-    {  
+    {
         $input = new GetAllPostsInput();
         $output =  $usecase->handle($input);
 
@@ -45,10 +45,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(CreatePostUsecase $usecase)
-    {   
+    {
         $input = new CreatePostInput();         
         $output = $usecase->handle($input);
-        
+
         return $output->presentation();
     }
 
@@ -62,7 +62,7 @@ class PostController extends Controller
     {
         $input = new ConfirmPostInput(
             $request->get('title'),
-            $request->get('description'),
+            $request->get('description')
         );
         $output = $usecase->handle($input);
 
@@ -71,7 +71,7 @@ class PostController extends Controller
 
     public function store(Request $request,PostPostUsecase $usecase)
     {
-        $input = new PostPostInput(    
+        $input = new PostPostInput(
             $request->get('title'),
             $request->get('description')
         );
@@ -83,7 +83,7 @@ class PostController extends Controller
     public function search(Request $request, SearchPostUsecase $usecase)
     {
         $input = new SearchPostInput(
-            $request->get('search'),
+            $request->get('search')
         );
         $output = $usecase->handle($input);
 
@@ -100,7 +100,7 @@ class PostController extends Controller
     {
         $input = new DeletePostInput($postId);
         $output = $usecase->handle($input);
-        
+
         return $output->presentation();
     }
 
@@ -134,7 +134,7 @@ class PostController extends Controller
             $request->get('created_user_id'),
             $request->get('updated_user_id'),
             $request->get('created_at'),
-            $request->get('updated_at'),
+            $request->get('updated_at')
         );
         $output = $usecase->handle($input);
 
@@ -150,21 +150,19 @@ class PostController extends Controller
             $request->get('created_user_id'),
             $request->get('updated_user_id'),
             $request->get('created_at'),
-            $request->get('updated_at'),
+            $request->get('updated_at')
         );
         $output = $usecase->handle($input);
 
         return $output->presentation();
     }
 
-    public function detail()
+    public function export(Request $request,CsvDownloadUsecase $usecase)
     {
-
-    }
-
-    public function csvUpload(CsvUsecase $usecase)
-    {
-        $output = $usecase->handle();
+        $input = new CsvDownloadInput(
+            $request->get('search')
+        );
+        $output = $usecase->handle($input);
 
         return $output->presentation();
     }

@@ -17,7 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('/user/login','App\Http\Controllers\Auth\LoginController@showLoginForm');
 Route::post('/user/login','App\Http\Controllers\Auth\LoginController@login');
 Route::get('/user/logout', 'App\Http\Controllers\Auth\LoginController@logout');
@@ -37,7 +36,7 @@ Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'posts', 'middleware' => 'auth'], function () {
     Route::get('/', 'App\Http\Controllers\PostController@index');
     Route::get('/userpost', 'App\Http\Controllers\PostController@userpost');
-    Route::get('excel', 'App\Http\Controllers\PostController@csvUpload');
+    Route::get('excel', 'App\Http\Controllers\PostController@export');
     Route::get('search', 'App\Http\Controllers\PostController@search');
 });
 

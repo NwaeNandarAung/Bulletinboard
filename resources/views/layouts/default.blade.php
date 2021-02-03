@@ -22,8 +22,8 @@
     <script>
       function myFunction() {
         if (!confirm("Are You Sure to delete this post?"))
-             event.preventDefault();
+          event.preventDefault();
       }
-    </script> 
+    </script>
   </body>
 </html>

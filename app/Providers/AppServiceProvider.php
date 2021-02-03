@@ -62,8 +62,8 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\Post\CsvUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\Post\CsvInteractor::class,
+            \Domain\Usecase\Bulletin\Post\CsvDownloadUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\Post\CsvDownloadInteractor::class,
         );
 
         $this->app->bind(

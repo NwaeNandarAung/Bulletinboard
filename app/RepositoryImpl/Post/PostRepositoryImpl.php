@@ -6,7 +6,6 @@ use Domain\Repository\Bulletin\Post\PostRepository;
 use DB;
 use Domain\Models\Post;
 use Domain\Exceptions\BulletinWebException;
-use Domain\ValueObject\Common\ErrorCode;
 use Auth;
 
 class PostRepositoryImpl implements PostRepository
@@ -17,11 +16,13 @@ class PostRepositoryImpl implements PostRepository
 
         if (Auth::user()->type == '1') {
             $query->select('users.name as name','posts.*')
-                  ->join('users', 'posts.created_user_id', '=', 'users.id');
+                  ->join('users', 'posts.created_user_id', '=', 'users.id')
+                  ->orderBy('posts.id');
         } else {
             $query->select('users.name as name','posts.*')
                   ->join('users', 'posts.created_user_id', '=', 'users.id')
-                  ->where('posts.created_user_id', '=', Auth::id());
+                  ->where('posts.created_user_id', '=', Auth::id())
+                  ->orderBy('posts.id');
         }
 
         return $query->get()->map(function ($item) {
@@ -58,12 +59,15 @@ class PostRepositoryImpl implements PostRepository
     {
         if ($search) {
         $query = DB::table('posts');
-        $query->where('title', 'LIKE', "%" . $search . "%")
-              ->orWhere('description', 'LIKE', "%" . $search . "%");
+        $query->join('users', 'posts.created_user_id', '=', 'users.id')
+              ->where('posts.title', 'LIKE', "%" . $search . "%")
+              ->orWhere('posts.description', 'LIKE', "%" . $search . "%")
+              ->orWhere('users.name', 'LIKE', "%" . $search . "%")
+              ->orderBy('posts.id');
         }
 
         return $query->get()->map(function ($item) {
-            return Post::createInstance($item);
+            return Post::listInstance($item);
         })->toArray();
     }
 
@@ -92,7 +96,7 @@ class PostRepositoryImpl implements PostRepository
     {
         $query = DB::table('posts');
         $query->select('title','description','status','created_user_id','created_at','updated_user_id','updated_at');
-       
+
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);
         })->toArray();
@@ -103,16 +107,6 @@ class PostRepositoryImpl implements PostRepository
         $query = DB::table('posts');
         $query->select('title','description');
 
-        return $query->get()->map(function ($item) {
-            return Post::createInstance($item);
-        })->toArray();
-    }
-
-    public function csvInfo(): ?array
-    {
-        $query = DB::table('posts');
-        $query->select();
-        
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);
         })->toArray();

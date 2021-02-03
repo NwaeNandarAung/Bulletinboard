@@ -18,8 +18,6 @@ Interface PostRepository
 
     public function getUpdatePostInfo(): ?array;
 
-    public function csvInfo(): ?array;
-
     public function searchPostInfo($search): ?array;
 
     public function deletePostInfo($postId): ?array;
