@@ -5,8 +5,11 @@ namespace App\RepositoryImpl\Post;
 use Domain\Repository\Bulletin\Post\PostRepository;
 use DB;
 use Domain\Models\Post;
-use Domain\Exceptions\BulletinWebException;
+
 use Auth;
+use Domain\Exceptions\BulletinWebException;
+
+use Domain\ValueObject\Common\ErrorCode;
 
 class PostRepositoryImpl implements PostRepository
 {
@@ -109,14 +112,97 @@ class PostRepositoryImpl implements PostRepository
             'title' => $input->title,
             'description' => $input->description,
             'status'=> $input->status,
-            'updated_user_id'=>Auth::id(),
-            'updated_at'=>now()
+            'updated_user_id'=> Auth::id(),
+            'updated_at' => now()
         ];
 
         $query = DB::table('posts');
         $query->where('id', '=', $postId)
               ->update($updateDetails);
 
+        return $query->get()->map(function ($item) {
+            return Post::createInstance($item);
+        })->toArray();
+    }
+
+    public function csvImportInfo($file): ?array
+    {
+        $filename = $file->getClientOriginalName();
+        // File upload location
+        $location = 'uploads';
+
+        // Upload file
+        $file->move($location,$filename);
+
+        // Import CSV to Database
+        $filepath = public_path($location."/".$filename);
+
+        // Reading file
+        $file = fopen($filepath,"r");
+
+        $importData_arr = array();
+        $i = 0;
+
+        while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
+            $num = count($filedata );
+            
+            for ($c=0; $c < $num; $c++) {
+                $importData_arr[$i][] = $filedata [$c];
+            }
+            $i++;
+        }
+        fclose($file);
+
+        foreach($importData_arr as $importData) {
+
+            $query = DB::table('posts');
+            $query->where('title', '=', $importData[0]);
+        }
+        return $query->get()->map(function ($item) {
+            return Post::createInstance($item);
+        })->toArray();
+    }
+
+    
+    public function csvUploadInfo($file): ?array
+    {
+        $filename = $file->getClientOriginalName();
+        // File upload location
+        $location = 'uploads';
+
+        // Import CSV to Database
+        $filepath = public_path($location."/".$filename);
+
+        // Reading file
+        $file = fopen($filepath,"r");
+
+        $importData_arr = array();
+        $i = 0;
+
+        while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
+            $num = count($filedata );
+            
+            for ($c=0; $c < $num; $c++) {
+                $importData_arr[$i][] = $filedata [$c];
+            }
+            $i++;
+        }
+        fclose($file);
+
+        foreach($importData_arr as $importData) {
+            $insertData = array (
+                        "title" => $importData[0],
+                        "description" => $importData[1],
+                        "status" => $importData[2],
+                        "created_user_id" => Auth::id(),
+                        "updated_user_id" => Auth::id(),
+                        "created_at" => now(),
+                        "updated_at" => now()
+                        );
+
+            $query = DB::table('posts');
+            $query->insert($insertData);
+        }
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);
         })->toArray();

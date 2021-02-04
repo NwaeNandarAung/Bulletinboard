@@ -14,7 +14,7 @@
           <a href="{{ url('/post') }}" class="btn btn-primary" role="button">Add</a>
         </div>
         <div class="col-md-2">
-          <a href="{{ url('/posts/excel') }}" class="btn btn-primary" role="button">Upload</a>
+          <a href="{{ url('/posts/import') }}" class="btn btn-primary" role="button">Upload</a>
         </div>
         <div class="col-md-2">
           <button class="btn btn-primary" type="submit" formaction="{{ url('posts/excel') }}">Download</button>

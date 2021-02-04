@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Domain\Input\Bulletin\Post\PostPostInput;
-use Domain\Usecase\Bulletin\Post\PostPostUsecase;
 use Domain\Input\Bulletin\Post\GetAllPostsInput;
 use Domain\Usecase\Bulletin\Post\GetAllPostsUsecase;
 use Domain\Input\Bulletin\Post\CreatePostInput;
 use Domain\Usecase\Bulletin\Post\CreatePostUsecase;
 use Domain\Input\Bulletin\Post\ConfirmPostInput;
 use Domain\Usecase\Bulletin\Post\ConfirmPostUsecase;
+use Domain\Input\Bulletin\Post\PostPostInput;
+use Domain\Usecase\Bulletin\Post\PostPostUsecase;
 use Domain\Input\Bulletin\Post\SearchPostInput;
 use Domain\Usecase\Bulletin\Post\SearchPostUsecase;
 use Domain\Input\Bulletin\Post\DeletePostInput;
@@ -23,6 +23,10 @@ use Domain\Input\Bulletin\Post\UpdateConfirmPostInput;
 use Domain\Usecase\Bulletin\Post\UpdateConfirmPostUsecase;
 use Domain\Input\Bulletin\Post\CsvDownloadInput;
 use Domain\Usecase\Bulletin\Post\CsvDownloadUsecase;
+use Domain\Input\Bulletin\Post\CsvImportInput;
+use Domain\Usecase\Bulletin\Post\CsvImportUsecase;
+use Domain\Input\Bulletin\Post\CsvUploadInput;
+use Domain\Usecase\Bulletin\Post\CsvUploadUsecase;
 
 class PostController extends Controller
 {
@@ -155,6 +159,24 @@ class PostController extends Controller
     {
         $input = new CsvDownloadInput(
             $request->get('search')
+        );
+        $output = $usecase->handle($input);
+
+        return $output->presentation();
+    }
+
+    public function import(Request $request,CsvImportUsecase $usecase)
+    {
+        $input = new CsvImportInput();
+        $output = $usecase->handle($input);
+
+        return $output->presentation();
+    }
+
+    public function upload(Request $request,CsvUploadUsecase $usecase)
+    {
+        $input = new CsvUploadInput(
+            $request->file('file')
         );
         $output = $usecase->handle($input);
 

@@ -6,7 +6,7 @@
     <form class="form-horizontal" id="myForm" method="POST" action="{{ url('/post/updateconfirm', ['id' => $post->id]) }}">
       {{ csrf_field()}}
     @endforeach
-      <input type="hidden" class="form-control" name="id" value="{{ $post->id }}" required/>   
+      <input type="hidden" class="form-control" name="id" value="{{ $post->id }}" required/>
       <div class="form-group row">
         <label class="offset-sm-2 col-sm-2 col-form-label">Title</label>
         <div class="col-sm-6">

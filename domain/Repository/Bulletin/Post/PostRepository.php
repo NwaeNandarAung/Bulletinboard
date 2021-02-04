@@ -21,4 +21,8 @@ Interface PostRepository
     public function searchPostInfo($search): ?array;
 
     public function deletePostInfo($postId): ?array;
+
+    public function csvImportInfo($file): ?array;
+
+    public function csvUploadInfo($file): ?array;
 }

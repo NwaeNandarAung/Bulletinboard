@@ -2,7 +2,6 @@
 
 namespace Domain\Input\Bulletin\Post;
 
-use Domain\Exceptions\BulletinWebException;
 use Domain\Input\BaseInput;
 
 Class EditPostInput implements BaseInput

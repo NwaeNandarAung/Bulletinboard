@@ -35,9 +35,10 @@ Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'posts', 'middleware' => 'auth'], function () {
     Route::get('/', 'App\Http\Controllers\PostController@index');
-    Route::get('/userpost', 'App\Http\Controllers\PostController@userpost');
-    Route::get('excel', 'App\Http\Controllers\PostController@export');
     Route::get('search', 'App\Http\Controllers\PostController@search');
+    Route::get('excel', 'App\Http\Controllers\PostController@export');
+    Route::get('import', 'App\Http\Controllers\PostController@import');
+    Route::post('import', 'App\Http\Controllers\PostController@upload');
 });
 
 //User

@@ -67,8 +67,13 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\Post\UserPostUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\Post\UserPostInteractor::class,
+            \Domain\Usecase\Bulletin\Post\CsvImportUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\Post\CsvImportInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\Post\CsvUploadUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\Post\CsvUploadInteractor::class,
         );
 
         $this->app->bind(
