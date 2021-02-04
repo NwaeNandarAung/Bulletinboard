@@ -93,7 +93,7 @@ class PostRepositoryImpl implements PostRepository
     }
 
     public function getUpdateConfirmPostInfo($input): ?array
-    {
+    {  
         $query = DB::table('posts');
         $query->where('title', '=', $input->title)
               ->where('id', '!=', $input->id);
@@ -109,6 +109,8 @@ class PostRepositoryImpl implements PostRepository
             'title' => $input->title,
             'description' => $input->description,
             'status'=> $input->status,
+            'updated_user_id'=>Auth::id(),
+            'updated_at'=>now()
         ];
 
         $query = DB::table('posts');

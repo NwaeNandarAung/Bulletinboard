@@ -131,7 +131,7 @@ class PostController extends Controller
             $postId,
             $request->get('title'),
             $request->get('description'),
-            $request->get('status'),
+            $request->has('status'),
         );
         $output = $usecase->handle($input);
 
@@ -141,11 +141,10 @@ class PostController extends Controller
     public function updateconfirm(Request $request, UpdateConfirmPostUsecase $usecase)
     {
         $input = new UpdateConfirmPostInput(
-
             $request->get('id'),
             $request->get('title'),
             $request->get('description'),
-            $request->get('status')
+            $request->has('status')
         );
         $output = $usecase->handle($input);
 

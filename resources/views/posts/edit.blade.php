@@ -4,7 +4,7 @@
     <h3 align="center" style="margin-top:20px; color:#999;">Update Post</h3><br/>
     @foreach($postData as $post)
     <form class="form-horizontal" id="myForm" method="POST" action="{{ url('/post/updateconfirm', ['id' => $post->id]) }}">
-      {{ csrf_field()}}   
+      {{ csrf_field()}}
     @endforeach
       <input type="hidden" class="form-control" name="id" value="{{ $post->id }}" required/>   
       <div class="form-group row">
@@ -28,7 +28,7 @@
       <div class="form-group row">
         <label for="inputCheckbox" class="offset-sm-2 col-sm-2 col-form-label" style="padding-top:0px;">Status</label>
         <div class="col-sm-6">
-          <input type="checkbox" id="myInput" name="status" data-plugin="switchery" data-color="#1bb99a" {{ $post->status ? 'checked' : ''}} >
+          <input type="checkbox" name="status" data-plugin="switchery" data-color="#1bb99a" {{ $post->status == 1 ? 'checked' : ''}} >
         </div>
       </div>
       <div class="form-group row">
