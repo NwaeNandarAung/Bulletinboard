@@ -2,24 +2,16 @@
 
 namespace Domain\Usecase\Bulletin\Interactor\User;
 
+use Domain\Input\Bulletin\User\CreateUserInput;
 use Domain\Output\Bulletin\User\CreateUserOutput;
 use Domain\Usecase\Bulletin\User\CreateUserUsecase;
-use Domain\Repository\Bulletin\User\UserRepository;
 
 class CreateUserInteractor implements CreateUserUsecase
 {
-    private $userRepository;
-
-    public function __construct(UserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
-
-    public function handle():CreateUserOutput
+    public function handle(CreateUserInput $input):CreateUserOutput
     {
         $input->validate();
-        $userInfo = $this->userRepository->createUserInfo();
-        $output = new CreateUserOutput($userInfo);
+        $output = new CreateUserOutput();
 
         return $output;
     }

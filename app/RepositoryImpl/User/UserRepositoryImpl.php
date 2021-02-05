@@ -9,7 +9,17 @@ use Auth;
 
 class UserRepositoryImpl implements UserRepository
 {
-    public function getAllUsersInfo(): ?array
+    public function getAllUsersInfo($input): ?array
+    {
+        $query = DB::table('users');
+        $query->select();
+        
+        return $query->get()->map(function ($item) {
+            return User::createInstance($item);
+        })->toArray();
+    }
+
+    public function createUserInfo($input): ?array
     {
         $query = DB::table('users');
         $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');
@@ -19,21 +29,11 @@ class UserRepositoryImpl implements UserRepository
         })->toArray();
     }
 
-    public function createUserInfo(): ?array
+    public function getUserInfoByEmail($email): ?array
     {
         $query = DB::table('users');
-        $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');
-        
-        return $query->get()->map(function ($item) {
-            return User::createInstance($item);
-        })->toArray();
-    }
+        $query->where('email', '=', $email);
 
-    public function getConfirmUserInfo(): ?array
-    {
-        $query = DB::table('users');
-        $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');
-        
         return $query->get()->map(function ($item) {
             return User::createInstance($item);
         })->toArray();

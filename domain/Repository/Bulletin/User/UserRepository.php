@@ -4,11 +4,11 @@ namespace Domain\Repository\Bulletin\User;
 
 Interface UserRepository
 {
-    public function getAllUsersInfo() :?array;
+    public function getAllUsersInfo($input) :?array;
 
-    public function createUserInfo() :?array;
+    public function createUserInfo($input) :?array;
 
-    public function getConfirmUserInfo() :?array;
+    public function getUserInfoByEmail($email) :?array;
 
     public function getUserInfo() :?array;
 

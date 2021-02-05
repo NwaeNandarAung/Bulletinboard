@@ -26,12 +26,25 @@
       }
 
 			$(document).ready(function(){
-				$('#btnClear').click(function(){				
+				$('#btnClear').click(function(){
 						$('#myForm input[type="text"]').val('');
 						$('#myForm #description').val('');
             $('#myForm input[type="checkbox"]').val('');
 				});
 			});
+
+			$(document).ready(function(){
+				$('#userClear').click(function(){				
+						$('#userCreateForm input[type="text"]').val('');
+						$('#userCreateForm #address').val('');
+            $('#userCreateForm input[type="password"]').val('');
+            $('#userCreateForm input[type="email"]').val('');
+            $('#userCreateForm input[type="file"]').val('');
+            $('#userCreateForm input[type="date"]').val('');
+            $('#output').hide('');
+				});
+			});
+
     </script>
   </body>
 </html>

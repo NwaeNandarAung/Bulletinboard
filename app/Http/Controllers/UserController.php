@@ -34,23 +34,10 @@ class UserController extends Controller
 
     public function index(Request $request,GetAllUsersUsecase $usecase)
     {
-        $input = new GetAllUsersInput(
-            $request->get('name'),
-            $request->get('email'),
-            $request->get('password'),
-            $request->get('profile'),
-            $request->get('type'),
-            $request->get('phone'),
-            $request->get('address'),
-            $request->get('dob'),
-            $request->get('created_user_id'),
-            $request->get('updated_user_id'),
-            $request->get('created_at'),
-            $request->get('updated_at'),
-        );
-            $output = $usecase->handle($input);
+        $input = new GetAllUsersInput();
+        $output = $usecase->handle($input);
 
-            return $output->presentation();
+        return $output->presentation();
     }
 
     /**
@@ -60,7 +47,9 @@ class UserController extends Controller
      */
     public function create(CreateUserUsecase $usecase)
     {
-        $output = $usecase->handle();
+        $input = new CreateUserInput();
+        $output = $usecase->handle($input);
+
         return $output->presentation();
     }
 
@@ -70,15 +59,12 @@ class UserController extends Controller
             $request->get('name'),
             $request->get('email'),
             $request->get('password'),
+            $request->get('confirmPassword'),
             $request->get('profile'),
             $request->get('type'),
             $request->get('phone'),
             $request->get('address'),
-            $request->get('dob'),
-            $request->get('created_user_id'),
-            $request->get('updated_user_id'),
-            $request->get('created_at'),
-            $request->get('updated_at'),
+            $request->get('dob')
         );
         $output = $usecase->handle($input);
 

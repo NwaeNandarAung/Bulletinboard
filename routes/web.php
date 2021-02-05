@@ -45,7 +45,7 @@ Route::group(['prefix' => 'posts', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('/', 'App\Http\Controllers\UserController@create');
     Route::post('/', 'App\Http\Controllers\UserController@store');
-    Route::get('createconfirm/{userId}', 'App\Http\Controllers\UserController@createconfirm');
+    Route::post('createconfirm', 'App\Http\Controllers\UserController@createconfirm');
     Route::get('{userId}', 'App\Http\Controllers\UserController@edit');
     Route::put('{userId}', 'App\Http\Controllers\UserController@update');
     Route::get('updateconfirm/{userId}', 'App\Http\Controllers\UserController@updateconfirm');

@@ -4,7 +4,7 @@ namespace Domain\Input\Bulletin\User;
 
 use Domain\Input\BaseInput;
 
-Class GetAllUsersInput implements BaseInput
+Class CreateUserInput implements BaseInput
 {
     public function validate()
     {
