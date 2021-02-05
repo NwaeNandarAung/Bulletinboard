@@ -50,7 +50,7 @@ class PostController extends Controller
      */
     public function create(CreatePostUsecase $usecase)
     {
-        $input = new CreatePostInput();         
+        $input = new CreatePostInput();
         $output = $usecase->handle($input);
 
         return $output->presentation();
