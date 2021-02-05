@@ -5,10 +5,8 @@ namespace App\RepositoryImpl\Post;
 use Domain\Repository\Bulletin\Post\PostRepository;
 use DB;
 use Domain\Models\Post;
-
 use Auth;
 use Domain\Exceptions\BulletinWebException;
-
 use Domain\ValueObject\Common\ErrorCode;
 
 class PostRepositoryImpl implements PostRepository
@@ -33,7 +31,7 @@ class PostRepositoryImpl implements PostRepository
         })->toArray();
     }
 
-    public function createPostInfo($input): ?Post 
+    public function createPostInfo($input): ?Post
     {
         $query = DB::table('posts');
         $query->insertGetId([
@@ -96,7 +94,7 @@ class PostRepositoryImpl implements PostRepository
     }
 
     public function getUpdateConfirmPostInfo($input): ?array
-    {  
+    {
         $query = DB::table('posts');
         $query->where('title', '=', $input->title)
               ->where('id', '!=', $input->id);
@@ -129,7 +127,7 @@ class PostRepositoryImpl implements PostRepository
     {
         $filename = $file->getClientOriginalName();
         // File upload location
-        $location = 'uploads';
+        $location = Auth::id().'/csv';
 
         // Upload file
         $file->move($location,$filename);
@@ -142,10 +140,8 @@ class PostRepositoryImpl implements PostRepository
 
         $importData_arr = array();
         $i = 0;
-
         while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
             $num = count($filedata );
-            
             for ($c=0; $c < $num; $c++) {
                 $importData_arr[$i][] = $filedata [$c];
             }
@@ -153,35 +149,27 @@ class PostRepositoryImpl implements PostRepository
         }
         fclose($file);
 
-        foreach($importData_arr as $importData) {
-
+        foreach ($importData_arr as $importData) {
             $query = DB::table('posts');
             $query->where('title', '=', $importData[0]);
         }
+
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);
         })->toArray();
     }
 
-    
     public function csvUploadInfo($file): ?array
     {
         $filename = $file->getClientOriginalName();
-        // File upload location
-        $location = 'uploads';
-
-        // Import CSV to Database
+        $location = Auth::id().'/csv';
         $filepath = public_path($location."/".$filename);
-
-        // Reading file
         $file = fopen($filepath,"r");
-
         $importData_arr = array();
         $i = 0;
 
         while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
             $num = count($filedata );
-            
             for ($c=0; $c < $num; $c++) {
                 $importData_arr[$i][] = $filedata [$c];
             }
@@ -189,7 +177,16 @@ class PostRepositoryImpl implements PostRepository
         }
         fclose($file);
 
-        foreach($importData_arr as $importData) {
+        foreach ($importData_arr as $importData) {
+            if (empty($importData[0])) {
+                throw new BulletinWebException(ErrorCode::ERROR_0002, "Title is required");
+            }
+            if (empty($importData[1])) {
+                throw new BulletinWebException(ErrorCode::ERROR_0002, "Description is required");
+            }
+            if (empty( $importData[2])) {
+                $importData[2]=1;
+            }
             $insertData = array (
                         "title" => $importData[0],
                         "description" => $importData[1],
@@ -203,6 +200,7 @@ class PostRepositoryImpl implements PostRepository
             $query = DB::table('posts');
             $query->insert($insertData);
         }
+
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);
         })->toArray();

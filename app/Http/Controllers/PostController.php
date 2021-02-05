@@ -135,7 +135,7 @@ class PostController extends Controller
             $postId,
             $request->get('title'),
             $request->get('description'),
-            $request->has('status'),
+            $request->has('status')
         );
         $output = $usecase->handle($input);
 

@@ -8,7 +8,6 @@ use Request;
 
 class UpdatePostOutput implements BaseOutput
 {
-
     private $postInfo;
 
     public function __construct($postInfo)

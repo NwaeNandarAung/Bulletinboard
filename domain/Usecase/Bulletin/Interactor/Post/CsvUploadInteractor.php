@@ -21,17 +21,16 @@ class CsvUploadInteractor implements CsvUploadUsecase
     public function handle(CsvUploadInput $input):CsvUploadOutput
     {
         $input->validate();
-        
+
         $postTitleInfo = $this->postRepository->csvImportInfo($input->file);
+
         if (!empty($postTitleInfo)) {
             throw new BulletinWebException(ErrorCode::ERROR_0002, "Post Already Existed");
+        } else {
+            $postInfo = $this->postRepository->csvUploadInfo($input->file);
         }
-        else{
-        $postInfo = $this->postRepository->csvUploadInfo($input->file);
-    }
         $output = new CsvUploadOutput($input);
 
         return $output;
     }
-
 }

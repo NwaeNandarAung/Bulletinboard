@@ -27,7 +27,7 @@
             <label>Status</label>
           </td>
           <td>
-          <input type="checkbox" name="status" data-plugin="switchery" data-color="#1bb99a" {{ $postData->status == 1 ? 'checked' : ''}} >
+          <input type="checkbox" name="status" data-plugin="switchery" data-color="#1bb99a" {{ $postData->status == 1 ? 'checked' : ''}}>
           </td>
         </tr>
       </table>
