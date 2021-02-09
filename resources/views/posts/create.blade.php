@@ -2,8 +2,7 @@
 @section('content')
   <div class="container">
     <h3 align="center" style="margin-top:20px; color:#999;">Create Post</h3><br/>
-    <form class="form-horizontal" method="POST" action="{{ route('post') }}">
-      {{ csrf_field() }}
+    <form class="form-horizontal" method="GET" action="{{ route('createconfirm') }}">
       <div class="form-group row">
         <label for="title" class="offset-sm-2 col-sm-2 col-form-label">Title</label>
         <div class="col-sm-6">

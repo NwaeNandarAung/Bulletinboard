@@ -2,14 +2,14 @@
 
 namespace Domain\Usecase\Bulletin\Interactor\Post;
 
-use Domain\Input\Bulletin\Post\ConfirmPostInput;
-use Domain\Output\Bulletin\Post\ConfirmPostOutput;
-use Domain\Usecase\Bulletin\Post\ConfirmPostUsecase;
-use Domain\Repository\Bulletin\Post\PostRepository;
+use Domain\Input\Bulletin\Post\ConfirmPostScreenInput;
+use Domain\Output\Bulletin\Post\ConfirmPostScreenOutput;
+use Domain\Usecase\Bulletin\Post\ConfirmPostScreenUsecase;
 use Domain\Exceptions\BulletinWebException;
 use Domain\ValueObject\Common\ErrorCode;
+use Domain\Repository\Bulletin\Post\PostRepository;
 
-class ConfirmPostInteractor implements ConfirmPostUsecase
+class ConfirmPostScreenInteractor implements ConfirmPostScreenUsecase
 {
     public $postRepository;
 
@@ -18,19 +18,17 @@ class ConfirmPostInteractor implements ConfirmPostUsecase
         $this->postRepository = $postRepository;
     }
 
-    public function handle(ConfirmPostInput $input):ConfirmPostOutput
+    public function handle(ConfirmPostScreenInput $input):ConfirmPostScreenOutput
     {
         $input->validate();
-        
+
         $postTitleInfo = $this->postRepository->getPostInfoByTitle($input->title);
-        
+
         if (!empty($postTitleInfo)) {
             throw new BulletinWebException(ErrorCode::ERROR_0002, "Post Already Existed");
-        } else {
-            $postInfo = $this->postRepository->createPostInfo($input);
         }
 
-        $output = new ConfirmPostOutput($postInfo);
+        $output = new ConfirmPostScreenOutput($input);
 
         return $output;
     }

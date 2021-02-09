@@ -7,20 +7,24 @@ use Domain\Input\Bulletin\Post\GetAllPostsInput;
 use Domain\Usecase\Bulletin\Post\GetAllPostsUsecase;
 use Domain\Input\Bulletin\Post\CreatePostInput;
 use Domain\Usecase\Bulletin\Post\CreatePostUsecase;
-use Domain\Input\Bulletin\Post\ConfirmPostInput;
-use Domain\Usecase\Bulletin\Post\ConfirmPostUsecase;
+use Domain\Input\Bulletin\Post\ConfirmPostScreenInput;
+use Domain\Usecase\Bulletin\Post\ConfirmPostScreenUsecase;
+use Domain\Input\Bulletin\Post\ConfirmPostActionInput;
+use Domain\Usecase\Bulletin\Post\ConfirmPostActionUsecase;
 use Domain\Input\Bulletin\Post\SearchPostInput;
 use Domain\Usecase\Bulletin\Post\SearchPostUsecase;
 use Domain\Input\Bulletin\Post\DeletePostInput;
 use Domain\Usecase\Bulletin\Post\DeletePostUsecase;
 use Domain\Input\Bulletin\Post\EditPostInput;
 use Domain\Usecase\Bulletin\Post\EditPostUsecase;
-use Domain\Input\Bulletin\Post\UpdateConfirmPostInput;
-use Domain\Usecase\Bulletin\Post\UpdateConfirmPostUsecase;
-use Domain\Input\Bulletin\Post\CsvImportInput;
-use Domain\Usecase\Bulletin\Post\CsvImportUsecase;
-use Domain\Input\Bulletin\Post\CsvUploadInput;
-use Domain\Usecase\Bulletin\Post\CsvUploadUsecase;
+use Domain\Input\Bulletin\Post\UpdateConfirmScreenInput;
+use Domain\Usecase\Bulletin\Post\UpdateConfirmScreenUsecase;
+use Domain\Input\Bulletin\Post\UpdateConfirmActionInput;
+use Domain\Usecase\Bulletin\Post\UpdateConfirmActionUsecase;
+use Domain\Input\Bulletin\Post\CsvUploadActionInput;
+use Domain\Usecase\Bulletin\Post\CsvUploadActionUsecase;
+use Domain\Input\Bulletin\Post\CsvUploadScreenInput;
+use Domain\Usecase\Bulletin\Post\CsvUploadScreenUsecase;
 
 class PostController extends Controller
 {
@@ -50,15 +54,26 @@ class PostController extends Controller
         return $output->presentation();
     }
 
+    public function createConfirm(Request $request, ConfirmPostScreenUsecase $usecase)
+    {
+        $input = new ConfirmPostScreenInput(
+            $request->get('title'),
+            $request->get('description')
+        );
+        $output = $usecase->handle($input);
+
+        return $output->presentation();
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, ConfirmPostUsecase $usecase)
+    public function store(Request $request, ConfirmPostActionUsecase $usecase)
     {
-        $input = new ConfirmPostInput(
+        $input = new ConfirmPostActionInput(
             $request->get('title'),
             $request->get('description')
         );
@@ -105,9 +120,9 @@ class PostController extends Controller
         return $output->presentation();
     }
 
-    public function update(Request $request, UpdateConfirmPostUsecase $usecase)
+    public function updateConfirm(Request $request, UpdateConfirmScreenUsecase $usecase)
     {
-        $input = new UpdateConfirmPostInput(
+        $input = new UpdateConfirmScreenInput(
             $request->get('id'),
             $request->get('title'),
             $request->get('description'),
@@ -118,17 +133,30 @@ class PostController extends Controller
         return $output->presentation();
     }
 
-    public function import(Request $request,CsvImportUsecase $usecase)
+    public function update(Request $request,$postId,UpdateConfirmActionUsecase $usecase)
     {
-        $input = new CsvImportInput();
+        $input = new UpdateConfirmActionInput(
+            $postId,
+            $request->get('title'),
+            $request->get('description'),
+            $request->has('status')
+        );
         $output = $usecase->handle($input);
 
         return $output->presentation();
     }
 
-    public function upload(Request $request,CsvUploadUsecase $usecase)
+    public function import(Request $request,CsvUploadActionUsecase $usecase)
     {
-        $input = new CsvUploadInput(
+        $input = new CsvUploadActionInput();
+        $output = $usecase->handle($input);
+
+        return $output->presentation();
+    }
+
+    public function upload(Request $request,CsvUploadScreenUsecase $usecase)
+    {
+        $input = new CsvUploadScreenInput(
             $request->file('file')
         );
         $output = $usecase->handle($input);

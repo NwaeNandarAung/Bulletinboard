@@ -16,8 +16,13 @@ class AppServiceProvider extends ServiceProvider
     {
         //bind usecases 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\Post\ConfirmPostUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\Post\ConfirmPostInteractor::class,
+            \Domain\Usecase\Bulletin\Post\ConfirmPostScreenUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\Post\ConfirmPostScreenInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\Post\ConfirmPostActionUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\Post\ConfirmPostActionInteractor::class,
         );
 
         $this->app->bind(
@@ -46,18 +51,23 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\Post\UpdateConfirmPostUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\Post\UpdateConfirmPostInteractor::class,
+            \Domain\Usecase\Bulletin\Post\UpdateConfirmScreenUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\Post\UpdateConfirmScreenInteractor::class,
         );
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\Post\CsvImportUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\Post\CsvImportInteractor::class,
+            \Domain\Usecase\Bulletin\Post\UpdateConfirmActionUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\Post\UpdateConfirmActionInteractor::class,
         );
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\Post\CsvUploadUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\Post\CsvUploadInteractor::class,
+            \Domain\Usecase\Bulletin\Post\CsvUploadActionUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\Post\CsvUploadActionInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\Post\CsvUploadScreenUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\Post\CsvUploadScreenInteractor::class,
         );
 
         $this->app->bind(

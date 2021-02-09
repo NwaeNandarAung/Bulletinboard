@@ -4,10 +4,10 @@ namespace Domain\Output\Bulletin\Post;
 
 use Domain\Output\BaseOutput;
 
-class CsvImportOutput implements BaseOutput
+class ConfirmPostScreenOutput implements BaseOutput
 {
     public function presentation()
     {
-        return view('posts.csv');
+        return view('posts.createconfirm');
     }
 }

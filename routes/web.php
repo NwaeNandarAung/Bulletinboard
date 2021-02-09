@@ -25,10 +25,10 @@ Route::get('/user/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
     Route::get('/', 'App\Http\Controllers\PostController@create')->name('post');
     Route::post('/', 'App\Http\Controllers\PostController@store');
-    Route::post('createconfirm', 'App\Http\Controllers\PostController@createconfirm')->name('createconfirm');
+    Route::get('createconfirm', 'App\Http\Controllers\PostController@createConfirm')->name('createconfirm');
     Route::get('{postId}', 'App\Http\Controllers\PostController@edit');
     Route::put('{postId}', 'App\Http\Controllers\PostController@update');
-    Route::post('updateconfirm/{postId}', 'App\Http\Controllers\PostController@updateconfirm');
+    Route::get('updateconfirm/{postId}', 'App\Http\Controllers\PostController@updateConfirm');
     Route::get('detail/{postId}', 'App\Http\Controllers\PostController@detail');
     Route::delete('{postId}', 'App\Http\Controllers\PostController@destroy');
 });

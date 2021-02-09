@@ -4,7 +4,7 @@ namespace Domain\Input\Bulletin\Post;
 
 use Domain\Input\BaseInput;
 
-Class CsvImportInput implements BaseInput
+Class CsvUploadActionInput implements BaseInput
 {
     public function validate()
     {

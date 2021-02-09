@@ -6,7 +6,7 @@ use Domain\Input\BaseInput;
 use Domain\Exceptions\BulletinWebException;
 use Domain\ValueObject\Common\ErrorCode;
 
-Class CsvUploadInput implements BaseInput
+Class CsvUploadScreenInput implements BaseInput
 {
     public $file;
 

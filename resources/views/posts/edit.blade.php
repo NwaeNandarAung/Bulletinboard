@@ -3,9 +3,7 @@
   <div class="container">
     <h3 align="center" style="margin-top:20px; color:#999;">Update Post</h3><br/>
     @foreach($postData as $post)
-      <form class="form-horizontal" id="myForm" method="POST" action="{{ url('/post', ['id' => $post->id]) }}">
-        {{ csrf_field()}}
-        @method('PUT')
+      <form class="form-horizontal" id="myForm" method="GET" action="{{ url('/post/updateconfirm', ['id' => $post->id]) }}">
         <input type="hidden" class="form-control" name="id" value="{{ $post->id }}" required/>
         <div class="form-group row">
           <label class="offset-sm-2 col-sm-2 col-form-label">Title</label>

@@ -2,15 +2,15 @@
 
 namespace Domain\Usecase\Bulletin\Interactor\Post;
 
-use Domain\Input\Bulletin\Post\CsvUploadInput;
-use Domain\Output\Bulletin\Post\CsvUploadOutput;
-use Domain\Usecase\Bulletin\Post\CsvUploadUsecase;
+use Domain\Input\Bulletin\Post\CsvUploadScreenInput;
+use Domain\Output\Bulletin\Post\CsvUploadScreenOutput;
+use Domain\Usecase\Bulletin\Post\CsvUploadScreenUsecase;
 use Domain\Repository\Bulletin\Post\PostRepository;
 use Domain\Exceptions\BulletinWebException;
 use Domain\ValueObject\Common\ErrorCode;
 use Auth;
 
-class CsvUploadInteractor implements CsvUploadUsecase
+class CsvUploadScreenInteractor implements CsvUploadScreenUsecase
 {
     private $postRepository;
 
@@ -19,7 +19,7 @@ class CsvUploadInteractor implements CsvUploadUsecase
         $this->postRepository = $postRepository;
     }
 
-    public function handle(CsvUploadInput $input):CsvUploadOutput
+    public function handle(CsvUploadScreenInput $input):CsvUploadScreenOutput
     {
         $input->validate();
 
@@ -62,7 +62,7 @@ class CsvUploadInteractor implements CsvUploadUsecase
         } else {
             $postInfo = $this->postRepository->csvUploadInfo($importData_arr);
         }
-        $output = new CsvUploadOutput($input);
+        $output = new CsvUploadScreenOutput($input);
 
         return $output;
     }

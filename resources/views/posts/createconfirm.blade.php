@@ -2,14 +2,15 @@
 @section('content')
   <div class="container">
     <h3 align="center" style="margin-top:20px; color:#999;">Create Post Confirmation</h3><br/>
-    <form class="form-horizontal" method="get" action="{{ url('/posts') }}">
+    <form class="form-horizontal" method="POST" action="{{ url('/post') }}">
+      {{ csrf_field()}}
       <table class='table table-borderless'>
         <tr>
           <td>
             <label>Title</label>
           </td>
           <td>
-            <input type="label" name="title" style="border:none;" value="<?php echo $_POST['title']; ?>">
+            <input type="label" name="title" style="border:none;" value="<?php echo $_GET['title']; ?>">
           <td>
         </tr>
         <tr>
@@ -17,7 +18,7 @@
             <label>Description</label>
           </td>
           <td>
-          <input type="label" name="description" style="border:none;" value="<?php echo $_POST['description']; ?>">
+          <input type="label" name="description" style="border:none;" value="<?php echo $_GET['description']; ?>">
           <td>
         </tr>
       </table>

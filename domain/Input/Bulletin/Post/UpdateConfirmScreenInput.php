@@ -6,15 +6,19 @@ use Domain\Exceptions\BulletinWebException;
 use Domain\ValueObject\Common\ErrorCode;
 use Domain\Input\BaseInput;
 
-Class ConfirmPostInput implements BaseInput
+Class UpdateConfirmScreenInput implements BaseInput
 {
-    public string $title;
-    public string $description;
+    public $id;
+    public $title;
+    public $description;
+    public $status;
 
-    public function __construct($title, $description)
+    public function __construct($id,$title, $description,$status)
     {
+        $this->id = $id;
         $this->title = $title;
         $this->description = $description;
+        $this->status = $status;
     }
 
     public function validate()

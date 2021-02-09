@@ -4,7 +4,7 @@ namespace Domain\Output\Bulletin\Post;
 
 use Domain\Output\BaseOutput;
 
-class UpdateConfirmPostOutput implements BaseOutput
+class UpdateConfirmScreenOutput implements BaseOutput
 {
     private $postInfo;
 

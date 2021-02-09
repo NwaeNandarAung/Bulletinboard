@@ -2,22 +2,19 @@
 
 namespace Domain\Input\Bulletin\Post;
 
-use Domain\Exceptions\BulletinWebException;
 use Domain\Input\BaseInput;
+use Domain\Exceptions\BulletinWebException;
+use Domain\ValueObject\Common\ErrorCode;
 
-Class UpdateConfirmPostInput implements BaseInput
+Class ConfirmPostScreenInput implements BaseInput
 {
-    public $id;
-    public $title;
-    public $description;
-    public $status;
+    public string $title;
+    public string $description;
 
-    public function __construct($id,$title, $description,$status)
+    public function __construct($title, $description)
     {
-        $this->id = $id;
         $this->title = $title;
         $this->description = $description;
-        $this->status = $status;
     }
 
     public function validate()

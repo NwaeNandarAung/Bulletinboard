@@ -4,15 +4,10 @@ namespace Domain\Output\Bulletin\Post;
 
 use Domain\Output\BaseOutput;
 
-class CsvUploadOutput implements BaseOutput
+class CsvUploadActionOutput implements BaseOutput
 {
-    public function __construct()
-    {
-
-    }
-
     public function presentation()
     {
-        return redirect('posts');
+        return view('posts.csv');
     }
 }
