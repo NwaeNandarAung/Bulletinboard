@@ -2,15 +2,12 @@
 @section('content')
   <div class="container">
     <h3 align="center" style="margin-top:20px; color:#999;">User Profile &nbsp;</h3><br/>
-    <form class="form-horizontal" method="post" action="{{ url('/user') }}">
-      {{ csrf_field() }}
+    <form class="form-horizontal" method="GET" action="{{ url('/user', ['id' => Auth::user()->id]) }}">
       <table class="table table-borderless" align="center" style="width:50%">
         <tr>
           <td colspan="2"></td>
           <td align="right">
-            @foreach ($userData as $user)
-              <img src="{{url($user->profile)}}" height="100px" width="100px">
-             @endforeach
+            <img src="{{ url('images/'.Auth::user()->profile) }}" height="100px" width="100px">
           </td>
         </tr>
         <tr>
@@ -18,9 +15,7 @@
             <label style="font-weight:bold;">Name</label>
           </td> 
           <td colspan="2">
-            @foreach ($userData as $user)
-              <label>{{$user->name}}</label>
-            @endforeach
+              <label>{{Auth::user()->name}}</label>
           </td>
         </tr>
         <tr>
@@ -28,9 +23,7 @@
             <label style="font-weight:bold;">Email Address</label> 
           </td>
           <td colspan="2">
-            @foreach ($userData as $user)
-              <label>{{$user->email}}</label>  
-            @endforeach
+              <label>{{Auth::user()->email}}</label>  
           </td>
         </tr>
         <tr>
@@ -38,9 +31,11 @@
             <label style="font-weight:bold;">Type</label> 
           </td>
           <td colspan="2">
-            @foreach ($userData as $user)
-              <label>{{$user->type}}</label>
-            @endforeach
+            @if(Auth::user()->type==0)
+              <label>User</label>
+            @else
+              <label>Admin</label>
+            @endif
           </td>
         </tr>
         <tr>
@@ -48,9 +43,7 @@
             <label style="font-weight:bold;">Phone</label>
           </td>
           <td colspan="2">
-            @foreach ($userData as $user)
-              {{$user->phone}}
-            @endforeach
+              {{Auth::user()->phone}}
           </td>
         </tr>
         <tr>
@@ -58,9 +51,7 @@
             <label style="font-weight:bold;">Date of Birth</label>
           </td>
           <td colspan="2">
-            @foreach ($userData as $user)
-              {{$user->dob}}
-            @endforeach
+              {{Auth::user()->dob}}
           </td>
         </tr>
         <tr>
@@ -68,14 +59,12 @@
             <label style="font-weight:bold;">Address</label>
           </td>
           <td colspan="2">
-            @foreach ($userData as $user)
-              {{$user->address}}
-            @endforeach
+              {{Auth::user()->address}}
           </td>
         </tr>
         <tr align="center">
           <td colspan="3">
-          <a href="{{ url('/user/1') }}" class="btn btn-primary px-4" role="button">Edit</a>
+          <button type="submit" class="btn btn-primary">Edit</button>
           </td>
         </tr>
       </table>

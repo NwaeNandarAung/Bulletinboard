@@ -2,6 +2,7 @@
 
 namespace Domain\Usecase\Bulletin\Interactor\User;
 
+use Domain\Input\Bulletin\User\ShowUserInput;
 use Domain\Output\Bulletin\User\ShowUserOutput;
 use Domain\Usecase\Bulletin\User\ShowUserUsecase;
 use Domain\Repository\Bulletin\User\UserRepository;
@@ -15,7 +16,7 @@ class ShowUserInteractor implements ShowUserUsecase
         $this->userRepository = $userRepository;
     }
 
-    public function handle():ShowUserOutput
+    public function handle(ShowUserInput $input):ShowUserOutput
     {
         $input->validate();
         $userInfo = $this->userRepository->showUserInfo();

@@ -6,6 +6,7 @@ use Domain\Repository\Bulletin\User\UserRepository;
 use DB;
 use Domain\Models\User;
 use Auth;
+use Hash;
 
 class UserRepositoryImpl implements UserRepository
 {
@@ -13,20 +14,31 @@ class UserRepositoryImpl implements UserRepository
     {
         $query = DB::table('users');
         $query->select();
-        
+
         return $query->get()->map(function ($item) {
             return User::createInstance($item);
         })->toArray();
     }
 
-    public function createUserInfo($input): ?array
+    public function createUserInfo($input): ?User
     {
         $query = DB::table('users');
-        $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');
-        
-        return $query->get()->map(function ($item) {
-            return User::createInstance($item);
-        })->toArray();
+        $query->insertGetId([
+            'name' => $input->name,
+            'email' => $input->email,
+            'password' => Hash::make($input->password),
+            'type' => $input->type,
+            'phone' => $input->phone,
+            'dob' => $input->dob,
+            'address' => $input->address,
+            'profile' => $input->profile,
+            'created_user_id' => Auth::id(),
+            'updated_user_id' => Auth::id(),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        return User::createInstance($query->latest()->first());
     }
 
     public function getUserInfoByEmail($email): ?array
@@ -40,26 +52,6 @@ class UserRepositoryImpl implements UserRepository
     }
 
     public function getUserInfo(): ?array
-    {
-        $query = DB::table('users');
-        $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');
-        
-        return $query->get()->map(function ($item) {
-            return User::createInstance($item);
-        })->toArray();
-    }
-
-    public function editUserInfo(): ?array
-    {
-        $query = DB::table('users');
-        $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');
-        
-        return $query->get()->map(function ($item) {
-            return User::createInstance($item);
-        })->toArray();
-    }
-
-    public function getUpdateConfirmUserInfo(): ?array
     {
         $query = DB::table('users');
         $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');
@@ -132,7 +124,7 @@ class UserRepositoryImpl implements UserRepository
     public function getLogoutInfo(): ?array
     {
         $query = DB::table('users');
-        $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');
+        $query->select();
         
         return $query->get()->map(function ($item) {
             return User::createInstance($item);

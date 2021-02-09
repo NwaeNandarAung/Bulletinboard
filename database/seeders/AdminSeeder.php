@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
             'name' => 'Nwae',
             'email' => 'nwaenwae@gmail.com',
             'password' => Hash::make('123456'),
-            'profile'=>'https://pixabay.com/photos/tree-sunset-amazing-beautiful-736885/',
+            'profile'=>'images/download.png',
             'created_user_id'=>'1',
             'updated_user_id'=>'1',
             'created_at'=> now(),

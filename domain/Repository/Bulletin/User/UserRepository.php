@@ -2,19 +2,17 @@
 
 namespace Domain\Repository\Bulletin\User;
 
+use Domain\Models\User;
+
 Interface UserRepository
 {
     public function getAllUsersInfo($input) :?array;
 
-    public function createUserInfo($input) :?array;
+    public function createUserInfo($input) :?User;
 
     public function getUserInfoByEmail($email) :?array;
 
     public function getUserInfo() :?array;
-
-    public function editUserInfo() :?array;
-
-    public function getUpdateConfirmUserInfo() :?array;
 
     public function getUpdateUserInfo() :?array;
 

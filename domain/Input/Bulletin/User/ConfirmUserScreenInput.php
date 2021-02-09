@@ -6,7 +6,7 @@ use Domain\ValueObject\Common\ErrorCode;
 use Domain\Exceptions\BulletinWebException;
 use Domain\Input\BaseInput;
 
-Class ConfirmUserInput implements BaseInput
+Class ConfirmUserScreenInput implements BaseInput
 {
     public $name;
     public $email;

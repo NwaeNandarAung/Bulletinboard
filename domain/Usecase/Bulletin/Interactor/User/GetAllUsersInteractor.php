@@ -19,6 +19,7 @@ class GetAllUsersInteractor implements GetAllUsersUsecase
     public function handle(GetAllUsersInput $input):GetAllUsersOutput
     {
         $usersInfo = $this->userRepository->getAllUsersInfo($input);
+
         $output = new GetAllUsersOutput($usersInfo);
 
         return $output;

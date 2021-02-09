@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->integer('id')->primary()->increments();
+            $table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->text('password');
@@ -23,23 +23,20 @@ class CreateUsersTable extends Migration
             $table->string('phone',20)->nullable();
             $table->string('address')->nullable();
             $table->date('dob')->nullable(); 
-            $table->integer('created_user_id');
-            $table->integer('updated_user_id');
+            $table->unsignedBigInteger('created_user_id');
+            $table->unsignedBigInteger('updated_user_id');
             $table->integer('deleted_user_id')->nullable();
             $table->datetime('created_at');
             $table->datetime('updated_at');
             $table->datetime('deleted_at')->nullable();
-        });
-
-        Schema::table('users', function (Blueprint $table) {
             $table->foreign('created_user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade'); 
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade'); 
             $table->foreign('updated_user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
         });
     }
 

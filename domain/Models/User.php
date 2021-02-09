@@ -4,7 +4,7 @@ namespace Domain\Models;
 
 use stdClass;
 
-class User 
+class User
 {
     public string $id;
     public string $name;
@@ -28,19 +28,32 @@ class User
     public static function createInstance(stdClass $item)
     {
         $newInstance = new User();
-        $newInstance->id = 1;
+        $newInstance->id = $item->id;
         $newInstance->name = $item->name;
         $newInstance->email = $item->email;
         $newInstance->password = $item->password;
         $newInstance->profile = $item->profile;
         $newInstance->type = $item->type;
-        $newInstance->phone = '09789987678';
-        $newInstance->address = 'Yangon';
-        $newInstance->dob ='01-10-1997';
+        if (IS_NULL($item->phone)) {
+            $newInstance->phone='NULL';
+        } else {
+            $newInstance->phone = $item->phone;
+        }
+
+        if (IS_NULL($item->address)) {
+            $newInstance->address='NULL';
+        } else {
+            $newInstance->address = $item->address;
+        }
+
+        if(IS_NULL($item->dob)) {
+            $newInstance->dob='NULL';
+        } else {
+            $newInstance->dob =$item->dob;
+        }
+
         $newInstance->created_user_id = $item->created_user_id;
-        $newInstance->updated_user_id = $item->updated_user_id;
-        $newInstance->created_at = $item->created_at;
-        $newInstance->updated_at = $item->updated_at;
+        $newInstance->created_at = date('d/m/Y', strtotime($item->created_at));
         return $newInstance;
     }
 }

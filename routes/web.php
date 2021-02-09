@@ -42,9 +42,11 @@ Route::group(['prefix' => 'posts', 'middleware' => 'auth'], function () {
 
 //User
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
-    Route::get('/', 'App\Http\Controllers\UserController@create');
+    Route::get('/', 'App\Http\Controllers\UserController@create')->name('user');
+    Route::post('createconfirm', 'App\Http\Controllers\UserController@createConfirm');
     Route::post('/', 'App\Http\Controllers\UserController@store');
     Route::get('{userId}', 'App\Http\Controllers\UserController@edit');
+    Route::post('updateconfirm/{userId}', 'App\Http\Controllers\UserController@updateconfirm');
     Route::put('{userId}', 'App\Http\Controllers\UserController@update');
     Route::get('show/{userId}', 'App\Http\Controllers\UserController@show');
     Route::get('detail/{userId}', 'App\Http\Controllers\UserController@detail');

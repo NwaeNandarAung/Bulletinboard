@@ -9,70 +9,62 @@
         <tr>
           <td colspan="2"></td>
           <td align="right">
-            @foreach ($userData as $user)
-              <img src="{{url($user->profile)}}" height="100px" width="100px">
-            @endforeach
+          <input type="hidden" name="profile" style="border:none;" value="<?php echo $imageName;?>">
+          <img src="{{ asset('images/'.$imageName) }}" width="100" height="100">
           <td>
         </tr>
         <tr>
           <td>
-            <label style="font-weight:bold;">Name</label>
-          </td> 
-          <td colspan="2">
-            @foreach ($userData as $user)
-              <label>{{$user->name}}</label>
-            @endforeach
+            <label>Name</label>
+          </td>
+          <td>
+            <input type="label" name="name" style="border:none;" value="<?php echo $_POST['name']; ?>">
+          <td>
+        </tr>
+        <tr>
+          <td>
+            <label>Email Address</label>
+          </td>
+          <td>
+            <input type="label" name="email" style="border:none;" value="<?php echo $_POST['email']; ?>">
+          <td>
+        </tr>
+        <tr>
+          <td>
+            <label>Type</label>
+          </td>
+          <td>
+          <input type="hidden" name="type" style="border:none;" value="<?php echo $_POST['type']; ?>">
+          @if($_POST['type']==0)
+          <input type="label" name="user" style="border:none;" value="User">
+          @else
+          <input type="label" name="user" style="border:none;" value="Admin">
+          @endif
           </td>
         </tr>
         <tr>
           <td>
-            <label style="font-weight:bold;">Email Address</label>
+            <label>Phone</label>
           </td>
-          <td colspan="2">
-            @foreach ($userData as $user)
-              <label>{{$user->email}}</label>
-            @endforeach
-          </td>
+          <td>
+            <input type="label" name="phone" style="border:none;" value="<?php echo $_POST['phone']; ?>">
+          <td>
         </tr>
         <tr>
           <td>
-            <label style="font-weight:bold;">Type</label>
+            <label>Date of Birth</label>
           </td>
-          <td colspan="2">
-            @foreach ($userData as $user)
-              <label>{{$user->type}}</label>
-            @endforeach
-          </td>
+          <td>
+          <input type="label" name="dob" style="border:none;" value="<?php echo $_POST['dob']; ?>">
+          <td>
         </tr>
         <tr>
           <td>
-            <label style="font-weight:bold;">Phone</label> 
+            <label>Address</label>
           </td>
-          <td colspan="2">
-            @foreach ($userData as $user)
-              <label>{{$user->phone}}</label>
-            @endforeach
-          </td>
-        </tr>
-        <tr>
           <td>
-            <label style="font-weight:bold;">Date of Birth</label>
-          </td>
-          <td colspan="2">
-            @foreach ($userData as $user)
-              <label>{{$user->dob}}</label>
-            @endforeach
-          </td>
-        </tr>
-        <tr>
+          <input type="label" name="address" style="border:none;" value="<?php echo $_POST['address']; ?>">
           <td>
-            <label style="font-weight:bold;">Address</label>
-          </td>
-          <td colspan="2">
-            @foreach ($userData as $user)
-              <label>{{$user->address}}</label>
-            @endforeach
-          </td>
         </tr>
       </table>
       <div class="form-group row">

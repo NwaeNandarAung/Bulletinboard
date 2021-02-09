@@ -96,8 +96,13 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\User\ConfirmUserUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\User\ConfirmUserInteractor::class,
+            \Domain\Usecase\Bulletin\User\ConfirmUserScreenUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\ConfirmUserScreenInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\User\ConfirmUserActionUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\ConfirmUserActionInteractor::class,
         );
 
         $this->app->bind(
@@ -121,8 +126,8 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\User\UpdateConfirmUserUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\User\UpdateConfirmUserInteractor::class,
+            \Domain\Usecase\Bulletin\User\UpdateConfirmScreenUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\UpdateConfirmScreenInteractor::class,
         );
 
         $this->app->bind(

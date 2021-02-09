@@ -2,24 +2,22 @@
 @section('content')
   <div class="container">
     <h3 align="center" style="margin-top:20px; color:#999;">Create User Confirmation</h3><br/>
-    <form class="form-horizontal" method="post" action="{{ url('/user') }}">
+    <form class="form-horizontal" method="POST" action="{{ url('/user') }}">
+      {{ csrf_field()}}
       <table class='table table-borderless'>
         <tr>
           <td colspan='2'></td>
           <td>
-            @foreach ($userData as $user)
-              <img src="{{url($user->profile)}}" height="100px" width="100px">
-            @endforeach
+          <input type="hidden" name="profile" style="border:none;" value="<?php echo $imageName;?>">
+          <img src="{{ asset('images/'.$imageName) }}" width="100" height="100">
           </td>
         </tr>
         <tr>
           <td>
             <label>Name</label>
-          </td> 
+          </td>
           <td>
-            @foreach ($userData as $user)
-              <label> {{$user->name}}</label>
-            @endforeach
+            <input type="label" name="name" style="border:none;" value="<?php echo $_POST['name']; ?>">
           </td>
         </tr>
         <tr>
@@ -27,9 +25,7 @@
             <label>Email Address</label>
           </td>
           <td>
-            @foreach ($userData as $user)
-              <label>{{$user->email}}</label>
-            @endforeach
+          <input type="label" name="email" style="border:none;" value="<?php echo $_POST['email']; ?>">
           </td>
         </tr>
         <tr>
@@ -37,9 +33,7 @@
             <label>Password</label>
           </td>
           <td>
-            @foreach ($userData as $user)
-              <input type="password" style="border:none;" value=<?php echo $user->password?> readonly/>
-            @endforeach
+          <input type="password" name="password" style="border:none;" value="<?php echo $_POST['password']; ?>">
           </td>
         </tr>
         <tr>
@@ -47,9 +41,12 @@
             <label>Type</label>
           </td>
           <td>
-            @foreach ($userData as $user)
-              <label>{{$user->type}}</label>
-            @endforeach
+          <input type="hidden" name="type" style="border:none;" value="<?php echo $_POST['type']; ?>">
+          @if($_POST['type']==0)
+          <input type="label" name="user" style="border:none;" value="User">
+          @else
+          <input type="label" name="user" style="border:none;" value="Admin">
+          @endif
           </td>
         </tr>
         <tr>
@@ -57,9 +54,7 @@
             <label>Phone</label>
           </td>
           <td>
-            @foreach ($userData as $user)
-              <label>{{$user->phone}} </label>
-            @endforeach
+          <input type="label" name="phone" style="border:none;" value="<?php echo $_POST['phone']; ?>">
           </td>
         </tr>
         <tr>
@@ -67,9 +62,7 @@
             <label>Date of Birth</label>
           </td>
           <td>
-            @foreach ($userData as $user)
-              <label>{{$user->dob}}</label>
-            @endforeach
+          <input type="label" name="dob" style="border:none;" value="<?php echo $_POST['dob']; ?>">
           </td>
         </tr>
         <tr>
@@ -77,10 +70,8 @@
             <label>Address</label>
           </td>
           <td>
-            @foreach ($userData as $user)
-              <label>{{$user->address}}</label>
-            @endforeach
-          </td> 
+          <input type="label" name="address" style="border:none;" value="<?php echo $_POST['address']; ?>">
+          </td>
         </tr>
       </table>
       <div class="form-group row">

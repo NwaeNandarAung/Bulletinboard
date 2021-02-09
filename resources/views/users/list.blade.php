@@ -35,7 +35,7 @@
             <td>{{ $user->email }}</td>
             <td>{{ $user->created_user_id }}</td>
             <td>{{ $user->phone }}</td>
-            <td>{{ $user->dob }}</td>
+            <td>{{ date('d/m/Y', strtotime($user->dob)) }}</td>
             <td>{{ date('d/m/Y', strtotime($user->created_at)) }}</td>
             <td><a href="">Delete</a></td>
           </tr>

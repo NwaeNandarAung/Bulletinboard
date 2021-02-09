@@ -2,8 +2,8 @@
 @section('content')
   <div class="container">
     <h3 align="center" style="margin-top:20px; color:#999;">Create User</h3><br/>
-    <form class="form-horizontal" id="userCreateForm" method="POST" action="{{ url('user/createconfirm') }}">
-      {{ csrf_field() }}
+    <form class="form-horizontal" id="userCreateForm" method="POST" enctype="multipart/form-data" action="{{ url('user/createconfirm') }}" enctype="multipart/form-data">
+      {{ csrf_field()}}
       <div class="form-group row">
         <label class="offset-sm-2 col-sm-2 col-form-label">Name</label>
         <div class="col-sm-6">
@@ -76,7 +76,7 @@
       <div class="form-group row">
         <label class="offset-sm-2 col-sm-2 col-form-label">Profile</label>
         <div class="col-sm-4">
-          <input type="file" name="profile" accept="image/*" class="form-control-file" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" required>
+          <input type="file" name="profile" accept="image/*" class="form-control-file"  onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" required>
         </div>
         <div class="col-sm-2">
           <img id="output" src="{{ asset('images/download.png') }}" width="100" height="100">
