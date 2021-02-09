@@ -22,7 +22,6 @@ Class CsvUploadInput implements BaseInput
 
         // 2MB in Bytes
         $maxFileSize = 2097152; 
-
         $fileSize = $this->file->getSize();
         $filename = $this->file->getClientOriginalName();
         $extension = $this->file->getClientOriginalExtension();

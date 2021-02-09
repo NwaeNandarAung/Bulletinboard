@@ -9,20 +9,14 @@ use Domain\Input\Bulletin\Post\CreatePostInput;
 use Domain\Usecase\Bulletin\Post\CreatePostUsecase;
 use Domain\Input\Bulletin\Post\ConfirmPostInput;
 use Domain\Usecase\Bulletin\Post\ConfirmPostUsecase;
-use Domain\Input\Bulletin\Post\PostPostInput;
-use Domain\Usecase\Bulletin\Post\PostPostUsecase;
 use Domain\Input\Bulletin\Post\SearchPostInput;
 use Domain\Usecase\Bulletin\Post\SearchPostUsecase;
 use Domain\Input\Bulletin\Post\DeletePostInput;
 use Domain\Usecase\Bulletin\Post\DeletePostUsecase;
 use Domain\Input\Bulletin\Post\EditPostInput;
 use Domain\Usecase\Bulletin\Post\EditPostUsecase;
-use Domain\Input\Bulletin\Post\UpdatePostInput;
-use Domain\Usecase\Bulletin\Post\UpdatePostUsecase;
 use Domain\Input\Bulletin\Post\UpdateConfirmPostInput;
 use Domain\Usecase\Bulletin\Post\UpdateConfirmPostUsecase;
-use Domain\Input\Bulletin\Post\CsvDownloadInput;
-use Domain\Usecase\Bulletin\Post\CsvDownloadUsecase;
 use Domain\Input\Bulletin\Post\CsvImportInput;
 use Domain\Usecase\Bulletin\Post\CsvImportUsecase;
 use Domain\Input\Bulletin\Post\CsvUploadInput;
@@ -62,20 +56,9 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function createconfirm(Request $request, ConfirmPostUsecase $usecase)
+    public function store(Request $request, ConfirmPostUsecase $usecase)
     {
         $input = new ConfirmPostInput(
-            $request->get('title'),
-            $request->get('description')
-        );
-        $output = $usecase->handle($input);
-
-        return $output->presentation();
-    }
-
-    public function store(Request $request,PostPostUsecase $usecase)
-    {
-        $input = new PostPostInput(
             $request->get('title'),
             $request->get('description')
         );
@@ -122,43 +105,13 @@ class PostController extends Controller
         return $output->presentation();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $postId, UpdatePostUsecase $usecase)
-    {
-        $input = new UpdatePostInput(
-            $postId,
-            $request->get('title'),
-            $request->get('description'),
-            $request->has('status')
-        );
-        $output = $usecase->handle($input);
-
-        return $output->presentation();
-    }
-
-    public function updateconfirm(Request $request, UpdateConfirmPostUsecase $usecase)
+    public function update(Request $request, UpdateConfirmPostUsecase $usecase)
     {
         $input = new UpdateConfirmPostInput(
             $request->get('id'),
             $request->get('title'),
             $request->get('description'),
             $request->has('status')
-        );
-        $output = $usecase->handle($input);
-
-        return $output->presentation();
-    }
-
-    public function export(Request $request,CsvDownloadUsecase $usecase)
-    {
-        $input = new CsvDownloadInput(
-            $request->get('search')
         );
         $output = $usecase->handle($input);
 

@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post 
 {
     use SoftDeletes;
-    protected $dates = ['deleted_at'];
-    protected $hidden = ['deleted_user_id'];
+    protected $dates = ['deleted_at','deleted_user_id'];
 
     public string $id;
     public $title;

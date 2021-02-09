@@ -36,8 +36,7 @@ Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'posts', 'middleware' => 'auth'], function () {
     Route::get('/', 'App\Http\Controllers\PostController@index');
     Route::get('search', 'App\Http\Controllers\PostController@search');
-    Route::get('excel', 'App\Http\Controllers\PostController@export');
-    Route::get('import', 'App\Http\Controllers\PostController@import');
+    Route::get('excel', 'App\Http\Controllers\PostController@import');
     Route::post('import', 'App\Http\Controllers\PostController@upload');
 });
 
@@ -45,10 +44,8 @@ Route::group(['prefix' => 'posts', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('/', 'App\Http\Controllers\UserController@create');
     Route::post('/', 'App\Http\Controllers\UserController@store');
-    Route::post('createconfirm', 'App\Http\Controllers\UserController@createconfirm');
     Route::get('{userId}', 'App\Http\Controllers\UserController@edit');
     Route::put('{userId}', 'App\Http\Controllers\UserController@update');
-    Route::get('updateconfirm/{userId}', 'App\Http\Controllers\UserController@updateconfirm');
     Route::get('show/{userId}', 'App\Http\Controllers\UserController@show');
     Route::get('detail/{userId}', 'App\Http\Controllers\UserController@detail');
     Route::get('{userId}/password', 'App\Http\Controllers\UserController@editpassword');

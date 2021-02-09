@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Domain\Models\User;
 use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,11 +15,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //bind usecases 
-        $this->app->bind(
-            \Domain\Usecase\Bulletin\Post\PostPostUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\Post\PostPostInteractor::class,
-        );
-
         $this->app->bind(
             \Domain\Usecase\Bulletin\Post\ConfirmPostUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\Post\ConfirmPostInteractor::class,
@@ -52,18 +46,8 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\Post\UpdatePostUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\Post\UpdatePostInteractor::class,
-        );
-
-        $this->app->bind(
             \Domain\Usecase\Bulletin\Post\UpdateConfirmPostUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\Post\UpdateConfirmPostInteractor::class,
-        );
-
-        $this->app->bind(
-            \Domain\Usecase\Bulletin\Post\CsvDownloadUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\Post\CsvDownloadInteractor::class,
         );
 
         $this->app->bind(

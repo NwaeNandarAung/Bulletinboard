@@ -2,25 +2,23 @@
 @section('content')
   <h3 align="center" style="margin-top:20px; color:#999;">Post Lists</h3><br/>
   <div class="container">
-    <form class="form-inline" action="{{ url('posts/search') }}" method="GET">
-      <div class="row my-2">
-        <div class="col-md-4">
-          <input type="text" class="form-control"  placeholder="Search" name="search" required/>
-        </div>
-        <div class="col-md-2">
-          <button class="btn btn-primary" type="submit">Search</button>
-        </div>
-        <div class="col-md-2">
-          <a href="{{ url('/post') }}" class="btn btn-primary" role="button">Add</a>
-        </div>
-        <div class="col-md-2">
-          <a href="{{ url('/posts/import') }}" class="btn btn-primary" role="button">Upload</a>
-        </div>
-        <div class="col-md-2">
-          <button class="btn btn-primary" type="submit" formaction="{{ url('posts/excel') }}">Download</button>
-        </div>
+    <div class="row my-2">
+      <div class="col-md-4">
+        <form class="form-inline" action="{{ url('posts/search') }}" method="GET">  
+          <input type="text" class="form-control"  placeholder="Search" name="search"/>&nbsp;
+          <button class="btn btn-primary" type="submit">Search</button>         
+        </form>
       </div>
-    </form>
+      <div class="col-md-2">
+        <a href="{{ url('/post') }}" class="btn btn-outline-primary" role="button">Add</a>
+      </div>
+      <div class="col-md-2">
+        <a href="{{ url('/posts/excel') }}" class="btn btn-outline-primary" role="button">Upload</a>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-outline-primary" type="submit" id="export" onclick="exportTableToCSV('posts.csv')">Download</button>
+      </div>
+    </div>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -37,7 +35,7 @@
             <td><a href="javascript:void(0)" id="show-post" data-toggle="modal" data-target="#crud-modal-show{{ $post->id }}">{{ $post->title }}</a></td>
             <td>{{ $post->description }}</td>
             <td>{{ $post->name }}</td>
-            <td>{{ $post->created_at }}</td>
+            <td>{{ date('d/m/Y', strtotime($post->created_at)) }}</td>
             <td><a href="{{ url('/post', ['id' => $post->id]) }}">Edit</a></td>
             <td>
               <form action="{{ url('/post', ['id' => $post->id]) }}" method="post">
@@ -56,7 +54,9 @@
         @endforelse
       </tbody>
     </table>
-    {!! $postData->render() !!}
+  </div>
+  <div class="pagination-bar text-center">
+       {{ $postData->links() }}
   </div>
 
   <!-- Show post modal -->
@@ -71,23 +71,39 @@
             </button>
           </div>
           <div class="modal-body">
-            <table width="100%">
-              <tr>
-                <td><strong>Title</strong></td>
-                <td><strong>:</strong></td>
-                <td>{{$post->title}}</td>
-              </tr>
-              <tr>
-                <td><strong>Description</strong></td>
-                <td><strong>:</strong></td>
-                <td>{{$post->description}}</td>
-              </tr>
-              <tr>
-                <td><strong>Status</strong></td>
-                <td><strong>:</strong></td>
-                <td>{{$post->status}}</td>
-              </tr>
-            </table>
+            <div class="row">
+              <div class="col-md-4">
+                <strong>Title</strong>
+              </div>
+              <div class="col-md-2">
+                <strong>:</strong>
+              </div>
+              <div class="col-md-6">
+                {{$post->title}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <strong>Description</strong>
+              </div>
+              <div class="col-md-2">
+                <strong>:</strong>
+              </div>
+              <div class="col-md-6">
+                {{$post->description}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <strong>Status</strong>
+              </div>
+              <div class="col-md-2">
+                <strong>:</strong>
+              </div>
+              <div class="col-md-6">
+                {{$post->status}}
+              </div>
+            </div>
           </div>
         </div>
       </div>

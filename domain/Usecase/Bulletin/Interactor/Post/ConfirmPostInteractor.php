@@ -21,14 +21,16 @@ class ConfirmPostInteractor implements ConfirmPostUsecase
     public function handle(ConfirmPostInput $input):ConfirmPostOutput
     {
         $input->validate();
- 
+        
         $postTitleInfo = $this->postRepository->getPostInfoByTitle($input->title);
         
         if (!empty($postTitleInfo)) {
             throw new BulletinWebException(ErrorCode::ERROR_0002, "Post Already Existed");
+        } else {
+            $postInfo = $this->postRepository->createPostInfo($input);
         }
 
-        $output = new ConfirmPostOutput($input);
+        $output = new ConfirmPostOutput($postInfo);
 
         return $output;
     }

@@ -2,8 +2,7 @@
 @section('content')
   <div class="container">
     <h3 align="center" style="margin-top:20px; color:#999;">Create Post Confirmation</h3><br/>
-    <form class="form-horizontal" method="post" action="{{ url('/post') }}">
-      {{ csrf_field() }}
+    <form class="form-horizontal" method="get" action="{{ url('/posts') }}">
       <table class='table table-borderless'>
         <tr>
           <td>

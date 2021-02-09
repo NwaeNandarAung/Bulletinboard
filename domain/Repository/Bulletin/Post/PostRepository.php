@@ -6,7 +6,7 @@ use Domain\Models\Post;
 
 Interface PostRepository
 {
-    public function getAllPostsInfo($input): ?array;
+    public function getAllPostsInfo($input);
 
     public function createPostInfo($input): ?Post;
 
@@ -24,5 +24,5 @@ Interface PostRepository
 
     public function csvImportInfo($file): ?array;
 
-    public function csvUploadInfo($file): ?array;
+    public function csvUploadInfo($importData_arr): ?array;
 }

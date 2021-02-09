@@ -26,8 +26,10 @@ class UpdateConfirmPostInteractor implements UpdateConfirmPostUsecase
 
         if (!empty($postTitleInfo)) {
             throw new BulletinWebException(ErrorCode::ERROR_0002, "Post Already Existed");
+        } else {
+            $postInfo = $this->postRepository->getUpdatePostInfo($input, $input->id);
         }
-        $output = new UpdateConfirmPostOutput($input);
+        $output = new UpdateConfirmPostOutput($postInfo);
 
         return $output;
     }

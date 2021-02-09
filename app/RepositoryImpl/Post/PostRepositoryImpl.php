@@ -6,29 +6,27 @@ use Domain\Repository\Bulletin\Post\PostRepository;
 use DB;
 use Domain\Models\Post;
 use Auth;
-use Domain\Exceptions\BulletinWebException;
-use Domain\ValueObject\Common\ErrorCode;
 
 class PostRepositoryImpl implements PostRepository
 {
-    public function getAllPostsInfo($input): ?array
+    public function getAllPostsInfo($input)
     {
         $query = DB::table('posts');
 
         if (Auth::user()->type == '1') {
             $query->select('users.name as name','posts.*')
                   ->join('users', 'posts.created_user_id', '=', 'users.id')
-                  ->orderBy('posts.id');
+                  ->where('posts.deleted_at', '=', null)
+                  ->orderBy('posts.id');             
         } else {
             $query->select('users.name as name','posts.*')
                   ->join('users', 'posts.created_user_id', '=', 'users.id')
                   ->where('posts.created_user_id', '=', Auth::id())
+                  ->where('posts.deleted_at', '=', null)
                   ->orderBy('posts.id');
         }
 
-        return $query->get()->map(function ($item) {
-            return Post::listInstance($item);
-        })->toArray();
+        return $query->paginate(10);
     }
 
     public function createPostInfo($input): ?Post
@@ -73,10 +71,10 @@ class PostRepositoryImpl implements PostRepository
     }
 
     public function deletePostInfo($postId): ?array
-    {
+    { 
         $query = DB::table('posts');
         $query->where('id', '=', $postId)
-              ->delete();
+              ->update( ['deleted_user_id'=> Auth::user()->id, 'deleted_at'=> now()] );
 
         return $query->get()->map(function ($item) {
             return Post::createInstance($item);
@@ -123,32 +121,8 @@ class PostRepositoryImpl implements PostRepository
         })->toArray();
     }
 
-    public function csvImportInfo($file): ?array
+    public function csvImportInfo($importData_arr): ?array
     {
-        $filename = $file->getClientOriginalName();
-        // File upload location
-        $location = Auth::id().'/csv';
-
-        // Upload file
-        $file->move($location,$filename);
-
-        // Import CSV to Database
-        $filepath = public_path($location."/".$filename);
-
-        // Reading file
-        $file = fopen($filepath,"r");
-
-        $importData_arr = array();
-        $i = 0;
-        while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
-            $num = count($filedata );
-            for ($c=0; $c < $num; $c++) {
-                $importData_arr[$i][] = $filedata [$c];
-            }
-            $i++;
-        }
-        fclose($file);
-
         foreach ($importData_arr as $importData) {
             $query = DB::table('posts');
             $query->where('title', '=', $importData[0]);
@@ -159,34 +133,13 @@ class PostRepositoryImpl implements PostRepository
         })->toArray();
     }
 
-    public function csvUploadInfo($file): ?array
+    public function csvUploadInfo($importData_arr): ?array
     {
-        $filename = $file->getClientOriginalName();
-        $location = Auth::id().'/csv';
-        $filepath = public_path($location."/".$filename);
-        $file = fopen($filepath,"r");
-        $importData_arr = array();
-        $i = 0;
-
-        while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
-            $num = count($filedata );
-            for ($c=0; $c < $num; $c++) {
-                $importData_arr[$i][] = $filedata [$c];
-            }
-            $i++;
-        }
-        fclose($file);
-
         foreach ($importData_arr as $importData) {
-            if (empty($importData[0])) {
-                throw new BulletinWebException(ErrorCode::ERROR_0002, "Title is required");
-            }
-            if (empty($importData[1])) {
-                throw new BulletinWebException(ErrorCode::ERROR_0002, "Description is required");
-            }
             if (empty( $importData[2])) {
                 $importData[2]=1;
             }
+
             $insertData = array (
                         "title" => $importData[0],
                         "description" => $importData[1],

@@ -2,34 +2,34 @@
 @section('content')
   <div class="container">
     <h3 align="center" style="margin-top:20px; color:#999;">Update Post Confirmation</h3><br/>
-    <form class="form-horizontal"  method="POST" id="statusForm{{$postData->id}}" action="{{ url('/post', ['id' => $postData->id]) }}">
-      {{ csrf_field()}}
-      @method('PUT')
+    <form class="form-horizontal"  method="get"  action="{{ url('/posts') }}">
       <table class='table table-borderless'>
-        <tr>
-          <td>
-            <label>Title</label>
-          </td>
-          <td>
-            <input type="label" name="title" style="border:none;" value="{{$postData->title}}">
-          <td>
-        </tr>
-        <tr>
-          <td>
-            <label>Description</label>
-          </td>
-          <td>
-            <input type="label" name="description" style="border:none;" value="{{$postData->description}}">
-          <td>
-        </tr>
-        <tr>
-          <td>
-            <label>Status</label>
-          </td>
-          <td>
-          <input type="checkbox" name="status" data-plugin="switchery" data-color="#1bb99a" {{ $postData->status == 1 ? 'checked' : ''}}>
-          </td>
-        </tr>
+        @foreach($postData as $post)
+          <tr>
+            <td>
+              <label>Title</label>
+            </td>
+            <td>
+              <input type="label" name="title" style="border:none;" value="{{$post->title}}">
+            <td>
+          </tr>
+          <tr>
+            <td>
+              <label>Description</label>
+            </td>
+            <td>
+              <input type="label" name="description" style="border:none;" value="{{$post->description}}">
+            <td>
+          </tr>
+          <tr>
+            <td>
+              <label>Status</label>
+            </td>
+            <td>
+              <input type="checkbox" name="status" data-plugin="switchery" data-color="#1bb99a" {{ $post->status == 1 ? 'checked' : ''}}>
+            </td>
+          </tr>
+        @endforeach
       </table>
       <div class="form-group row">
         <div class="offset-md-9 col-md-3">

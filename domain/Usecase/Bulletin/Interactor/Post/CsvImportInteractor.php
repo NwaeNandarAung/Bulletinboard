@@ -11,7 +11,7 @@ class CsvImportInteractor implements CsvImportUsecase
     public function handle(CsvImportInput $input):CsvImportOutput
     {
         $output = new CsvImportOutput();
- 
+
         return $output;
     }
 }
