@@ -56,14 +56,12 @@ class PostRepositoryImpl implements PostRepository
 
     public function searchPostInfo($search)
     {
-        if ($search) {
         $query = DB::table('posts');
         $query->join('users', 'posts.created_user_id', '=', 'users.id')
               ->where('posts.title', 'LIKE', "%" . $search . "%")
               ->orWhere('posts.description', 'LIKE', "%" . $search . "%")
               ->orWhere('users.name', 'LIKE', "%" . $search . "%")
               ->orderBy('posts.id');
-        }
 
         return $query->paginate(10);
     }
