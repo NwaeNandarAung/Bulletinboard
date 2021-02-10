@@ -4,9 +4,9 @@
   <div class="container">
     <div class="row my-2">
       <div class="col-md-4">
-        <form class="form-inline" action="{{ url('posts/search') }}" method="GET">  
+        <form class="form-inline" action="{{ url('posts/search') }}" method="GET">
           <input type="text" class="form-control"  placeholder="Search" name="search" required/>&nbsp;
-          <button class="btn btn-primary" type="submit">Search</button>         
+          <button class="btn btn-primary" type="submit">Search</button>
         </form>
       </div>
       <div class="col-md-2">
