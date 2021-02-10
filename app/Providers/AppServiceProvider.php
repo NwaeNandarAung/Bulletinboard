@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //bind usecases 
+        //Post
         $this->app->bind(
             \Domain\Usecase\Bulletin\Post\ConfirmPostScreenUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\Post\ConfirmPostScreenInteractor::class,
@@ -70,6 +71,7 @@ class AppServiceProvider extends ServiceProvider
             \Domain\Usecase\Bulletin\Interactor\Post\CsvUploadScreenInteractor::class,
         );
 
+        //Login
         $this->app->bind(
             \Domain\Usecase\Bulletin\User\PostLoginUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\User\PostLoginInteractor::class,
@@ -84,15 +86,16 @@ class AppServiceProvider extends ServiceProvider
             \Domain\Usecase\Bulletin\User\GetLogoutUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\User\GetLogoutInteractor::class,
         );
-        
+
+        //User
         $this->app->bind(
-            \Domain\Usecase\Bulletin\User\CreateUserUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\User\CreateUserInteractor::class,
+            \Domain\Usecase\Bulletin\User\GetAllUsersUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\GetAllUsersInteractor::class,
         );
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\User\GetUserUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\User\GetUserInteractor::class,
+            \Domain\Usecase\Bulletin\User\CreateUserUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\CreateUserInteractor::class,
         );
 
         $this->app->bind(
@@ -106,8 +109,18 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\User\GetAllUsersUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\User\GetAllUsersInteractor::class,
+            \Domain\Usecase\Bulletin\User\SearchUserUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\SearchUserInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\User\DeleteUserUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\DeleteUserInteractor::class,
+        );
+
+        $this->app->bind(
+            \Domain\Usecase\Bulletin\User\ShowUserUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\ShowUserInteractor::class,
         );
 
         $this->app->bind(
@@ -116,25 +129,14 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\User\UpdateConfirmActionUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\User\UpdateConfirmActionInteractor::class,
-        ); 
-
-        $this->app->bind(
             \Domain\Usecase\Bulletin\User\UpdateConfirmScreenUsecase::class,
             \Domain\Usecase\Bulletin\Interactor\User\UpdateConfirmScreenInteractor::class,
         );
 
-
         $this->app->bind(
-            \Domain\Usecase\Bulletin\User\DetailUserUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\User\DetailUserInteractor::class,
-        );
-
-        $this->app->bind(
-            \Domain\Usecase\Bulletin\User\ShowUserUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\User\ShowUserInteractor::class,
-        );
+            \Domain\Usecase\Bulletin\User\UpdateConfirmActionUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\UpdateConfirmActionInteractor::class,
+        ); 
 
         $this->app->bind(
             \Domain\Usecase\Bulletin\User\EditPasswordUsecase::class,

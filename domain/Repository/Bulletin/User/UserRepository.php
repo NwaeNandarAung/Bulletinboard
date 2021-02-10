@@ -6,17 +6,25 @@ use Domain\Models\User;
 
 Interface UserRepository
 {
-    public function getAllUsersInfo($input) :?array;
-
-    public function createUserInfo($input) :?User;
+    public function getAllUsersInfo($input);
 
     public function getUserInfoByEmail($email) :?array;
 
-    public function getUpdateUserInfo($input) :?array;
+    public function createUserInfo($input) :?User;
+
+    public function searchbyName($name);
+
+    public function searchbyEmail($email);
+
+    public function searchbyCreatedFrom($created_from);
+
+    public function searchbyCreatedTo($created_to);
+
+    public function deleteUserInfo($userId): ?array;
 
     public function showUserInfo() :?array;
 
-    public function detailUserInfo() :?array;
+    public function getUpdateUserInfo($input) :?array;
 
     public function editPasswordInfo() :?array;
 

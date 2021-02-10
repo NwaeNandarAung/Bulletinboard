@@ -49,9 +49,13 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::post('updateconfirm/{userId}', 'App\Http\Controllers\UserController@updateconfirm');
     Route::put('{userId}', 'App\Http\Controllers\UserController@update');
     Route::get('show/{userId}', 'App\Http\Controllers\UserController@show');
-    Route::get('detail/{userId}', 'App\Http\Controllers\UserController@detail');
     Route::get('{userId}/password', 'App\Http\Controllers\UserController@editpassword');
     Route::put('{userId}/password', 'App\Http\Controllers\UserController@updatepassword');
+    Route::delete('{userId}', 'App\Http\Controllers\UserController@destroy');
 });
-Route::get('users', 'App\Http\Controllers\UserController@index')->middleware('auth');
+
+Route::group(['prefix' => 'users', 'middleware' => 'auth'], function () {
+Route::get('/', 'App\Http\Controllers\UserController@index');
+Route::get('search', 'App\Http\Controllers\UserController@search');
+});
 Auth::routes();

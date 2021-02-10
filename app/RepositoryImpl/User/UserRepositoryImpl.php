@@ -10,10 +10,18 @@ use Hash;
 
 class UserRepositoryImpl implements UserRepository
 {
-    public function getAllUsersInfo($input): ?array
+    public function getAllUsersInfo($input)
     {
         $query = DB::table('users');
-        $query->select();
+        $query->where('deleted_at', '=', null);
+
+        return $query->paginate(10);
+    }
+
+    public function getUserInfoByEmail($email): ?array
+    {
+        $query = DB::table('users');
+        $query->where('email', '=', $email);
 
         return $query->get()->map(function ($item) {
             return User::createInstance($item);
@@ -41,11 +49,54 @@ class UserRepositoryImpl implements UserRepository
         return User::createInstance($query->latest()->first());
     }
 
-    public function getUserInfoByEmail($email): ?array
+    public function searchbyName($name)
     {
         $query = DB::table('users');
-        $query->where('email', '=', $email);
+        $query->where('name', 'LIKE', "%" . $name . "%");
 
+        return $query->paginate(10);
+    }
+
+    public function searchbyEmail($email)
+    {
+        $query = DB::table('users');
+        $query->where('email', 'LIKE', "%" . $email . "%");
+
+        return $query->paginate(2);
+    }
+
+    public function searchbyCreatedFrom($created_from)
+    {
+        $query = DB::table('users');
+        $query->where('created_at', 'LIKE', "%" . $created_from . "%");
+
+        return $query->paginate(2);
+    }
+
+    public function searchbyCreatedTo($created_to)
+    {
+        $query = DB::table('users');
+        $query->where('created_at', 'LIKE', "%" . $created_to . "%");
+
+        return $query->paginate(2);
+    }
+
+    public function deleteUserInfo($userId): ?array
+    { 
+        $query = DB::table('users');
+        $query->where('id', '=', $userId)
+              ->update( ['deleted_user_id'=> Auth::user()->id, 'deleted_at'=> now()] );
+
+        return $query->get()->map(function ($item) {
+            return User::createInstance($item);
+        })->toArray();
+    }
+
+    public function showUserInfo(): ?array
+    {
+        $query = DB::table('users');
+        $query->where('id','=', Auth::id());
+              
         return $query->get()->map(function ($item) {
             return User::createInstance($item);
         })->toArray();
@@ -68,26 +119,6 @@ class UserRepositoryImpl implements UserRepository
         $query->where('id', '=', Auth::id())
               ->update($updateDetails);
 
-        return $query->get()->map(function ($item) {
-            return User::createInstance($item);
-        })->toArray();
-    }
-
-    public function showUserInfo(): ?array
-    {
-        $query = DB::table('users');
-        $query->where('id','=', Auth::id());
-              
-        return $query->get()->map(function ($item) {
-            return User::createInstance($item);
-        })->toArray();
-    }
-
-    public function detailUserInfo(): ?array
-    {
-        $query = DB::table('users');
-        $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');
-       
         return $query->get()->map(function ($item) {
             return User::createInstance($item);
         })->toArray();

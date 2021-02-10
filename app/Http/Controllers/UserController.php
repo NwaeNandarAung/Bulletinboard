@@ -3,25 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Domain\Input\Bulletin\User\GetAllUsersInput;
+use Domain\Usecase\Bulletin\User\GetAllUsersUsecase;
 use Domain\Input\Bulletin\User\CreateUserInput;
 use Domain\Usecase\Bulletin\User\CreateUserUsecase;
-use Domain\Input\Bulletin\User\GetUserInput;
-use Domain\Usecase\Bulletin\User\GetUserUsecase;
 use Domain\Input\Bulletin\User\ConfirmUserScreenInput;
 use Domain\Usecase\Bulletin\User\ConfirmUserScreenUsecase;
 use Domain\Input\Bulletin\User\ConfirmUserActionInput;
 use Domain\Usecase\Bulletin\User\ConfirmUserActionUsecase;
-use Domain\Input\Bulletin\User\GetAllUsersInput;
-use Domain\Usecase\Bulletin\User\GetAllUsersUsecase;
-use Domain\Input\Bulletin\User\EditUserInput;
-use Domain\Usecase\Bulletin\User\EditUserUsecase;
-use Domain\Input\Bulletin\User\UpdateConfirmActionInput;
-use Domain\Usecase\Bulletin\User\UpdateConfirmActionUsecase;
-use Domain\Input\Bulletin\User\UpdateConfirmScreenInput;
-use Domain\Usecase\Bulletin\User\UpdateConfirmScreenUsecase;
-use Domain\Usecase\Bulletin\User\DetailUserUsecase;
+use Domain\Input\Bulletin\User\SearchUserInput;
+use Domain\Usecase\Bulletin\User\SearchUserUsecase;
+use Domain\Input\Bulletin\User\DeleteUserInput;
+use Domain\Usecase\Bulletin\User\DeleteUserUsecase;
 use Domain\Input\Bulletin\User\ShowUserInput;
 use Domain\Usecase\Bulletin\User\ShowUserUsecase;
+use Domain\Input\Bulletin\User\EditUserInput;
+use Domain\Usecase\Bulletin\User\EditUserUsecase;
+use Domain\Input\Bulletin\User\UpdateConfirmScreenInput;
+use Domain\Usecase\Bulletin\User\UpdateConfirmScreenUsecase;
+use Domain\Input\Bulletin\User\UpdateConfirmActionInput;
+use Domain\Usecase\Bulletin\User\UpdateConfirmActionUsecase;
 use Domain\Usecase\Bulletin\User\EditPasswordUsecase;
 use Domain\Input\Bulletin\User\UpdatePasswordInput;
 use Domain\Usecase\Bulletin\User\UpdatePasswordUsecase;
@@ -90,6 +91,33 @@ class UserController extends Controller
         return $output->presentation();
     }
 
+    public function search(Request $request, SearchUserUsecase $usecase)
+    {
+        $input = new SearchUserInput(
+            $request->get('name'),
+            $request->get('email'),
+            $request->get('created_from'),
+            $request->get('created_to')
+        );
+        $output = $usecase->handle($input);
+
+        return $output->presentation();
+    }
+
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request,$userId, DeleteUserUsecase $usecase)
+    {
+        $input = new DeleteUserInput($userId);
+        $output = $usecase->handle($input);
+
+        return $output->presentation();
+    }
+
     /**
      * Display the specified resource.
      *
@@ -118,6 +146,24 @@ class UserController extends Controller
         return $output->presentation();
     }
 
+    public function updateconfirm(Request $request, UpdateConfirmScreenUsecase $usecase)
+    {
+
+        $input = new UpdateConfirmScreenInput(
+            $request->get('name'),
+            $request->get('email'),
+            $request->file('profile'),
+            $request->get('hidden_profile'),
+            $request->get('type'),
+            $request->get('phone'),
+            $request->get('address'),
+            $request->get('dob'),
+        );
+        $output = $usecase->handle($input);
+
+        return $output->presentation();
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -140,31 +186,6 @@ class UserController extends Controller
         return $output->presentation();
     }
 
-    public function updateconfirm(Request $request, UpdateConfirmScreenUsecase $usecase)
-    {
-
-        $input = new UpdateConfirmScreenInput(
-            $request->get('name'),
-            $request->get('email'),
-            $request->file('profile'),
-            $request->get('hidden_profile'),
-            $request->get('type'),
-            $request->get('phone'),
-            $request->get('address'),
-            $request->get('dob'),
-        );
-        $output = $usecase->handle($input);
-
-        return $output->presentation();
-    }
-
-    public function detail($userId,DetailUserUsecase $usecase)
-    {
-        $output = $usecase->handle();
-
-        return $output->presentation();
-    }
-
     public function editpassword($userId,EditPasswordUsecase $usecase)
     {
         $output = $usecase->handle();
@@ -182,16 +203,5 @@ class UserController extends Controller
         $output = $usecase->handle($input);
 
         return $output->presentation();
-    }
-    
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

@@ -25,6 +25,11 @@
           event.preventDefault();
       }
 
+      function userFunction() {
+        if (!confirm("Are You Sure to delete this user?"))
+          event.preventDefault();
+      }
+
 			$(document).ready(function(){
 				$('#btnClear').click(function(){
 						$('#myForm input[type="text"]').val('');

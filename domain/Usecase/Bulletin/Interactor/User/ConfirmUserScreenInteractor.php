@@ -29,7 +29,7 @@ class ConfirmUserScreenInteractor implements ConfirmUserScreenUsecase
             throw new BulletinWebException(ErrorCode::ERROR_0002, "User with email already exist");
         }
 
-        $imageName = time().'.'.$input->profile->extension();  
+        $imageName = time().'.'.$input->profile->extension();
         $input->profile->move(public_path(Auth::id().'/images'), $imageName);
         $output = new ConfirmUserScreenOutput($imageName);
 
