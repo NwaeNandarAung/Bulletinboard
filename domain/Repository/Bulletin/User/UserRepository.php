@@ -12,9 +12,7 @@ Interface UserRepository
 
     public function getUserInfoByEmail($email) :?array;
 
-    public function getUserInfo() :?array;
-
-    public function getUpdateUserInfo() :?array;
+    public function getUpdateUserInfo($input) :?array;
 
     public function showUserInfo() :?array;
 

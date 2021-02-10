@@ -9,7 +9,7 @@
           <td colspan='2'></td>
           <td>
           <input type="hidden" name="profile" style="border:none;" value="<?php echo $imageName;?>">
-          <img src="{{ asset('images/'.$imageName) }}" width="100" height="100">
+          <img src="{{ asset(Auth::user()->id.'/images/'.$imageName) }}" width="100" height="100">
           </td>
         </tr>
         <tr>
@@ -42,10 +42,10 @@
           </td>
           <td>
           <input type="hidden" name="type" style="border:none;" value="<?php echo $_POST['type']; ?>">
-          @if($_POST['type']==0)
-          <input type="label" name="user" style="border:none;" value="User">
+          @if($_POST['type']==1)
+            <input type="label" name="user" style="border:none;" value="User">
           @else
-          <input type="label" name="user" style="border:none;" value="Admin">
+            <input type="label" name="user" style="border:none;" value="Admin">
           @endif
           </td>
         </tr>

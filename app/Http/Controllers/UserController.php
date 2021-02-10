@@ -15,8 +15,8 @@ use Domain\Input\Bulletin\User\GetAllUsersInput;
 use Domain\Usecase\Bulletin\User\GetAllUsersUsecase;
 use Domain\Input\Bulletin\User\EditUserInput;
 use Domain\Usecase\Bulletin\User\EditUserUsecase;
-use Domain\Input\Bulletin\User\UpdateUserInput;
-use Domain\Usecase\Bulletin\User\UpdateUserUsecase;
+use Domain\Input\Bulletin\User\UpdateConfirmActionInput;
+use Domain\Usecase\Bulletin\User\UpdateConfirmActionUsecase;
 use Domain\Input\Bulletin\User\UpdateConfirmScreenInput;
 use Domain\Usecase\Bulletin\User\UpdateConfirmScreenUsecase;
 use Domain\Usecase\Bulletin\User\DetailUserUsecase;
@@ -33,7 +33,6 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index(Request $request,GetAllUsersUsecase $usecase)
     {
         $input = new GetAllUsersInput();
@@ -126,21 +125,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $userId, UpdateUserUsecase $usecase)
+    public function update(Request $request, $userId, UpdateConfirmActionUsecase $usecase)
     {
-        $input = new UpdateUserInput(
+        $input = new UpdateConfirmActionInput(
             $request->get('name'),
-            $request->get('email'),
-            $request->get('password'),
-            $request->file('profile'),
+            $request->get('profile'),
             $request->get('type'),
             $request->get('phone'),
             $request->get('address'),
             $request->get('dob'),
-            $request->get('created_user_id'),
-            $request->get('updated_user_id'),
-            $request->get('created_at'),
-            $request->get('updated_at'),
         );
         $output = $usecase->handle($input);
 
@@ -149,10 +142,12 @@ class UserController extends Controller
 
     public function updateconfirm(Request $request, UpdateConfirmScreenUsecase $usecase)
     {
+
         $input = new UpdateConfirmScreenInput(
             $request->get('name'),
             $request->get('email'),
             $request->file('profile'),
+            $request->get('hidden_profile'),
             $request->get('type'),
             $request->get('phone'),
             $request->get('address'),

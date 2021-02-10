@@ -6,7 +6,7 @@
       {{ csrf_field()}}
       <div class="form-group row">
         <div class="offset-sm-9 col-sm-3">
-          <img src="{{ url('images/'.Auth::user()->profile) }}" height="100px" width="100px">
+          <img src="{{ url(Auth::user()->updated_user_id.'/images/'.Auth::user()->profile) }}" height="100px" width="100px">
         </div>
       </div>
       <div class="form-group row">
@@ -30,10 +30,10 @@
       <div class="form-group row">
         <label class="offset-sm-2 col-sm-2 col-form-label">Type</label>
         <div class="col-sm-6">
-          @if(Auth::user()->type==1)
+          @if(Auth::user()->type==0)
             <select name="type" class="form-control" value="{{ Auth::user()->type }}" required>
               <option value="{{ Auth::user()->type }}" selected>Admin</option>
-              <option value="0">User</option>
+              <option value="1">User</option>
             </select>
           @else           
             <input type="hidden" class="form-control" name="type" value="{{ Auth::user()->type }}">
@@ -65,10 +65,11 @@
       <div class="form-group row">
         <label class="offset-sm-2 col-sm-2 col-form-label">Profile</label>
         <div class="col-sm-4">
-          <input type="file" name="profile" accept="image/*" class="form-control-file" value="{{ Auth::user()->profile }}" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+          <input type="hidden" class="form-control" name="hidden_profile" value="{{ Auth::user()->profile }}">
+          <input type="file" name="profile" class="form-control-file" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
         </div>
         <div class="col-sm-2">
-          <img id="output" src="{{ url('images/'.Auth::user()->profile) }}" width="100" height="100">
+          <img id="output" src="{{ url(Auth::user()->updated_user_id.'/images/'.Auth::user()->profile) }}" width="100" height="100">
         </div>
         <div class="col-sm-2">
           <span style='color:red;'>*</span>

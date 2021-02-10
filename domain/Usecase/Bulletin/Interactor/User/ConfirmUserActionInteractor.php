@@ -21,7 +21,6 @@ class ConfirmUserActionInteractor implements ConfirmUserActionUsecase
         $input->validate();
 
         $userInfo = $this->userRepository->createUserInfo($input);
-
         $output = new ConfirmUserActionOutput($userInfo);
 
         return $output;

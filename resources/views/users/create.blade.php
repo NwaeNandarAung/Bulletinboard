@@ -47,8 +47,8 @@
         <label class="offset-sm-2 col-sm-2 col-form-label">Type</label>
         <div class="col-sm-6">
           <select name="type" class="form-control" required>
-            <option value="1">Admin</option>
-            <option value="0">User</option>
+            <option value="0">Admin</option>
+            <option value="1">User</option>
           </select>
         </div>
         <div class="col-md-2">

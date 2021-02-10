@@ -51,21 +51,23 @@ class UserRepositoryImpl implements UserRepository
         })->toArray();
     }
 
-    public function getUserInfo(): ?array
+    public function getUpdateUserInfo($input): ?array
     {
-        $query = DB::table('users');
-        $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');
-        
-        return $query->get()->map(function ($item) {
-            return User::createInstance($item);
-        })->toArray();
-    }
+        $updateDetails = [
+            'name' => $input->name,
+            'type' => $input->type,
+            'phone'=> $input->phone,
+            'dob' => $input->dob,
+            'address' => $input->address,
+            'profile' => $input->profile,
+            'updated_user_id' => Auth::id(),
+            'updated_at' => now()
+        ];
 
-    public function getUpdateUserInfo(): ?array
-    {
         $query = DB::table('users');
-        $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');
-        
+        $query->where('id', '=', Auth::id())
+              ->update($updateDetails);
+
         return $query->get()->map(function ($item) {
             return User::createInstance($item);
         })->toArray();
@@ -125,7 +127,7 @@ class UserRepositoryImpl implements UserRepository
     {
         $query = DB::table('users');
         $query->select();
-        
+
         return $query->get()->map(function ($item) {
             return User::createInstance($item);
         })->toArray();

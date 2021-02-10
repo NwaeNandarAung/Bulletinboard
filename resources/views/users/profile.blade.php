@@ -7,7 +7,7 @@
         <tr>
           <td colspan="2"></td>
           <td align="right">
-            <img src="{{ url('images/'.Auth::user()->profile) }}" height="100px" width="100px">
+            <img src="{{ asset(Auth::user()->updated_user_id.'/images/'.Auth::user()->profile) }}" height="100px" width="100px">
           </td>
         </tr>
         <tr>
@@ -31,7 +31,7 @@
             <label style="font-weight:bold;">Type</label> 
           </td>
           <td colspan="2">
-            @if(Auth::user()->type==0)
+            @if(Auth::user()->type==1)
               <label>User</label>
             @else
               <label>Admin</label>

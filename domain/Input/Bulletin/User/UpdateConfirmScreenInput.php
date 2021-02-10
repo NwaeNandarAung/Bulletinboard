@@ -11,16 +11,18 @@ Class UpdateConfirmScreenInput implements BaseInput
     public $name;
     public $email;
     public $profile;
+    public $hidden_profile;
     public $type;
     public $phone;
     public $address;
     public $dob;
 
-    public function __construct($name,$email,$profile,$type,$phone,$address,$dob)
+    public function __construct($name,$email,$profile,$hidden_profile,$type,$phone,$address,$dob)
     {
         $this->name = $name;
         $this->email = $email;
         $this->profile = $profile;
+        $this->hidden_profile = $hidden_profile;
         $this->type = $type;
         $this->phone = $phone;
         $this->address = $address;

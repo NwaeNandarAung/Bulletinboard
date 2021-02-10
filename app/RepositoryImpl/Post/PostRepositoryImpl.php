@@ -13,11 +13,11 @@ class PostRepositoryImpl implements PostRepository
     {
         $query = DB::table('posts');
 
-        if (Auth::user()->type == '1') {
+        if (Auth::user()->type == '0') {
             $query->select('users.name as name','posts.*')
                   ->join('users', 'posts.created_user_id', '=', 'users.id')
                   ->where('posts.deleted_at', '=', null)
-                  ->orderBy('posts.id');             
+                  ->orderBy('posts.id');
         } else {
             $query->select('users.name as name','posts.*')
                   ->join('users', 'posts.created_user_id', '=', 'users.id')

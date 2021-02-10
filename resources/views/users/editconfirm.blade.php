@@ -2,15 +2,15 @@
 @section('content')
   <div class="container">
     <h3 align="center" style="margin-top:20px; color:#999;">Update User Confirmation</h3><br/>
-    <form class="form-horizontal" method="post" action="{{ url('/user/1') }}">
+    <form class="form-horizontal"  method="POST"  action="{{ url('/user', ['id' => Auth::user()->id]) }}">
       {{ csrf_field()}}
       @method('PUT')
       <table class="table table-borderless" align="center">
         <tr>
           <td colspan="2"></td>
-          <td align="right">
+          <td align="right">  
           <input type="hidden" name="profile" style="border:none;" value="<?php echo $imageName;?>">
-          <img src="{{ asset('images/'.$imageName) }}" width="100" height="100">
+          <img src="{{ asset(Auth::user()->id.'/images/'.$imageName) }}" width="100" height="100">
           <td>
         </tr>
         <tr>
@@ -35,7 +35,7 @@
           </td>
           <td>
           <input type="hidden" name="type" style="border:none;" value="<?php echo $_POST['type']; ?>">
-          @if($_POST['type']==0)
+          @if($_POST['type']==1)
           <input type="label" name="user" style="border:none;" value="User">
           @else
           <input type="label" name="user" style="border:none;" value="Admin">
