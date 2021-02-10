@@ -54,7 +54,7 @@ class PostRepositoryImpl implements PostRepository
         })->toArray();
     }
 
-    public function searchPostInfo($search): ?array
+    public function searchPostInfo($search)
     {
         if ($search) {
         $query = DB::table('posts');
@@ -65,9 +65,7 @@ class PostRepositoryImpl implements PostRepository
               ->orderBy('posts.id');
         }
 
-        return $query->get()->map(function ($item) {
-            return Post::listInstance($item);
-        })->toArray();
+        return $query->paginate(10);
     }
 
     public function deletePostInfo($postId): ?array

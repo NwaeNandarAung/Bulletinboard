@@ -18,7 +18,7 @@ Interface PostRepository
 
     public function getUpdatePostInfo($input, $postId): ?array;
 
-    public function searchPostInfo($search): ?array;
+    public function searchPostInfo($search);
 
     public function deletePostInfo($postId): ?array;
 
