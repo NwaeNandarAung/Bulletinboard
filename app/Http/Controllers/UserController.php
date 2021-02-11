@@ -23,9 +23,10 @@ use Domain\Input\Bulletin\User\UpdateConfirmScreenInput;
 use Domain\Usecase\Bulletin\User\UpdateConfirmScreenUsecase;
 use Domain\Input\Bulletin\User\UpdateConfirmActionInput;
 use Domain\Usecase\Bulletin\User\UpdateConfirmActionUsecase;
-use Domain\Usecase\Bulletin\User\EditPasswordUsecase;
-use Domain\Input\Bulletin\User\UpdatePasswordInput;
-use Domain\Usecase\Bulletin\User\UpdatePasswordUsecase;
+use Domain\Input\Bulletin\User\ChangePasswordScreenInput;
+use Domain\Usecase\Bulletin\User\ChangePasswordScreenUsecase;
+use Domain\Input\Bulletin\User\ChangePasswordActionInput;
+use Domain\Usecase\Bulletin\User\ChangePasswordActionUsecase;
 
 class UserController extends Controller
 {
@@ -124,7 +125,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($userId,ShowUserUsecase $usecase)
+    public function show(ShowUserUsecase $usecase)
     {
         $input = new ShowUserInput();
         $output = $usecase->handle($input);
@@ -146,9 +147,8 @@ class UserController extends Controller
         return $output->presentation();
     }
 
-    public function updateconfirm(Request $request, UpdateConfirmScreenUsecase $usecase)
+    public function updateConfirm(Request $request, UpdateConfirmScreenUsecase $usecase)
     {
-
         $input = new UpdateConfirmScreenInput(
             $request->get('name'),
             $request->get('email'),
@@ -186,19 +186,20 @@ class UserController extends Controller
         return $output->presentation();
     }
 
-    public function editpassword($userId,EditPasswordUsecase $usecase)
+    public function editPassword(ChangePasswordScreenUsecase $usecase)
     {
-        $output = $usecase->handle();
+        $input = new ChangePasswordScreenInput();
+        $output = $usecase->handle($input);
 
         return $output->presentation();
     }
 
-    public function updatepassword(Request $request, $userId, UpdatePasswordUsecase $usecase)
+    public function updatePassword(Request $request, ChangePasswordActionUsecase $usecase)
     {
-        $input = new UpdatePasswordInput(
-            $request->get('password'),
-            $request->get('updated_user_id'),
-            $request->get('updated_at')
+        $input = new ChangePasswordActionInput(
+            $request->get('oldPassword'),
+            $request->get('newPassword'),
+            $request->get('confirmPassword')
         );
         $output = $usecase->handle($input);
 

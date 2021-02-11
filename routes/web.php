@@ -45,12 +45,12 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('/', 'App\Http\Controllers\UserController@create')->name('user');
     Route::post('createconfirm', 'App\Http\Controllers\UserController@createConfirm');
     Route::post('/', 'App\Http\Controllers\UserController@store');
+    Route::get('/password', 'App\Http\Controllers\UserController@editPassword');
+    Route::put('/password', 'App\Http\Controllers\UserController@updatePassword');
+    Route::get('/show', 'App\Http\Controllers\UserController@show');
     Route::get('{userId}', 'App\Http\Controllers\UserController@edit');
-    Route::post('updateconfirm/{userId}', 'App\Http\Controllers\UserController@updateconfirm');
+    Route::post('updateconfirm/{userId}', 'App\Http\Controllers\UserController@updateConfirm');
     Route::put('{userId}', 'App\Http\Controllers\UserController@update');
-    Route::get('show/{userId}', 'App\Http\Controllers\UserController@show');
-    Route::get('{userId}/password', 'App\Http\Controllers\UserController@editpassword');
-    Route::put('{userId}/password', 'App\Http\Controllers\UserController@updatepassword');
     Route::delete('{userId}', 'App\Http\Controllers\UserController@destroy');
 });
 

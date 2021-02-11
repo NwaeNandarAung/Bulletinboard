@@ -9,8 +9,12 @@
         <tr>
           <td colspan="2"></td>
           <td align="right">  
-          <input type="hidden" name="profile" style="border:none;" value="<?php echo $imageName;?>">
-          <img src="{{ asset(Auth::user()->id.'/images/'.$imageName) }}" width="100" height="100">
+            <input type="hidden" name="profile" style="border:none;" value="<?php echo $imageName;?>">
+            @if(file_exists(Auth::user()->updated_user_id.'/images/'.$imageName))
+              <img src="{{ url(Auth::user()->updated_user_id.'/images/'.$imageName) }}" height="100px" width="100px">
+            @else
+              <img src="{{ url(Auth::user()->created_user_id.'/images/'.$imageName) }}" height="100px" width="100px">
+            @endif
           <td>
         </tr>
         <tr>
@@ -34,12 +38,12 @@
             <label>Type</label>
           </td>
           <td>
-          <input type="hidden" name="type" style="border:none;" value="<?php echo $_POST['type']; ?>">
-          @if($_POST['type']==1)
-          <input type="label" name="user" style="border:none;" value="User">
-          @else
-          <input type="label" name="user" style="border:none;" value="Admin">
-          @endif
+            <input type="hidden" name="type" style="border:none;" value="<?php echo $_POST['type']; ?>">
+            @if($_POST['type']==1)
+              <input type="label" name="user" style="border:none;" value="User">
+            @else
+              <input type="label" name="user" style="border:none;" value="Admin">
+            @endif
           </td>
         </tr>
         <tr>
@@ -70,7 +74,7 @@
       <div class="form-group row">
         <div class="offset-md-9 col-md-3">
           <button type="submit" class="btn btn-primary mb-2">Update</button>
-          <button type="reset" class="btn btn-outline-primary mb-2">Cancel</button>
+          <a href="javascript:history.back()" class="btn btn-outline-primary mb-2" role="button">Cancel</a>
         </div>
       </div>
     </form>

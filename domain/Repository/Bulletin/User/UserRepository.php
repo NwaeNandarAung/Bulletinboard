@@ -26,9 +26,7 @@ Interface UserRepository
 
     public function getUpdateUserInfo($input) :?array;
 
-    public function editPasswordInfo() :?array;
-
-    public function getUpdatePasswordInfo() :?array;
+    public function getUpdatePasswordInfo($newPassword) :?array;
 
     public function getLoginInfo($input) :?array;
 

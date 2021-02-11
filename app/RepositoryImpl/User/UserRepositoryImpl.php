@@ -124,21 +124,18 @@ class UserRepositoryImpl implements UserRepository
         })->toArray();
     }
 
-    public function editPasswordInfo(): ?array
+    public function getUpdatePasswordInfo($newPassword): ?array
     {
-        $query = DB::table('users');
-        $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');
-        
-        return $query->get()->map(function ($item) {
-            return User::createInstance($item);
-        })->toArray();
-    }
+        $updateDetails = [
+            'password' => Hash::make($newPassword),
+            'updated_user_id' => Auth::id(),
+            'updated_at' => now()
+        ];
 
-    public function getUpdatePasswordInfo(): ?array
-    {
         $query = DB::table('users');
-        $query->select('name','email','password','profile','type','phone','address','dob','created_user_id','updated_user_id','created_at','updated_at');
-      
+        $query->where('id', '=', Auth::id())
+              ->update($updateDetails);
+
         return $query->get()->map(function ($item) {
             return User::createInstance($item);
         })->toArray();

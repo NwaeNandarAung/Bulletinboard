@@ -4,7 +4,7 @@ namespace Domain\Output\Bulletin\User;
 
 use Domain\Output\BaseOutput;
 
-class EditPasswordOutput implements BaseOutput
+class ChangePasswordActionOutput implements BaseOutput
 {
     private $passwordInfo;
 
@@ -15,8 +15,6 @@ class EditPasswordOutput implements BaseOutput
 
     public function presentation()
     {
-        $passwordData = $this->passwordInfo;
-
-        return view('users.editpassword', compact('passwordData'));
+        return redirect('posts');
     }
 }

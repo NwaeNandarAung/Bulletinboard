@@ -7,7 +7,11 @@
         <tr>
           <td colspan="2"></td>
           <td align="right">
-            <img src="{{ asset(Auth::user()->updated_user_id.'/images/'.Auth::user()->profile) }}" height="100px" width="100px">
+            @if(file_exists(Auth::user()->updated_user_id.'/images/'.Auth::user()->profile))
+              <img src="{{ asset(Auth::user()->updated_user_id.'/images/'.Auth::user()->profile) }}" height="100px" width="100px">
+            @else
+              <img src="{{ asset(Auth::user()->created_user_id.'/images/'.Auth::user()->profile) }}" height="100px" width="100px">
+            @endif
           </td>
         </tr>
         <tr>

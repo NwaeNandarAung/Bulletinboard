@@ -10,14 +10,14 @@
           <a class="nav-link" href="{{ url('/users') }}">Users <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/user/show', ['id' =>Auth::user()->id])}}">User</a>
+          <a class="nav-link" href="{{ url('/user/show')}}">User</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url('/posts') }}">Posts</a>
         </li>
       @else
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/user/show', ['id' =>Auth::user()->id])}}">User</a>
+          <a class="nav-link" href="{{ url('/user/show') }}">User</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url('/posts') }}">Posts</a>

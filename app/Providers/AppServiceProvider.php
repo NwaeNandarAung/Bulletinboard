@@ -139,13 +139,13 @@ class AppServiceProvider extends ServiceProvider
         ); 
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\User\EditPasswordUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\User\EditPasswordInteractor::class,
+            \Domain\Usecase\Bulletin\User\ChangePasswordScreenUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\ChangePasswordScreenInteractor::class,
         );
 
         $this->app->bind(
-            \Domain\Usecase\Bulletin\User\UpdatePasswordUsecase::class,
-            \Domain\Usecase\Bulletin\Interactor\User\UpdatePasswordInteractor::class,
+            \Domain\Usecase\Bulletin\User\ChangePasswordActionUsecase::class,
+            \Domain\Usecase\Bulletin\Interactor\User\ChangePasswordActionInteractor::class,
         ); 
 
         //bind repositories

@@ -8,8 +8,8 @@
         <tr>
           <td colspan='2'></td>
           <td>
-          <input type="hidden" name="profile" style="border:none;" value="<?php echo $imageName;?>">
-          <img src="{{ asset(Auth::user()->id.'/images/'.$imageName) }}" width="100" height="100">
+            <input type="hidden" name="profile" style="border:none;" value="<?php echo $imageName;?>">
+            <img src="{{ asset(Auth::user()->id.'/images/'.$imageName) }}" width="100" height="100">
           </td>
         </tr>
         <tr>
@@ -25,7 +25,7 @@
             <label>Email Address</label>
           </td>
           <td>
-          <input type="label" name="email" style="border:none;" value="<?php echo $_POST['email']; ?>">
+            <input type="label" name="email" style="border:none;" value="<?php echo $_POST['email']; ?>">
           </td>
         </tr>
         <tr>
@@ -33,7 +33,7 @@
             <label>Password</label>
           </td>
           <td>
-          <input type="password" name="password" style="border:none;" value="<?php echo $_POST['password']; ?>">
+            <input type="password" name="password" style="border:none;" value="<?php echo $_POST['password']; ?>">
           </td>
         </tr>
         <tr>
@@ -41,12 +41,12 @@
             <label>Type</label>
           </td>
           <td>
-          <input type="hidden" name="type" style="border:none;" value="<?php echo $_POST['type']; ?>">
-          @if($_POST['type']==1)
-            <input type="label" name="user" style="border:none;" value="User">
-          @else
-            <input type="label" name="user" style="border:none;" value="Admin">
-          @endif
+            <input type="hidden" name="type" style="border:none;" value="<?php echo $_POST['type']; ?>">
+            @if($_POST['type']==1)
+              <input type="label" name="user" style="border:none;" value="User">
+            @else
+              <input type="label" name="user" style="border:none;" value="Admin">
+            @endif
           </td>
         </tr>
         <tr>
@@ -54,7 +54,7 @@
             <label>Phone</label>
           </td>
           <td>
-          <input type="label" name="phone" style="border:none;" value="<?php echo $_POST['phone']; ?>">
+            <input type="label" name="phone" style="border:none;" value="<?php echo $_POST['phone']; ?>">
           </td>
         </tr>
         <tr>
@@ -62,7 +62,7 @@
             <label>Date of Birth</label>
           </td>
           <td>
-          <input type="label" name="dob" style="border:none;" value="<?php echo $_POST['dob']; ?>">
+            <input type="label" name="dob" style="border:none;" value="<?php echo $_POST['dob']; ?>">
           </td>
         </tr>
         <tr>
@@ -70,14 +70,14 @@
             <label>Address</label>
           </td>
           <td>
-          <input type="label" name="address" style="border:none;" value="<?php echo $_POST['address']; ?>">
+            <input type="label" name="address" style="border:none;" value="<?php echo $_POST['address']; ?>">
           </td>
         </tr>
       </table>
       <div class="form-group row">
         <div class="offset-md-8 col-md-4">
           <button type="submit" class="btn btn-primary mb-2">Create</button>
-          <button type="reset" class="btn btn-outline-primary mb-2">Cancel</button>
+          <a href="javascript:history.back()" class="btn btn-outline-primary mb-2" role="button">Cancel</a>
         </div>
       </div>
     </form>

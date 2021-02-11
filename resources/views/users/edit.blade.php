@@ -6,7 +6,11 @@
       {{ csrf_field()}}
       <div class="form-group row">
         <div class="offset-sm-9 col-sm-3">
-          <img src="{{ url(Auth::user()->updated_user_id.'/images/'.Auth::user()->profile) }}" height="100px" width="100px">
+          @if(file_exists(Auth::user()->updated_user_id.'/images/'.Auth::user()->profile))
+            <img src="{{ asset(Auth::user()->updated_user_id.'/images/'.Auth::user()->profile) }}" height="100px" width="100px">
+          @else
+            <img src="{{ asset(Auth::user()->created_user_id.'/images/'.Auth::user()->profile) }}" height="100px" width="100px">
+          @endif
         </div>
       </div>
       <div class="form-group row">
@@ -69,18 +73,22 @@
           <input type="file" name="profile" class="form-control-file" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
         </div>
         <div class="col-sm-2">
-          <img id="output" src="{{ url(Auth::user()->updated_user_id.'/images/'.Auth::user()->profile) }}" width="100" height="100">
+          @if(file_exists(Auth::user()->updated_user_id.'/images/'.Auth::user()->profile))
+            <img id="output" src="{{ asset(Auth::user()->updated_user_id.'/images/'.Auth::user()->profile) }}" height="100px" width="100px">
+          @else
+            <img id="output" src="{{ asset(Auth::user()->created_user_id.'/images/'.Auth::user()->profile) }}" height="100px" width="100px">
+          @endif
         </div>
         <div class="col-sm-2">
           <span style='color:red;'>*</span>
         </div>
       </div>
       <div class="form-group row">
-        <label for="staticEmail" class="offset-sm-2 col-sm-4 col-form-label"><a href="{{ url('user/1/password') }}">Change Password</a></label>
+        <label class="offset-sm-2 col-sm-4 col-form-label"><a href="{{ url('user/password') }}">Change Password</a></label>
       </div>
       <div class="form-group row">
         <div class="offset-sm-8 col-sm-2">
-        <button type="submit" class="btn btn-primary mb-2">Confirm</button>
+          <button type="submit" class="btn btn-primary mb-2">Confirm</button>
           <button id="userClear" class="btn btn-outline-primary mb-2">Clear</button>
         </div>
       </div>

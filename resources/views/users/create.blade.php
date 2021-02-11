@@ -25,7 +25,7 @@
       <div class="form-group row">
         <label class="offset-sm-2 col-sm-2 col-form-label">Password</label>
         <div class="col-sm-6">
-          <input type="password"  class="form-control" name="password" placeholder="Password"  pattern="(?=.*\d)(?=.*[A-Z]).{9,}"
+          <input type="password"  class="form-control" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[A-Z]).{9,}"
           title="Password must be more than 8 characters long, must contain at least 1 Uppercase and 1 Numeric." required>
         </div>
         <div class="col-md-2">
